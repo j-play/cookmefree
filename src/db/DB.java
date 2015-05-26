@@ -33,10 +33,10 @@ public class DB {
 	public ArrayList<UserModel> getData(){ //return value
 		ArrayList<UserModel> userList=new ArrayList<UserModel>();
 	    // Création de la requête
-		java.sql.Statement query = null; 
+		
 		try {
 			//TODO récupérez l’ensemble des paramètres de tous les utilisateurs de la table ((`surname`, `lastname`, `age`, `login`, `pwd`)
-			
+			java.sql.Statement query = connection.createStatement(); 
 			ResultSet rs = query.executeQuery("select * from user"); 
 			
 			while (rs.next()){ 
