@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.RecipeModelBean;
+import model.RecipeModel;
 import model.UserModelBean;
 
 public class RecipesDao {
@@ -29,7 +29,7 @@ public class RecipesDao {
 	 * Ajout d'un élément recipe en base de données
 	 * @param recipe
 	 */
-	public void addRecipe(RecipeModelBean recipe) {
+	public void addRecipe(RecipeModel recipe) {
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
 			
@@ -55,8 +55,8 @@ public class RecipesDao {
 	 * Récupération de la liste des recettes
 	 * @return ArrayList contenant des beans RecipeModelBean
 	 */
-	public ArrayList<RecipeModelBean> getAllRecipes(){ 
-		ArrayList<RecipeModelBean> recipeList=new ArrayList<RecipeModelBean>();
+	public ArrayList<RecipeModel> getAllRecipes(){ 
+		ArrayList<RecipeModel> recipeList=new ArrayList<RecipeModel>();
 		
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
@@ -65,7 +65,7 @@ public class RecipesDao {
 			ResultSet rs = query.executeQuery("select * from recipe"); 
 			
 			while (rs.next()){ 
-				recipeList.add(new RecipeModelBean(rs.getString("title"), rs.getString("description"), rs.getInt("Expertise"),
+				recipeList.add(new RecipeModel(rs.getString("title"), rs.getString("description"), rs.getInt("Expertise"),
 						rs.getInt("duration"), rs.getInt("nbPeople"), rs.getString("type"))
 				); 
 			}

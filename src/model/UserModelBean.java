@@ -2,6 +2,11 @@ package model;
 
 import java.io.Serializable;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+@ManagedBean
+@SessionScoped
 public class UserModelBean implements Serializable{
 	private String lastname;
 	private String surname; 

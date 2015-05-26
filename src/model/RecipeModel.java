@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class RecipeModelBean implements Serializable{
+public class RecipeModel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String title;
@@ -12,10 +12,10 @@ public class RecipeModelBean implements Serializable{
 	private int nbPeople;
 	private String type;
 	
-	public RecipeModelBean(){
+	public RecipeModel(){
 	}
 	
-	public RecipeModelBean(String title, String description, int expertise, int duration, int nbPeople, String type) {
+	public RecipeModel(String title, String description, int expertise, int duration, int nbPeople, String type) {
 		this.title = title;
 		this.description = description;
 		this.expertise = expertise;
