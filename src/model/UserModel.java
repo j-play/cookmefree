@@ -7,6 +7,13 @@ public class UserModel {
 	private String login; 
 	private String pwd;
 	
+	public UserModel(){
+		this.lastname =null;
+		this.surname = null; 
+		this.age = 0; 
+		this.login = null;
+		this.pwd = null;
+	}
 	public UserModel(String lastname,String surname,int age,String login,String pwd) { 
 		this.lastname = lastname;
 		this.surname = surname; 

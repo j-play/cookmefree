@@ -53,8 +53,9 @@ public class Servlet3 extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	UserModelBean user=(UserModelBean)request.getSession().getAttribute("myUser");
-	
-	 	//TODO Sauvegarder l’utilisateur user (créer dans la page jsp et stocké dans la mémoire session) dans la base de données
+		db.addUser(user);
+		request.getSession().setAttribute("myUser", user);
+	 	response.sendRedirect("step2/display.jsp");
 		//TODO Rediriger la page courante vers la page /step2/display.jsp
 	
 	}
