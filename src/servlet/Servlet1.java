@@ -35,7 +35,7 @@ public class Servlet1 extends HttpServlet {
 		ArrayList<UserModel> listUser = db.getData();
 		//TODO eÌ�crire la liste des utilisateurs dans le flux de reÌ�ponse HttpServletResponse
 		for(UserModel i : listUser){
-			response.getWriter().print("prenom "+i.getSurname()+"\nnom "+i.getLastname()+"\nlogin "+i.getLogin()+"\npassword "+i.getPwd()+"\nage "+i.getAge()+"\n\n");
+			response.getWriter().print("prenom "+i.getSurname()+"<br/>nom "+i.getLastname()+"<br/>login "+i.getLogin()+"<br/>password "+i.getPwd()+"<br/>age "+i.getAge()+"<br/><br/>");
 		}
 		
 	}
