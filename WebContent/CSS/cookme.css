@@ -1,4 +1,17 @@
+html
+{
+	height:100%;
+	width:100%;
+}
+
+body
+{
+	height:100%;
+	width:100%;
+}
+
 .splashscreen
 {
-	background : ../IMG/splashscreen.png center center no-repeat;
+	display:block;
+	margin:auto;
 }
