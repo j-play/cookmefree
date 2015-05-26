@@ -1,9 +1,11 @@
 package db;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import model.UserModel;
 
 public class DB {
@@ -52,12 +54,21 @@ public class DB {
 	}
 	
 	public void addUser(UserModel user) {
-	     // Création de la requête
-		java.sql.Statement query; 
+
 		try {
-			//Creation de l'élément de requète
-			query = connection.createStatement();
+
 			//TODO créez la requête permettant d’ajout un utilisateur avec ts ces paramètres //((`surname`, `lastname`, `age`, `login`, `pwd`)
+			
+			String sql = "INSERT INTO user (login, pwd, surname, lastname, age) VALUES(?,?,?,?,?)";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, user.getLogin());
+			statement.setString(2, user.getPwd());
+			statement.setString(3, user.getSurname());
+			statement.setString(4, user.getLastname());
+			statement.setInt(5, user.getAge());
+			
+			statement.executeUpdate();
+			
 			connection.close(); 
 		} 
 		catch (SQLException e) {
