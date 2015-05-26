@@ -15,3 +15,36 @@ body
 	display:block;
 	margin:auto;
 }
+
+.bigbutton
+{
+	height : 50%;
+	width : 20%;
+	margin: 2%;
+	font-size: 3em;
+    font-weight: bold;
+
+}
+
+.button1
+{
+	background : #ff4444;
+}
+
+.button2
+{
+	background : #44ff44;
+}
+
+.button3
+{
+	background : #4444ff;
+}
+
+.incline
+{
+	-webkit-transform: rotate(340deg);
+	-moz-transform: rotate(340deg);
+	-o-transform: rotate(340deg);
+	writing-mode: lr-tb;
+}
