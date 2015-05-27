@@ -16,6 +16,16 @@ body
 	margin:auto;
 }
 
+label{
+	display: block;
+	width: 150px;
+	float: left;
+}
+
+#registrationForm {
+	display: block;
+	margin: auto;
+}
 .bigbutton
 {
 	height : 50%;

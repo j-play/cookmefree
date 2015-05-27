@@ -15,16 +15,18 @@ public class UserModelBean implements Serializable{
 	private String lastname;
 	private String surname; 
 	private int age; 
+	private String mail;
 	private String login; 
 	private String pwd;
 	
 	public UserModelBean(){
 	}
 	
-	public UserModelBean(String lastname,String surname,int age,String login,String pwd) { 
+	public UserModelBean(String lastname,String surname,int age,String mail,String login,String pwd) { 
 		this.lastname = lastname;
 		this.surname = surname; 
 		this.age = age; 
+		this.mail = mail;
 		this.login = login;
 		this.pwd = pwd;
 	}
@@ -51,6 +53,14 @@ public class UserModelBean implements Serializable{
 	
 	public void setAge(int age) {
 		this.age = age;
+	}
+	
+	public String getMail() { 
+		return mail;
+	}
+	
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 	
 	public String getLogin() { 

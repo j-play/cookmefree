@@ -61,7 +61,7 @@ public class UserDao {
 			
 			while (rs.next()){ 
 				userList.add(new UserModelBean(rs.getString("lastname"), rs.getString("surname"), 
-						rs.getInt("age"), rs.getString("login"), rs.getString("pwd"))
+						rs.getInt("age"), rs.getString("mail"), rs.getString("login"), rs.getString("pwd"))
 				); 
 			}
 			
@@ -86,7 +86,7 @@ public class UserDao {
 			
 			while (rs.next()){ 
 				return new UserModelBean(rs.getString("lastname"), rs.getString("surname"), 
-						rs.getInt("age"), rs.getString("login"), rs.getString("pwd")); 
+						rs.getInt("age"), rs.getString("mail"), rs.getString("login"), rs.getString("pwd")); 
 			}
 			
 			connection.close(); 

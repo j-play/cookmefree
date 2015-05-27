@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				template="template.xhtml">
+
+	<ui:define name="content">
+		<h:form id="registrationForm">
+			<fieldset>
+    			<legend>Registration:</legend>
+    			<h:outputLabel for="firstname">First name <span class="requis">*</span></h:outputLabel>
+    			<h:inputText id="firstname" value="#{UserSubmissionModelBean.surname}" required="true" size="20" maxlength="20" />
+	        	<h:message id="firstnameMessage" for="firstname" errorClass="erreur" />
+	        	<br />
+	        		
+	        	<h:outputLabel for="lastname">Last name <span class="requis">*</span></h:outputLabel>
+    			<h:inputText id="lastname" value="#{UserSubmissionModelBean.lastname}" required="true" size="20" maxlength="20" />
+	        	<h:message id="lastnameMessage" for="lastname" errorClass="erreur" />
+	        	<br />
+	        		
+	        	<h:outputLabel for="age">Age <span class="requis">*</span></h:outputLabel>
+    			<h:inputText id="age" value="#{UserSubmissionModelBean.age}" required="true" size="20" maxlength="20" />
+	        	<h:message id="ageMessage" for="age" errorClass="erreur" />
+	        	<br />
+	        	
+	        	<h:outputLabel for="mail">Email address <span class="requis">*</span></h:outputLabel>
+    			<h:inputText id="mail" value="#{UserSubmissionModelBean.mail}" required="true" size="20" maxlength="20" />
+	        	<h:message id="mailMessage" for="mail" errorClass="erreur" />
+	        	<br />
+	        		
+	        	<h:outputLabel for="login">Login <span class="requis">*</span></h:outputLabel>
+    			<h:inputText id="login" value="#{UserSubmissionModelBean.login}" required="true" size="20" maxlength="20" />
+	        	<h:message id="loginMessage" for="login" errorClass="erreur" />
+	        	<br />
+	        		
+	        	<h:outputLabel for="pwd">Password <span class="requis">*</span></h:outputLabel>
+    			<h:inputSecret id="pwd" value="#{UserSubmissionModelBean.pwd}" required="true" size="20" maxlength="20" />
+	        	<h:message id="pwdMessage" for="pwd" errorClass="erreur" />
+	        	<br />
+	        		
+	        	<h:outputLabel for="pwdVerify">Re-enter password <span class="requis">*</span></h:outputLabel>
+    			<h:inputSecret id="pwdVerify" value="#{UserSubmissionModelBean.pwdVerify}" required="true" size="20" maxlength="20" />
+	        	<h:message id="pwdVerifyMessage" for="pwdVerify" errorClass="erreur" />
+	        	<br />
+    				
+    			<h:messages globalOnly="true" infoClass="info" />
+
+				<h:commandButton value="Inscription" action="#{inscrireBean.inscrire}" styleClass="sansLabel" />
+	       		<br />
+	       		
+  			</fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>
