@@ -14,7 +14,7 @@ public class UserModelBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String lastname;
 	private String surname; 
-	private int age; 
+	private Integer age; 
 	private String mail;
 	private String login; 
 	private String pwd;
@@ -22,7 +22,7 @@ public class UserModelBean implements Serializable{
 	public UserModelBean(){
 	}
 	
-	public UserModelBean(String lastname,String surname,int age,String mail,String login,String pwd) { 
+	public UserModelBean(String lastname,String surname,Integer age,String mail,String login,String pwd) { 
 		this.lastname = lastname;
 		this.surname = surname; 
 		this.age = age; 
@@ -47,11 +47,11 @@ public class UserModelBean implements Serializable{
 		this.surname = surname;
 	} 
 	
-	public int getAge() { 
+	public Integer getAge() { 
 		return age;
 	}
 	
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 	

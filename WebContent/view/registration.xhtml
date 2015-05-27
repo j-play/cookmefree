@@ -9,56 +9,64 @@
 			<fieldset>
     			<legend>Registration:</legend>
     			<h:outputLabel for="firstname">First name <span class="requis">*</span></h:outputLabel>
-    			<h:inputText id="firstname" value="#{UserSubmissionModelBean.surname}" required="true" size="20" maxlength="20" >
+    			<h:inputText id="firstname" value="#{userSubmissionModelBean.surname}" required="true" 
+    			requiredMessage="First name is required." size="30" maxlength="30" >
     				<f:validator validatorId="validators.username"></f:validator>
     			</h:inputText>
-	        	<h:message id="firstnameMessage" for="firstname" errorClass="erreur" />
+	        	<h:message showDetail="true" for="firstname" errorClass="erreur" />
 	        	<br />
 	        		
 	        	<h:outputLabel for="lastname">Last name <span class="requis">*</span></h:outputLabel>
-    			<h:inputText id="lastname" value="#{UserSubmissionModelBean.lastname}" required="true" size="20" maxlength="20" >
+    			<h:inputText id="lastname" value="#{userSubmissionModelBean.lastname}" required="true" 
+    			requiredMessage="Last name is required." size="30" maxlength="30" >
     				<f:validator validatorId="validators.username"></f:validator>
     			</h:inputText>
-	        	<h:message id="lastnameMessage" for="lastname" errorClass="erreur" />
+	        	<h:message showDetail="true" for="lastname" errorClass="erreur" />
 	        	<br />
 	        		
 	        	<h:outputLabel for="age">Age <span class="requis">*</span></h:outputLabel>
-    			<h:inputText id="age" value="#{UserSubmissionModelBean.age}" required="true" size="20" maxlength="20" >
+    			<h:inputText id="age" value="#{userSubmissionModelBean.age}" required="true" 
+    			requiredMessage="Age is required." size="30" maxlength="30" validatorMessage="Age validation failed please re-enter an age inferior to 100.">
+    				<f:validateLongRange minimum="0" maximum="100" />
     				<f:validator validatorId="validators.age"></f:validator>
     			</h:inputText>
-	        	<h:message id="ageMessage" for="age" errorClass="erreur" />
+	        	<h:message showDetail="true" for="age" errorClass="erreur" />
 	        	<br />
 	        	
 	        	<h:outputLabel for="mail">Email address <span class="requis">*</span></h:outputLabel>
-    			<h:inputText id="mail" value="#{UserSubmissionModelBean.mail}" required="true" size="20" maxlength="20" >
+    			<h:inputText id="mail" value="#{userSubmissionModelBean.mail}" required="true" 
+    			requiredMessage="Mail is required." size="30" maxlength="30" >
     				<f:validator validatorId="validators.mail"></f:validator>
     			</h:inputText>
-	        	<h:message id="mailMessage" for="mail" errorClass="erreur" />
+	        	<h:message showDetail="true" for="mail" errorClass="erreur" />
 	        	<br />
 	        		
 	        	<h:outputLabel for="login">Login <span class="requis">*</span></h:outputLabel>
-    			<h:inputText id="login" value="#{UserSubmissionModelBean.login}" required="true" size="20" maxlength="20" >
+    			<h:inputText id="login" value="#{userSubmissionModelBean.login}" required="true" 
+    			requiredMessage="Login is required." size="30" maxlength="30" >
     				<f:validator validatorId="validators.login"></f:validator>
     			</h:inputText>
-	        	<h:message id="loginMessage" for="login" errorClass="erreur" />
+	        	<h:message showDetail="true" for="login" errorClass="erreur" />
 	        	<br />
 	        		
 	        	<h:outputLabel for="pwd">Password <span class="requis">*</span></h:outputLabel>
-    			<h:inputSecret id="pwd" value="#{UserSubmissionModelBean.pwd}" required="true" size="20" maxlength="20" >
+    			<h:inputSecret id="pwd" value="#{userSubmissionModelBean.pwd}" required="true" 
+    			requiredMessage="Password is required." size="30" maxlength="30" autocomplete="off">
     				<f:validator validatorId="validators.password"></f:validator>
     				<f:attribute name="confirm" value="#{confirm}" />
     			</h:inputSecret>
-	        	<h:message id="pwdMessage" for="pwd" errorClass="erreur" />
+	        	<h:message showDetail="true" for="pwd" errorClass="erreur" />
 	        	<br />
 	        		
 	        	<h:outputLabel for="pwdVerify">Re-enter password <span class="requis">*</span></h:outputLabel>
-    			<h:inputSecret id="pwdVerify" required="true" size="20" maxlength="20" />
-	        	<h:message id="pwdVerifyMessage" for="pwdVerify" errorClass="erreur" />
+    			<h:inputSecret id="pwdVerify" required="true" 
+    			requiredMessage="Password confirmation is required." size="30" maxlength="30" />
+	        	<h:message showDetail="true" for="pwdVerify" errorClass="erreur" />
 	        	<br />
     				
     			<h:messages globalOnly="true" infoClass="info" />
 
-				<h:commandButton value="Inscription" action="#{UserControlerBean.checkAndAddUser}" styleClass="sansLabel" />
+				<h:commandButton value="Inscription" action="#{userControlerBean.checkAndAddUser}" styleClass="sansLabel" />
 	       		<br />
 	       		
   			</fieldset>

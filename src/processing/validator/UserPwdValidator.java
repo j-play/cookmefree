@@ -17,7 +17,7 @@ public class UserPwdValidator implements Validator {
 
         // Obtain the component and submitted value of the confirm password component.
         UIInput confirmComponent = (UIInput) component.getAttributes().get("confirm");
-        String confirm = (String) confirmComponent.getSubmittedValue();
+        String confirm = (confirmComponent.getSubmittedValue()).toString();
 
         // On vérifie que les deux password sont renseignés
         if (password == null || password.isEmpty() || confirm == null || confirm.isEmpty()) {

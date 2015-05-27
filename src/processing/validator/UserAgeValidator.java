@@ -24,7 +24,7 @@ public class UserAgeValidator implements Validator {
 	@Override
 	public void validate(FacesContext arg0, UIComponent component, Object value) throws ValidatorException {
 		matcher = pattern.matcher(value.toString()); 
-		if(!matcher.matches() && (Integer)value < 100){
+		if(!matcher.matches()){
 			FacesMessage msg = new FacesMessage("user age validation failed.",
 					"Age validation failed please re-enter an age < 100."); 
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR); 
