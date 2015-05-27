@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
  
 	 <h:head>
@@ -20,25 +21,29 @@
 		 		
 		 		</ui:insert>
 	 		</div>
-	 		<div class="rightHeader">
-	 			<h:panelGroup rendered="#{not empty loggedUser}">
+	 		<h:panelGroup id="rightHeaderPanel" class="rightHeader">
+	 			<h:panelGroup id="panelLogin" rendered="#{not empty loggedUser}">
     				<p>#{loggedUser.login} </p>
     				<h:form>
-    					<p:commandButton value="Déconnexion" action="#{userControlerBean.disconnectUser()}" />
+    					<p:commandButton value="Déconnexion" action="#{userControlerBean.disconnectUser()}" update=":rightHeaderPanel">
+    					</p:commandButton>
     				</h:form>
     			</h:panelGroup>
-    			<h:panelGroup rendered="#{empty loggedUser}">
+    			<h:panelGroup  id="panelConnect" rendered="#{empty loggedUser}">
 		 			<h:form class="connexionElem">
-		 				<h:inputText id="login" value="#{loginBean.login}" class="connexionElem" placeholder="login"></h:inputText>
-		 				<h:inputSecret id="pwd" value="#{loginBean.pwd}" class="connexionElem" placeholder="password"></h:inputSecret>
-		 				<p:commandButton value="Connexion" action="#{userControlerBean.checkUser(loginBean)}" icon="ui-icon-check" />
+		 				<p:inputText id="login" value="#{loginBean.login}" styleClass="connexionElem" placeholder="login"></p:inputText>
+		 				<p:password id="pwd" value="#{loginBean.pwd}" styleClass="connexionElem" placeholder="password"></p:password>
+		 				<p:commandButton value="Connexion" action="#{userControlerBean.checkUser(loginBean)}" icon="ui-icon-check" update=":rightHeaderPanel" >
+		 				</p:commandButton>
 		 			</h:form>
 		 			<div class="inscriptionHeader">
-		 				<h:link id="registrationLink" href="registration.jsf" class="connexionElem"><i class="fa fa-plus-circle"/></h:link>
-		 				<label for="registrationLink" class="connexionElem" >Become Member</label>
+		 				<h:form>
+		 					<h:commandLink id="registrationLink" href="registration.jsf" class="connexionElem"><i class="fa fa-plus-circle"/></h:commandLink>
+		 					<label for="registrationLink" class="connexionElem" >Become Member</label>
+		 				</h:form>
 		 			</div>
 				</h:panelGroup>
-	 		</div>
+	 		</h:panelGroup>
 	 	</div>
 	 	</ui:insert>
 	 	<ui:insert name="content"> <h1>Default content</h1> </ui:insert>

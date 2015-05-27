@@ -22,7 +22,7 @@ public class UserControlerBean {
 		this.userDao=DaoFabric.getInstance().createUserDao();
 	}
 	
-	public String checkUser(LoginBean loginBean){
+	public void checkUser(LoginBean loginBean){
 		UserModelBean user = this.userDao.checkUser(loginBean.getLogin(),loginBean.getPwd());
 		
 		if( user!=null){
@@ -32,11 +32,11 @@ public class UserControlerBean {
 			//place l'utilisateur dans l'espace de mémoire de JSF
 		    sessionMap.put("loggedUser", user);
 		    //redirect the current page
-		    return "userdisplay.xhtml"; 
+		    //return "userdisplay.xhtml"; 
 		}
 		else{
 			//redirect the current page
-			return "userLogin.xhtml";
+			//return "userLogin.xhtml";
 		}
 	}
 	

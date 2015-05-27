@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 ALTER TABLE `user` ADD `mail` VARCHAR(50) NOT NULL ;
+ALTER TABLE `user` ADD `dateDerniereConnexion` DATETIME NULL ;
 --
 -- Contenu de la table `user`
 --
