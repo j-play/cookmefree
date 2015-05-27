@@ -9,7 +9,15 @@
 	 	<link rel="stylesheet" type="text/css" href="../CSS/cookme.css"/>
 	 </h:head>
 	 <h:body>
-	 	<ui:insert name="header"> <h1>Default header</h1> </ui:insert>
+	 	<ui:insert name="header">
+	 	<div class="header">
+	 		<ui:insert name="headerTitle">
+	 			<h1>CookMe</h1>
+	 		</ui:insert>
+	 		<a id="registrationLink" href="registration.jsf">+</a>
+	 		<label for="registrationLink" >Become Member</label>
+	 	</div>
+	 	</ui:insert>
 	 	<ui:insert name="content"> <h1>Default content</h1> </ui:insert>
 	 	<ui:insert name="footer"> <h1>Default footer</h1> </ui:insert>
 	 </h:body>
