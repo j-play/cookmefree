@@ -53,6 +53,7 @@ body
 a.connexionElem{
 	display:block;
 }
+
 label.connexionElem{
 	display:block;
 	float: right;
@@ -109,11 +110,17 @@ input.connexionElem{
 * <HEADER>/////////////////////////////////////////////////////////////////////
 */
 
+.header
+{
+	height: 20%;
+}
+
 .headerTitle
 {
-	height: 12%;
-	width: 7%;
+	height: 20%;
+	width: 10%;
 	display: inline-block;
+	text-align: center;
 	vertical-align: middle;
 }
 
@@ -123,7 +130,7 @@ input.connexionElem{
 	width: 80%;
 	display: inline-block;
 	text-align: right;
-	vertical-align: middle;
+	vertical-align: top;
 }
 
 .emergencyHeader
@@ -144,4 +151,5 @@ input.connexionElem{
 /*
 * </HEADER>/////////////////////////////////////////////////////////////////////////////////
 */
+
 

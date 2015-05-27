@@ -1,5 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:p="http://primefaces.org/ui"
 				xmlns:ui="http://java.sun.com/jsf/facelets"
 				template="template.xhtml">
 
@@ -19,6 +20,36 @@
 			<label>Preparation duration</label>
 			<input type="number" value="0"/>
 			
+			<i class="fa-pencil-square-o fa fa-2x"/>
+			<label>Cook expertise</label>
+			<h:form>
+			    <p:growl id="messages" showDetail="true" />
+			 
+			    <h:panelGrid columns="2" cellpadding="5">
+			        <p:rating value="#{ratingView.rating1}" />
+			 
+			        <p:rating value="#{ratingView.rating2}" stars="10" cancel="false" onRate="alert('You rated ' + value)" />
+			 
+			        <p:rating value="#{ratingView.rating3}">
+			            <p:ajax event="rate" listener="#{ratingView.onrate}" update="messages" />
+			            <p:ajax event="cancel" listener="#{ratingView.oncancel}" update="messages" />
+			        </p:rating>
+			 
+			    </h:panelGrid>
+			 
+			    <p:dialog header="Values" widgetVar="dlg" showEffect="fade" hideEffect="fade">
+			        <h:panelGrid id="display" columns="2" cellpadding="5">
+			            <h:outputText value="Rating 1:" />
+			            <h:outputText value="#{ratingView.rating1}" />
+			 
+			            <h:outputText value="Rating 2:" />
+			            <h:outputText value="#{ratingView.rating2}" />
+			 
+			            <h:outputText value="Rating 3:" />
+			            <h:outputText value="#{ratingView.rating3}" />
+			        </h:panelGrid>
+			    </p:dialog>
+			</h:form>
 		</div>
 	</ui:define>
 </ui:composition>
