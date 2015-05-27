@@ -31,13 +31,14 @@ public class UserDao {
 			
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
 			
-			String sql = "INSERT INTO user (login, pwd, surname, lastname, age) VALUES(?,?,?,?,?)";
+			String sql = "INSERT INTO user (login, pwd, surname, lastname, age, mail) VALUES(?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(1, user.getLogin());
 			statement.setString(2, user.getPwd());
 			statement.setString(3, user.getSurname());
 			statement.setString(4, user.getLastname());
 			statement.setInt(5, user.getAge());
+			statement.setString(6, user.getMail());
 			
 			statement.executeUpdate();
 			
@@ -102,34 +103,6 @@ public class UserDao {
 		}
 		return null;
 		
-	}
-	
-	/**
-	 * Indique si un utilisateur avec le mail spécifié existe déjà ou non
-	 * @param mail email de l'utilisateur à ajouter
-	 * @return true si l'utilisateur existe, false sinon
-	 */
-	public boolean checkUserForSub(String mail){
-		boolean existingUser = false;
-	
-		try{
-			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
-			String sql = "select * from user WHERE mail = ?";
-			PreparedStatement statement = connection.prepareStatement(sql);
-			statement.setString(1, mail);
-			
-			ResultSet rs = statement.executeQuery();
-			statement.execute();
-			
-			while (rs.next()){ 
-				existingUser = true;
-			}	
-		} 
-		catch (SQLException e){
-			e.printStackTrace();
-		}
-		
-		return existingUser;
 	}
 	
 }

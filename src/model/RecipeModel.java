@@ -7,8 +7,8 @@ public class RecipeModel implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String title;
 	private String description; 
-	private int expertise; 
-	private int duration; 
+	private int expertise;
+	private int duration;
 	private int nbPeople;
 	private String type;
 	

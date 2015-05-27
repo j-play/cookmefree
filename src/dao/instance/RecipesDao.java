@@ -5,9 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import model.RecipeModel;
-import model.UserModelBean;
 
 public class RecipesDao {
 	private static String dB_HOST;   

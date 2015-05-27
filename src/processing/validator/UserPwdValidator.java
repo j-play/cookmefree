@@ -27,7 +27,10 @@ public class UserPwdValidator implements Validator {
         // On compare les deux password
         if (!password.equals(confirm)) {
             confirmComponent.setValid(false);
-            throw new ValidatorException(new FacesMessage("Passwords are not equal."));
+            FacesMessage msg = new FacesMessage("password comparison failed.",
+					"The passwords are not equals."); 
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR); 
+			throw new ValidatorException(msg);
         }
 		
 	}
