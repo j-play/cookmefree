@@ -15,50 +15,62 @@
 	<ui:define name="content">
 		<div class="center">
 			<h1>Tell what you want !</h1>
-			<div id="newRecipeForm">
-				<div class="newRecipeFormElement1">
-					<i class="fa-clock-o fa fa-2x"/>
-					<label>Preparation duration</label>
-					<input type="number" value="0"/>
+			
+			<h:form>
+			
+				<div id="newRecipeForm">
+					<div class="newRecipeFormElement1">
+						<i class="fa-clock-o fa fa-2x"/>
+						<label>Preparation duration (minutes) </label>
+						<br/>
+						<input type="number" value="0"/>
+					</div>
+					
+					<div class="newRecipeFormElement2">
+						<i class="fa-pencil-square-o fa fa-2x"/>
+						<label>Cook expertise </label>
+						    <p:growl id="messages" showDetail="true" />
+						    <h:panelGrid columns="1" cellpadding="5">
+						        <p:rating value="#{ratingView.rating1}" cancel="false"/>
+						    </h:panelGrid>
+					</div>
+					
+					<br/>
+					
+					<div class="newRecipeFormElement1">
+						<i class="fa-users fa fa-2x"/>
+						<label>For how many people ? </label>
+						
+						<br/>
+						
+						<span id="range">0</span>
+						<input type="range" min="0" max="10" value="0" onchange="showValue(this.value)" />
+						<script type="text/javascript">
+							function showValue(newValue)
+							{
+								document.getElementById("range").innerHTML=newValue;
+							}
+						</script>
+					</div>
+					
+					<div class="newRecipeFormElement2">
+						<i class="fa-bookmark-o fa fa-2x"/>
+						<label>Cook type </label>
+						
+						<br/>
+						
+						<select>
+							<option value="meal">Meal</option>
+							<option value="salad">Salad</option>
+							<option value="fish">Fish</option>
+							<option value="dessert">Dessert</option>
+						</select>
+					</div>
 				</div>
 				
-				<div class="newRecipeFormElement2">
-					<i class="fa-pencil-square-o fa fa-2x"/>
-					<label>Cook expertise</label>
-					<h:form>
-					    <p:growl id="messages" showDetail="true" />
-					    <h:panelGrid columns="1" cellpadding="5">
-					        <p:rating value="#{ratingView.rating1}" cancel="false"/>
-					    </h:panelGrid>
-					</h:form>
-				</div>
-				<br/>
+				<input type="submit" id="teachMeButton" value="Teach me !"/>
 				
-				<div class="newRecipeFormElement1">
-					<i class="fa-users fa fa-2x"/>
-					<label>For how many people ?</label>
-					<span id="range">0</span>
-					<input type="range" min="0" max="10" value="0" onchange="showValue(this.value)" />
-					<script type="text/javascript">
-						function showValue(newValue)
-						{
-							document.getElementById("range").innerHTML=newValue;
-						}
-					</script>
-				</div>
-				
-				<div class="newRecipeFormElement2">
-					<i class="fa-bookmark-o fa fa-2x"/>
-					<label>Cook type</label>
-					<select>
-						<option value="meal">Meal</option>
-						<option value="salad">Salad</option>
-						<option value="fish">Fish</option>
-						<option value="dessert">Dessert</option>
-					</select>
-				</div>
-			</div>
-			<button id="teachMeButton">Teach me !</button>
+			</h:form>
 		</div>
 	</ui:define>
 </ui:composition>

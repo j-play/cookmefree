@@ -2,8 +2,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
  
 	 <h:head>
 	 	<title>Cook me Free</title>
@@ -11,8 +11,11 @@
 	 	<link rel="stylesheet" type="text/css" href="../CSS/font-awesome-4.3.0/css/font-awesome.min.css"/>
 	 </h:head>
 	 <h:body>
+	 
 	 	<ui:insert name="header">
+	 	
 	 	<div class="header">
+	 	
 	 		<div class="headerTitle">
 		 		<ui:insert name="headerTitle">
 		 		
@@ -20,6 +23,7 @@
 		 		
 		 		</ui:insert>
 	 		</div>
+	 		
 	 		<div class="rightHeader">
 	 			<h:panelGroup rendered="#{not empty loggedUser}">
     				<p>#{loggedUser.login} </p>
@@ -41,7 +45,14 @@
 	 		</div>
 	 	</div>
 	 	</ui:insert>
-	 	<ui:insert name="content"> <h1>Default content</h1> </ui:insert>
-	 	<ui:insert name="footer"> <h1>Default footer</h1> </ui:insert>
+	 	
+	 	<div class="content">
+	 		<ui:insert name="content"> <h1>Default content</h1> </ui:insert>
+ 		</div>
+ 		
+ 		<div class="footer">
+	 		<ui:insert name="footer"> <h1>Default footer</h1> </ui:insert>
+	 	</div>
+	 	
 	 </h:body>
  </html>
