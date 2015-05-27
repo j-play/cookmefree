@@ -1,13 +1,18 @@
 html
 {
-	height:100%;
-	width:100%;
+	height:99%;
+	width:99%;
 }
 
 body
 {
-	height:100%;
-	width:100%;
+	height:99%;
+	width:99%;
+}
+
+.center
+{
+	text-align: center;
 }
 
 .incline
@@ -22,6 +27,16 @@ body
 {
 	display:block;
 	margin:auto;
+}
+
+#teachMeButton
+{
+	width: 70%;
+	height: 5%;
+	background-color: #4444FF;
+	text-weight: bold;
+	font-size: 2em;
+	margin-top: 1%;
 }
 
 .erreur {
@@ -44,13 +59,6 @@ body
 	float: left;
 }
 
-#newRecipeForm
-{
-	display: block;
-	margin: auto;
-	border: solid 2px #0000FF;
-}
-
 .connexionElem{
 	display:inline-block;
 }
@@ -66,6 +74,31 @@ input.connexionElem{
 	display:block;
 }
 
+#newRecipeForm
+{
+	display: block;
+	margin: auto;
+	border: solid 2px #0000FF;
+	text-align: left;
+	padding-left: 30%;
+}
+
+.newRecipeFormElement1
+{
+	display:inline-block;
+	width:40%;
+}
+
+.newRecipeFormElement2
+{
+	display:inline-block;
+}
+
+.newRecipeFormElement2 form
+{
+	display: inline-block;
+}
+
 /*
 * </FORMS>////////////////////////////////////////////////////////////////////////////
 */
@@ -73,6 +106,7 @@ input.connexionElem{
 /*
 * <MENU>////////////////////////////////////////////////////////////////////////////
 */
+
 .bigbutton
 {
 	height : 50%;
@@ -134,17 +168,17 @@ input.connexionElem{
 }
 .emergencyHeader
 {
-	background-color: #FF8000;
+	background-color: #FF4444;
 }
 
 .recipesHeader
 {
-	background-color: #0000FF;
+	background-color: #4444FF;
 }
 
 .administrationHeader
 {
-	background-color: #FF0000;
+	background-color: #FF8000;
 }
 
 /*
