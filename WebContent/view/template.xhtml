@@ -23,15 +23,18 @@
 	 		<div class="rightHeader">
 	 			<h:panelGroup rendered="#{not empty loggedUser}">
     				<p>#{loggedUser.login} </p>
+    				<h:form>
+    					<p:commandButton value="Déconnexion" action="#{userControlerBean.disconnectUser()}" />
+    				</h:form>
     			</h:panelGroup>
     			<h:panelGroup rendered="#{empty loggedUser}">
 		 			<h:form class="connexionElem">
-		 				<h:inputText id="login" value="#{loginBean.login}" class="connexionElem"></h:inputText>
-		 				<h:inputSecret id="pwd" value="#{loginBean.pwd}" class="connexionElem"></h:inputSecret>
-		 				<p:commandButton value="Submit" action="#{userControlerBean.checkUser(loginBean)}" icon="ui-icon-check" />
+		 				<h:inputText id="login" value="#{loginBean.login}" class="connexionElem" placeholder="login"></h:inputText>
+		 				<h:inputSecret id="pwd" value="#{loginBean.pwd}" class="connexionElem" placeholder="password"></h:inputSecret>
+		 				<p:commandButton value="Connexion" action="#{userControlerBean.checkUser(loginBean)}" icon="ui-icon-check" />
 		 			</h:form>
 		 			<div class="inscriptionHeader">
-		 				<h:link id="registrationLink" href="registration.jsf" class="connexionElem">+</h:link>
+		 				<h:link id="registrationLink" href="registration.jsf" class="connexionElem"><i class="fa fa-plus-circle"/></h:link>
 		 				<label for="registrationLink" class="connexionElem" >Become Member</label>
 		 			</div>
 				</h:panelGroup>

@@ -43,5 +43,12 @@ public class UserControlerBean {
 		this.userDao.addUser(userSubmitted);
 		return "accueil.jsf";
 	}
+	
+	/**
+	 * déconnecte l'utilisateur
+	 */
+	public void disconnectUser(){
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+	}
 
 }
