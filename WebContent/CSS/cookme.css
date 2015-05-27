@@ -214,3 +214,9 @@ input.connexionElem{
 */
 
 
+/*
+* PRIMEFACES/////////////////////////////////////////////////////////////////////////////////
+*/
+.ui-layout-unit-center .ui-layout-bd {
+   border: 0;
+}

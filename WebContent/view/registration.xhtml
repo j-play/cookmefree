@@ -8,7 +8,7 @@
 	<ui:define name="content">
 		<h:form id="registrationForm">
 			<p:panel header="Registration">
-				<h:panelGrid>
+				<h:panelGrid columns="3">
 	    			<p:outputLabel for="firstname">First name:</p:outputLabel>
 	    			<p:inputText id="firstname" value="#{userSubmissionModelBean.surname}" required="true" 
 	    			requiredMessage="First name is required." size="30" maxlength="30" >
@@ -57,9 +57,7 @@
 	    			<p:password id="confirm" binding="#{confirm}" required="true" 
 	    			requiredMessage="Password confirmation is required." size="30" maxlength="30" />
 		        	<p:message showDetail="true" for="confirm" errorClass="error" />
-	    				
-	    			<p:messages globalOnly="true" infoClass="info" />
-	
+
 					<p:commandButton value="Inscription" action="#{userControlerBean.registerUser(userSubmissionModelBean)}" 
 					ajax="false" icon="ui-icon-check" validateClient="true" />
 	       		</h:panelGrid>
