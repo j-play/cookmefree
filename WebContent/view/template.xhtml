@@ -23,7 +23,9 @@
 	 		<div class="rightHeader">
 	 			<h:panelGroup rendered="#{not empty loggedUser}">
     				<p>#{loggedUser.login} </p>
-    				<p:commandButton value="Déconnexion" action="#{userControlerBean.checkUser(loginBean)}" />
+    				<h:form>
+    					<p:commandButton value="Déconnexion" action="#{userControlerBean.disconnectUser()}" />
+    				</h:form>
     			</h:panelGroup>
     			<h:panelGroup rendered="#{empty loggedUser}">
 		 			<h:form class="connexionElem">

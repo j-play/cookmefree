@@ -50,5 +50,12 @@ public class UserControlerBean {
 			this.userDao.addUser(userSubmitted);
 		}
 	}
+	
+	/**
+	 * déconnecte l'utilisateur
+	 */
+	public void disconnectUser(){
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+	}
 
 }
