@@ -10,6 +10,21 @@ body
 	width:99%;
 }
 
+.header
+{
+	height: 12%;
+}
+
+.content
+{
+	overflow-y: auto;
+}
+
+.footer
+{
+	
+}
+
 .center
 {
 	text-align: center;
@@ -43,6 +58,22 @@ body
 	text-weight: bold;
 	font-size: 2em;
 	margin-top: 1%;
+}
+
+#showRecipeDetails
+{
+	display: inline-block;
+	margin-top: 2%;
+	border: solid 2px #0000FF;
+	padding-left: 2%;
+	padding-top: 1%;
+	padding-bottom: 1%;
+	vertical-align: top;
+}
+
+#recipeContent
+{
+	display: inline-block;
 }
 
 /*
@@ -82,17 +113,20 @@ input.connexionElem{
 	border: solid 2px #0000FF;
 	text-align: left;
 	padding-left: 30%;
+	padding-bottom: 2%;
 }
 
 .newRecipeFormElement1
 {
 	display:inline-block;
 	width:40%;
+	padding-top: 2%;
 }
 
 .newRecipeFormElement2
 {
 	display:inline-block;
+	padding-top: 2%;
 }
 
 .newRecipeFormElement2 form
@@ -141,14 +175,9 @@ input.connexionElem{
 * <HEADER>/////////////////////////////////////////////////////////////////////
 */
 
-.header
-{
-	height: 20%;
-}
-
 .headerTitle
 {
-	height: 20%;
+	height: 12%;
 	width: 10%;
 	display: inline-block;
 	text-align: center;
@@ -170,16 +199,19 @@ input.connexionElem{
 .emergencyHeader
 {
 	background-color: #FF4444;
+	height: 400%;
 }
 
 .recipesHeader
 {
 	background-color: #4444FF;
+	height: 400%;
 }
 
 .administrationHeader
 {
 	background-color: #FF8000;
+	height: 400%;
 }
 
 /*
