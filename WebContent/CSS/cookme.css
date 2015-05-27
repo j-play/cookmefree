@@ -80,17 +80,6 @@ body
 * <FORMS>////////////////////////////////////////////////////////////////////////////
 */
 
-#registrationForm {
-	display: block;
-	margin: auto;
-}
-
-#registrationForm label{
-	display: block;
-	width: 150px;
-	float: left;
-}
-
 .connexionElem{
 	display:inline-block;
 }

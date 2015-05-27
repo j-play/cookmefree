@@ -2,74 +2,68 @@
 				xmlns:h="http://java.sun.com/jsf/html"
 				xmlns:f="http://java.sun.com/jsf/core"
 				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:p="http://primefaces.org/ui"
 				template="template.xhtml">
 
 	<ui:define name="content">
 		<h:form id="registrationForm">
-			<fieldset>
-    			<legend>Registration:</legend>
-    			<h:outputLabel for="firstname">First name <span>*</span></h:outputLabel>
-    			<h:inputText id="firstname" value="#{userSubmissionModelBean.surname}" required="true" 
-    			requiredMessage="First name is required." size="30" maxlength="30" >
-    				<f:validator validatorId="validators.username"></f:validator>
-    			</h:inputText>
-	        	<h:message showDetail="true" for="firstname" errorClass="error" />
-	        	<br />
-	        		
-	        	<h:outputLabel for="lastname">Last name <span>*</span></h:outputLabel>
-    			<h:inputText id="lastname" value="#{userSubmissionModelBean.lastname}" required="true" 
-    			requiredMessage="Last name is required." size="30" maxlength="30" >
-    				<f:validator validatorId="validators.username"></f:validator>
-    			</h:inputText>
-	        	<h:message showDetail="true" for="lastname" errorClass="error" />
-	        	<br />
-	        		
-	        	<h:outputLabel for="age">Age <span>*</span></h:outputLabel>
-    			<h:inputText id="age" value="#{userSubmissionModelBean.age}" required="true" 
-    			requiredMessage="Age is required." size="30" maxlength="30" 
-    			validatorMessage="Age validation failed please re-enter an age inferior to 100.">
-    				<f:validateLongRange minimum="0" maximum="100" />
-    			</h:inputText>
-	        	<h:message showDetail="true" for="age" errorClass="error" />
-	        	<br />
-	        	
-	        	<h:outputLabel for="mail">Email address <span>*</span></h:outputLabel>
-    			<h:inputText id="mail" value="#{userSubmissionModelBean.mail}" required="true" 
-    			requiredMessage="Mail is required." size="30" maxlength="30" >
-    				<f:validator validatorId="validators.mail"></f:validator>
-    			</h:inputText>
-	        	<h:message showDetail="true" for="mail" errorClass="error" />
-	        	<br />
-	        		
-	        	<h:outputLabel for="login">Login <span>*</span></h:outputLabel>
-    			<h:inputText id="login" value="#{userSubmissionModelBean.login}" required="true" 
-    			requiredMessage="Login is required." size="30" maxlength="30" >
-    				<f:validator validatorId="validators.login"></f:validator>
-    			</h:inputText>
-	        	<h:message showDetail="true" for="login" errorClass="error" />
-	        	<br />
-	        		
-	        	<h:outputLabel for="pwd">Password <span>*</span></h:outputLabel>
-    			<h:inputSecret id="pwd" value="#{userSubmissionModelBean.pwd}" required="true" 
-    			requiredMessage="Password is required." size="30" maxlength="30" autocomplete="off">
-    				<f:validator validatorId="validators.password"></f:validator>
-    				<f:attribute name="confirm" value="#{confirm}" />
-    			</h:inputSecret>
-	        	<h:message showDetail="true" for="pwd" errorClass="error" />
-	        	<br />
-	        		
-	        	<h:outputLabel for="confirm">Re-enter password <span>*</span></h:outputLabel>
-    			<h:inputSecret id="confirm" binding="#{confirm}" required="true" 
-    			requiredMessage="Password confirmation is required." size="30" maxlength="30" />
-	        	<h:message showDetail="true" for="confirm" errorClass="error" />
-	        	<br />
-    				
-    			<h:messages globalOnly="true" infoClass="info" />
-
-				<h:commandButton value="Inscription" action="#{userControlerBean.registerUser(userSubmissionModelBean)}" />
-	       		<br />
-	       		
-  			</fieldset>
+			<p:panel header="Registration">
+				<h:panelGrid>
+	    			<p:outputLabel for="firstname">First name:</p:outputLabel>
+	    			<p:inputText id="firstname" value="#{userSubmissionModelBean.surname}" required="true" 
+	    			requiredMessage="First name is required." size="30" maxlength="30" >
+	    				<f:validator validatorId="validators.username"></f:validator>
+	    			</p:inputText>
+		        	<p:message showDetail="true" for="firstname" errorClass="error" />
+		        		
+		        	<p:outputLabel for="lastname">Last name:</p:outputLabel>
+	    			<p:inputText id="lastname" value="#{userSubmissionModelBean.lastname}" required="true" 
+	    			requiredMessage="Last name is required." size="30" maxlength="30" >
+	    				<f:validator validatorId="validators.username"></f:validator>
+	    			</p:inputText>
+		        	<p:message showDetail="true" for="lastname" errorClass="error" />
+		        		
+		        	<p:outputLabel for="age">Age:</p:outputLabel>
+	    			<p:inputText id="age" value="#{userSubmissionModelBean.age}" required="true" 
+	    			requiredMessage="Age is required." size="30" maxlength="30" 
+	    			validatorMessage="Age validation failed please re-enter an age inferior to 100.">
+	    				<f:validateLongRange minimum="0" maximum="100" />
+	    			</p:inputText>
+		        	<p:message showDetail="true" for="age" errorClass="error" />
+		        	
+		        	<p:outputLabel for="mail">Email address:</p:outputLabel>
+	    			<p:inputText id="mail" value="#{userSubmissionModelBean.mail}" required="true" 
+	    			requiredMessage="Mail is required." size="30" maxlength="30" >
+	    				<f:validator validatorId="validators.mail"></f:validator>
+	    			</p:inputText>
+		        	<p:message showDetail="true" for="mail" errorClass="error" />
+		        		
+		        	<p:outputLabel for="login">Login:</p:outputLabel>
+	    			<p:inputText id="login" value="#{userSubmissionModelBean.login}" required="true" 
+	    			requiredMessage="Login is required." size="30" maxlength="30" >
+	    				<f:validator validatorId="validators.login"></f:validator>
+	    			</p:inputText>
+		        	<p:message showDetail="true" for="login" errorClass="error" />
+		        		
+		        	<p:outputLabel for="pwd">Password:</p:outputLabel>
+	    			<p:password id="pwd" value="#{userSubmissionModelBean.pwd}" required="true" 
+	    			requiredMessage="Password is required." size="30" maxlength="30" autocomplete="off">
+	    				<f:validator validatorId="validators.password"></f:validator>
+	    				<f:attribute name="confirm" value="#{confirm}" />
+	    			</p:password>
+		        	<p:message showDetail="true" for="pwd" errorClass="error" />
+		        		
+		        	<p:outputLabel for="confirm">Re-enter password:</p:outputLabel>
+	    			<p:password id="confirm" binding="#{confirm}" required="true" 
+	    			requiredMessage="Password confirmation is required." size="30" maxlength="30" />
+		        	<p:message showDetail="true" for="confirm" errorClass="error" />
+	    				
+	    			<p:messages globalOnly="true" infoClass="info" />
+	
+					<p:commandButton value="Inscription" action="#{userControlerBean.registerUser(userSubmissionModelBean)}" 
+					ajax="false" icon="ui-icon-check" validateClient="true" />
+	       		</h:panelGrid>
+  			</p:panel>
 		</h:form>
 	</ui:define>
 </ui:composition>
