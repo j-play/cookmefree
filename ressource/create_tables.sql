@@ -48,3 +48,46 @@ INSERT INTO `user` (`id`, `login`, `pwd`, `surname`, `lastname`, `age`, `mail`) 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+--
+-- Structure de la table `recipe`
+--
+
+CREATE TABLE `recipe` (
+`id` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `description` text NOT NULL,
+  `expertise` int(11) NOT NULL,
+  `duration` int(11) NOT NULL,
+  `nbPeople` int(11) NOT NULL,
+  `type` varchar(30) NOT NULL,
+  `image` blob
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `recipe`
+--
+
+INSERT INTO `recipe` (`id`, `title`, `description`, `expertise`, `duration`, `nbPeople`, `type`, `image`) VALUES
+(1, 'Escalope Milanaise', 'Parce que c''est bon.', 2, 40, 2, 'Meal', NULL),
+(2, 'Salade Niçoise', 'Salade du sud', 1, 10, 4, 'Salad', NULL);
+
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `recipe`
+--
+ALTER TABLE `recipe`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `recipe`
+--
+ALTER TABLE `recipe`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
