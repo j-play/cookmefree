@@ -32,15 +32,12 @@ public class UserControlerBean {
 			Map<String, Object> sessionMap = externalContext.getSessionMap();
 			//place l'utilisateur dans l'espace de mémoire de JSF
 		    sessionMap.put("loggedUser", user);
-<<<<<<< HEAD
 		    //redirect the current page
 		    //return "userdisplay.xhtml"; 
 		}
 		else{
 			//redirect the current page
 			//return "userLogin.xhtml";
-=======
->>>>>>> origin/master
 		}
 	}
 	
