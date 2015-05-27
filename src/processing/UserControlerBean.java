@@ -2,6 +2,7 @@ package processing;
 
 import java.util.Map;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
@@ -22,7 +23,7 @@ public class UserControlerBean {
 		this.userDao=DaoFabric.getInstance().createUserDao();
 	}
 	
-	public String checkUser(LoginBean loginBean){
+	public void checkUser(LoginBean loginBean){
 		UserModelBean user = this.userDao.checkUser(loginBean.getLogin(),loginBean.getPwd());
 		
 		if( user!=null){
@@ -31,12 +32,6 @@ public class UserControlerBean {
 			Map<String, Object> sessionMap = externalContext.getSessionMap();
 			//place l'utilisateur dans l'espace de mémoire de JSF
 		    sessionMap.put("loggedUser", user);
-		    //redirect the current page
-		    return "userdisplay.xhtml"; 
-		}
-		else{
-			//redirect the current page
-			return "userLogin.xhtml";
 		}
 	}
 	
@@ -44,11 +39,9 @@ public class UserControlerBean {
 	 * Vérifie qu'un utilisateur n'existe pas encore en base de données puis l'ajoute
 	 * @param userSubmitted utilisateur à ajouter
 	 */
-	public void checkAndAddUser(UserSubmissionModelBean userSubmitted){
-		// On vérifie si l'utilisateur n'existe pas déjà
-		if(!this.userDao.checkUserForSub(userSubmitted.getMail())){
-			this.userDao.addUser(userSubmitted);
-		}
+	public String registerUser(UserSubmissionModelBean userSubmitted){
+		this.userDao.addUser(userSubmitted);
+		return "accueil.jsf";
 	}
 
 }

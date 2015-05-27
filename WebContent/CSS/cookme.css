@@ -24,7 +24,7 @@ body
 	margin:auto;
 }
 
-.erreur {
+.error {
 	color: red;
 	font-style: italic;
 }

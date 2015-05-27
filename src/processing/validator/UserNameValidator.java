@@ -13,7 +13,7 @@ import javax.faces.validator.ValidatorException;
 @FacesValidator(value = "validators.username")
 public class UserNameValidator implements Validator {
 
-	private static final String USERNAME_PATTERN = "[a-zA-Z0-9]";
+	private static final String USERNAME_PATTERN = "^[A-Za-z0-9]+";
 	private Pattern pattern;
 	private Matcher matcher;
 		
