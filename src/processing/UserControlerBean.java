@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.component.UIComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
@@ -35,15 +36,20 @@ public class UserControlerBean {
 		    return "userdisplay.xhtml"; 
 		}
 		else{
-			
+			//redirect the current page
+			return "userLogin.xhtml";
 		}
-	//redirect the current page
-	return "userLogin.xhtml";
 	}
 	
+	/**
+	 * Vérifie qu'un utilisateur n'existe pas encore en base de données puis l'ajoute
+	 * @param userSubmitted utilisateur à ajouter
+	 */
 	public void checkAndAddUser(UserSubmissionModelBean userSubmitted){
-		// TODO ajout de l'utilisateur à la base de données
-		this.userDao.addUser(userSubmitted);
+		// On vérifie si l'utilisateur n'existe pas déjà
+		if(!this.userDao.checkUserForSub(userSubmitted.getMail())){
+			this.userDao.addUser(userSubmitted);
+		}
 	}
 
 }

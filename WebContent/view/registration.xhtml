@@ -1,5 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
 				xmlns:ui="http://java.sun.com/jsf/facelets"
 				template="template.xhtml">
 
@@ -8,27 +9,37 @@
 			<fieldset>
     			<legend>Registration:</legend>
     			<h:outputLabel for="firstname">First name <span class="requis">*</span></h:outputLabel>
-    			<h:inputText id="firstname" value="#{UserSubmissionModelBean.surname}" required="true" size="20" maxlength="20" />
+    			<h:inputText id="firstname" value="#{UserSubmissionModelBean.surname}" required="true" size="20" maxlength="20" >
+    				<f:validator validatorId="validators.username"></f:validator>
+    			</h:inputText>
 	        	<h:message id="firstnameMessage" for="firstname" errorClass="erreur" />
 	        	<br />
 	        		
 	        	<h:outputLabel for="lastname">Last name <span class="requis">*</span></h:outputLabel>
-    			<h:inputText id="lastname" value="#{UserSubmissionModelBean.lastname}" required="true" size="20" maxlength="20" />
+    			<h:inputText id="lastname" value="#{UserSubmissionModelBean.lastname}" required="true" size="20" maxlength="20" >
+    				<f:validator validatorId="validators.username"></f:validator>
+    			</h:inputText>
 	        	<h:message id="lastnameMessage" for="lastname" errorClass="erreur" />
 	        	<br />
 	        		
 	        	<h:outputLabel for="age">Age <span class="requis">*</span></h:outputLabel>
-    			<h:inputText id="age" value="#{UserSubmissionModelBean.age}" required="true" size="20" maxlength="20" />
+    			<h:inputText id="age" value="#{UserSubmissionModelBean.age}" required="true" size="20" maxlength="20" >
+    				<f:validator validatorId="validators.age"></f:validator>
+    			</h:inputText>
 	        	<h:message id="ageMessage" for="age" errorClass="erreur" />
 	        	<br />
 	        	
 	        	<h:outputLabel for="mail">Email address <span class="requis">*</span></h:outputLabel>
-    			<h:inputText id="mail" value="#{UserSubmissionModelBean.mail}" required="true" size="20" maxlength="20" />
+    			<h:inputText id="mail" value="#{UserSubmissionModelBean.mail}" required="true" size="20" maxlength="20" >
+    				<f:validator validatorId="validators.mail"></f:validator>
+    			</h:inputText>
 	        	<h:message id="mailMessage" for="mail" errorClass="erreur" />
 	        	<br />
 	        		
 	        	<h:outputLabel for="login">Login <span class="requis">*</span></h:outputLabel>
-    			<h:inputText id="login" value="#{UserSubmissionModelBean.login}" required="true" size="20" maxlength="20" />
+    			<h:inputText id="login" value="#{UserSubmissionModelBean.login}" required="true" size="20" maxlength="20" >
+    				<f:validator validatorId="validators.login"></f:validator>
+    			</h:inputText>
 	        	<h:message id="loginMessage" for="login" errorClass="erreur" />
 	        	<br />
 	        		
@@ -44,7 +55,7 @@
     				
     			<h:messages globalOnly="true" infoClass="info" />
 
-				<h:commandButton value="Inscription" action="#{inscrireBean.inscrire}" styleClass="sansLabel" />
+				<h:commandButton value="Inscription" action="#{UserControlerBean.checkAndAddUser}" styleClass="sansLabel" />
 	       		<br />
 	       		
   			</fieldset>

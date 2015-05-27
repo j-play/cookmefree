@@ -73,6 +73,12 @@ public class UserDao {
 		return userList;
 	}
 	
+	/**
+	 * Renvoie l'utilisateur avec le login/pwd spécifié si il existe
+	 * @param login
+	 * @param password
+	 * @return UserModelBean si l'utilisateur existe, null sinon
+	 */
 	public UserModelBean checkUser(String login, String password){
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
@@ -96,6 +102,34 @@ public class UserDao {
 		}
 		return null;
 		
+	}
+	
+	/**
+	 * Indique si un utilisateur avec le mail spécifié existe déjà ou non
+	 * @param mail email de l'utilisateur à ajouter
+	 * @return true si l'utilisateur existe, false sinon
+	 */
+	public boolean checkUserForSub(String mail){
+		boolean existingUser = false;
+	
+		try{
+			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
+			String sql = "select * from user WHERE mail = ?";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, mail);
+			
+			ResultSet rs = statement.executeQuery();
+			statement.execute();
+			
+			while (rs.next()){ 
+				existingUser = true;
+			}	
+		} 
+		catch (SQLException e){
+			e.printStackTrace();
+		}
+		
+		return existingUser;
 	}
 	
 }
