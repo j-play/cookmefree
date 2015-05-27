@@ -2,7 +2,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
  
 	 <h:head>
 	 	<title>Cook me Free</title>
@@ -20,13 +21,20 @@
 		 		</ui:insert>
 	 		</div>
 	 		<div class="rightHeader">
-	 			<label for="registrationLink" class="connexionElem" >Become Member</label>
-	 			<h:link id="registrationLink" href="registration.jsf" class="connexionElem">+</h:link>
-	 			
-	 			<h:form class="connexionElem">
-	 				<h:inputText id="login" value="#{LoginBean.login}" class="connexionElem"></h:inputText>
-	 				<h:inputSecret id="pwd" value="#{LoginBean.pwd}" class="connexionElem"></h:inputSecret>
-	 			</h:form>
+	 			<h:panelGroup rendered="#{not empty loggedUser}">
+    				<p>#{loggedUser.login} </p>
+    			</h:panelGroup>
+    			<h:panelGroup rendered="#{empty loggedUser}">
+		 			<h:form class="connexionElem">
+		 				<h:inputText id="login" value="#{loginBean.login}" class="connexionElem"></h:inputText>
+		 				<h:inputSecret id="pwd" value="#{loginBean.pwd}" class="connexionElem"></h:inputSecret>
+		 				<p:commandButton value="Submit" action="#{userControlerBean.checkUser(loginBean)}" icon="ui-icon-check" />
+		 			</h:form>
+		 			<div class="inscriptionHeader">
+		 				<h:link id="registrationLink" href="registration.jsf" class="connexionElem">+</h:link>
+		 				<label for="registrationLink" class="connexionElem" >Become Member</label>
+		 			</div>
+				</h:panelGroup>
 	 		</div>
 	 	</div>
 	 	</ui:insert>

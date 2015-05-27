@@ -36,13 +36,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
+ALTER TABLE `user` ADD `mail` VARCHAR(50) NOT NULL ;
 --
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`id`, `login`, `pwd`, `surname`, `lastname`, `age`) VALUES
-(1, 'admin', 'password', 'admin', 'admin', 31),
-(2, 'user', 'password', 'user', 'user', 40);
+INSERT INTO `user` (`id`, `login`, `pwd`, `surname`, `lastname`, `age`, `mail`) VALUES
+(1, 'admin', 'password', 'admin', 'admin', 31, 'mail@mail.com'),
+(2, 'user', 'password', 'user', 'user', 40, 'mail@mail2.fr');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

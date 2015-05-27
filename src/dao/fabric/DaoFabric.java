@@ -9,8 +9,8 @@ public class DaoFabric {
 	private static final String DB_HOST = "localhost"; 
 	private static final String DB_PORT = "3306";
 	private static final String DB_NAME = "cookme"; 
-	private static final String DB_USER = " root"; 
-	private static final String DB_PWD = " root";
+	private static final String DB_USER = "root"; 
+	private static final String DB_PWD = "root";
 	
 	private DaoFabric() { 
 		super();
