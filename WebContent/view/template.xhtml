@@ -11,11 +11,22 @@
 	 <h:body>
 	 	<ui:insert name="header">
 	 	<div class="header">
+	 		<div class="headerTitle">
 	 		<ui:insert name="headerTitle">
+	 		
 	 			<h1>CookMe</h1>
+	 		
 	 		</ui:insert>
-	 		<a id="registrationLink" href="registration.jsf">+</a>
-	 		<label for="registrationLink" >Become Member</label>
+	 		</div>
+	 		<div class="rightHeader">
+	 			<label for="registrationLink" class="connexionElem" >Become Member</label>
+	 			<h:link id="registrationLink" href="registration.jsf" class="connexionElem">+</h:link>
+	 			
+	 			<h:form class="connexionElem">
+	 				<h:inputText id="login" value="#{LoginBean.login}" class="connexionElem"></h:inputText>
+	 				<h:inputSecret id="pwd" value="#{LoginBean.pwd}" class="connexionElem"></h:inputSecret>
+	 			</h:form>
+	 		</div>
 	 	</div>
 	 	</ui:insert>
 	 	<ui:insert name="content"> <h1>Default content</h1> </ui:insert>

@@ -65,7 +65,13 @@ label{
 	width: 7%;
 	display: inline-block;
 }
-
+.rightHeader
+{
+	height: 12%;
+	width: 80%;
+	display: inline-block;
+	text-align: right;
+}
 .emergencyHeader
 {
 	background-color: #FF8000;
@@ -79,4 +85,26 @@ label{
 .administrationHeader
 {
 	background-color: #FF0000;
+}
+
+.connexionElem{
+	display:inline-block;
+
+}
+a.connexionElem{
+	display:block;
+}
+label.connexionElem{
+	display:block;
+	float: right;
+	height: 100%;
+}
+form.connexionElem{
+	display:block;
+	float: right;
+	height: 100%;
+}
+
+input.connexionElem{
+	display:block;
 }
