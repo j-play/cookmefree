@@ -43,12 +43,12 @@ label{
 
 .button2
 {
-	background : #44ff44;
+	background : #4444ff;
 }
 
 .button3
 {
-	background : #4444ff;
+	background : #44ff44;
 }
 
 .incline
@@ -57,4 +57,26 @@ label{
 	-moz-transform: rotate(340deg);
 	-o-transform: rotate(340deg);
 	writing-mode: lr-tb;
+}
+
+.headerTitle
+{
+	height: 12%;
+	width: 7%;
+	display: inline-block;
+}
+
+.emergencyHeader
+{
+	background-color: #FF8000;
+}
+
+.recipesHeader
+{
+	background-color: #0000FF;
+}
+
+.administrationHeader
+{
+	background-color: #FF0000;
 }
