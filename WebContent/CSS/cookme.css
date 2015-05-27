@@ -10,22 +10,72 @@ body
 	width:100%;
 }
 
+.incline
+{
+	-webkit-transform: rotate(340deg);
+	-moz-transform: rotate(340deg);
+	-o-transform: rotate(340deg);
+	writing-mode: lr-tb;
+}
+
 .splashscreen
 {
 	display:block;
 	margin:auto;
 }
 
-label{
-	display: block;
-	width: 150px;
-	float: left;
-}
+/*
+* <FORMS>////////////////////////////////////////////////////////////////////////////
+*/
 
 #registrationForm {
 	display: block;
 	margin: auto;
 }
+
+#registrationForm label{
+	display: block;
+	width: 150px;
+	float: left;
+}
+
+#newRecipeForm
+{
+	display: block;
+	margin: auto;
+	border: solid 2px #0000FF;
+}
+
+.connexionElem{
+	display:inline-block;
+}
+
+a.connexionElem{
+	display:block;
+}
+label.connexionElem{
+	display:block;
+	float: right;
+	height: 100%;
+}
+
+form.connexionElem{
+	display:block;
+	float: right;
+	height: 100%;
+}
+
+input.connexionElem{
+	display:block;
+}
+
+/*
+* </FORMS>////////////////////////////////////////////////////////////////////////////
+*/
+
+/*
+* <MENU>////////////////////////////////////////////////////////////////////////////
+*/
 .bigbutton
 {
 	height : 50%;
@@ -51,27 +101,31 @@ label{
 	background : #44ff44;
 }
 
-.incline
-{
-	-webkit-transform: rotate(340deg);
-	-moz-transform: rotate(340deg);
-	-o-transform: rotate(340deg);
-	writing-mode: lr-tb;
-}
+/*
+* </MENU>/////////////////////////////////////////////////////////////////////////////////
+*/
+
+/*
+* <HEADER>/////////////////////////////////////////////////////////////////////
+*/
 
 .headerTitle
 {
 	height: 12%;
 	width: 7%;
 	display: inline-block;
+	vertical-align: middle;
 }
+
 .rightHeader
 {
 	height: 12%;
 	width: 80%;
 	display: inline-block;
 	text-align: right;
+	vertical-align: middle;
 }
+
 .emergencyHeader
 {
 	background-color: #FF8000;
@@ -87,24 +141,7 @@ label{
 	background-color: #FF0000;
 }
 
-.connexionElem{
-	display:inline-block;
+/*
+* </HEADER>/////////////////////////////////////////////////////////////////////////////////
+*/
 
-}
-a.connexionElem{
-	display:block;
-}
-label.connexionElem{
-	display:block;
-	float: right;
-	height: 100%;
-}
-form.connexionElem{
-	display:block;
-	float: right;
-	height: 100%;
-}
-
-input.connexionElem{
-	display:block;
-}
