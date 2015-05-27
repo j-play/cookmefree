@@ -199,19 +199,25 @@ input.connexionElem{
 .emergencyHeader
 {
 	background-color: #FF4444;
-	height: 400%;
+	height: 900%;
+	padding-top:2%;
+	padding-bottom:2%;
 }
 
 .recipesHeader
 {
 	background-color: #4444FF;
-	height: 400%;
+	height: 600%;
+	padding-top:2%;
+	padding-bottom:2%;
 }
 
 .administrationHeader
 {
 	background-color: #FF8000;
-	height: 400%;
+	height: 900%;
+	padding-top:2%;
+	padding-bottom:2%;
 }
 
 /*
