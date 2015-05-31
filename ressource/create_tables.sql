@@ -38,6 +38,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 ALTER TABLE `user` ADD `mail` VARCHAR(50) NOT NULL ;
 ALTER TABLE `user` ADD `dateDerniereConnexion` DATETIME NULL ;
+
+ALTER TABLE `user` ADD `isAdmin` bool NOT NULL ;
 --
 -- Contenu de la table `user`
 --

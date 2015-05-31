@@ -13,26 +13,39 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<p:dataTable var="user" value="#{userListModelBean.users}">
-    		<p:column headerText="Id">
-        		<h:outputText value="#{car.id}" />
-    		</p:column>
- 
-    		<p:column headerText="Year">
-       			<h:outputText value="#{car.year}" />
-    		</p:column>
- 
-    		<p:column headerText="Brand">
-        		<h:outputText value="#{car.brand}" />
-    		</p:column>
- 
-    		<p:column headerText="Color">
-        		<h:outputText value="#{car.color}" />
-    		</p:column>
-    		
-    		<p:column headerText="Color">
-        		<h:outputText value="#{car.color}" />
-    		</p:column>
-		</p:dataTable>
+		<h:form id="usersTableForm">
+			<p:dataTable var="user" 
+						value="#{userListModelBean.userList}" 
+						tableStyle="table-layout: auto;"
+						paginator="true"
+                        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="5,10,15">
+	    		<p:column headerText="Name">
+	        		<h:outputText value="#{user.lastname}" />
+	    		</p:column>
+	 
+	    		<p:column headerText="Login">
+	       			<h:outputText value="#{user.login}" />
+	    		</p:column>
+	    		
+	    		<p:column headerText="Admin">
+	    			<p:selectBooleanCheckbox disabled="true" id="chkIsAdmin" value="#{user.isAdmin}"/>
+	    		</p:column>
+	 
+	    		<p:column headerText="Delete">
+	        		<p:commandButton icon="ui-icon-trash"
+	                        title="Delete this user"
+	                        ajax="false" />
+	    		</p:column>
+	    	
+	    		<!-- actionListener="#{userControlerBean.remove(user)}" -->
+	    		<p:column headerText="Modify">
+	    			
+	        		<p:commandButton icon="ui-icon-wrench"
+	                        title="Modify this user"
+	                        ajax="false" />
+	    		</p:column>
+			</p:dataTable>
+		</h:form>
 	</ui:define>
 </ui:composition>

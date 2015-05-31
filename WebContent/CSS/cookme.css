@@ -217,6 +217,7 @@ input.connexionElem{
 /*
 * PRIMEFACES/////////////////////////////////////////////////////////////////////////////////
 */
-.ui-layout-unit-center .ui-layout-bd {
-   border: 0;
+
+.ui-layout-pane-center {
+    border: 0;
 }

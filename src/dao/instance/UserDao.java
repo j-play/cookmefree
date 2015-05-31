@@ -31,7 +31,7 @@ public class UserDao {
 			
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
 			
-			String sql = "INSERT INTO user (login, pwd, surname, lastname, age, mail) VALUES(?,?,?,?,?,?)";
+			String sql = "INSERT INTO user (login, pwd, surname, lastname, age, mail) VALUES(?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(1, user.getLogin());
 			statement.setString(2, user.getPwd());
@@ -39,6 +39,7 @@ public class UserDao {
 			statement.setString(4, user.getLastname());
 			statement.setInt(5, user.getAge());
 			statement.setString(6, user.getMail());
+			statement.setBoolean(7, user.getIsAdmin());
 			
 			statement.executeUpdate();
 			
@@ -62,7 +63,8 @@ public class UserDao {
 			
 			while (rs.next()){ 
 				userList.add(new UserModelBean(rs.getString("lastname"), rs.getString("surname"), 
-						rs.getInt("age"), rs.getString("mail"), rs.getString("login"), rs.getString("pwd"))
+						rs.getInt("age"), rs.getString("mail"), rs.getString("login"), rs.getString("pwd"), 
+						rs.getBoolean("isAdmin"))
 				); 
 			}
 			
@@ -93,7 +95,8 @@ public class UserDao {
 			
 			while (rs.next()){ 
 				return new UserModelBean(rs.getString("lastname"), rs.getString("surname"), 
-						rs.getInt("age"), rs.getString("mail"), rs.getString("login"), rs.getString("pwd")); 
+						rs.getInt("age"), rs.getString("mail"), rs.getString("login"), rs.getString("pwd"), 
+						rs.getBoolean("isAdmin")); 
 			}
 			
 			connection.close(); 
