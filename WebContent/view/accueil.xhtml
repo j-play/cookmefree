@@ -5,13 +5,25 @@
 
 	<ui:define name="content">
 		<button class="bigbutton button1">
-			<div class="incline">Emergency</div>
+			<h:form>
+				<span class="incline">
+					<h:commandLink action="#{accueilControllerBean.goToRecipes()}" value="Emergency"/>
+				</span>
+			</h:form>
 		</button>
 		<button class="bigbutton button2">
-			<div class="incline">Recipes</div>
+			<h:form>
+				<span class="incline">
+					<h:commandLink action="#{accueilControllerBean.goToRecipes()}" value="Recipes"/>
+				</span>
+			</h:form>
 		</button>
 		<button class="bigbutton button3">
-			<div class="incline">Shop</div>
+			<h:form>
+				<span class="incline">
+					<h:commandLink action="#{accueilControllerBean.goToRecipes()}" value="Shop"/>
+				</span>
+			</h:form>
 		</button>
 	</ui:define>
 	

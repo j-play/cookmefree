@@ -27,10 +27,10 @@ public class RecipeControlerBean {
 		for(RecipeModel recipe:list){
             recipeList.addRecipeList(recipe);
 		}
-		//récupère l'espace de mémoire de JSF
+		//reÌ�cupeÌ€re l'espace de meÌ�moire de JSF
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
-		//place la liste de recette dans l'espace de mémoire de JSF
-		sessionMap.put("recipeList", recipeList);	
+		//place la liste de recette dans l'espace de meÌ�moire de JSF
+		sessionMap.put("recipeList", recipeList);
 	}		
 }

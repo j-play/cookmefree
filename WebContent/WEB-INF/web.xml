@@ -23,5 +23,6 @@ version="2.5">
 	</context-param>
 	<welcome-file-list>
 		<welcome-file>view/template.xhtml</welcome-file>
+		<welcome-file>view/splashScreen.xhtml</welcome-file>
 	</welcome-file-list>
 </web-app>
