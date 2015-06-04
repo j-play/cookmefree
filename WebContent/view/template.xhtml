@@ -15,56 +15,63 @@
 	 
 	 <h:body>
 	 	<p:layout fullPage="true">
-	 	<p:layoutUnit position="north" resizable="true" size="120" minSize="40" maxSize="200">
-	 	<ui:insert name="header">
-	 	
-	 	<div class="header">
-	 	
-	 		<div class="headerTitle">
-		 		<ui:insert name="headerTitle">
-		 		
-		 			<h1>CookMe</h1>
-		 		
-		 		</ui:insert>
-	 		</div>
-	 		<h:panelGroup id="rightHeaderPanel" class="rightHeader">
-	 			<h:panelGroup id="panelLogin" rendered="#{not empty loggedUser}">
-
-    				<p>#{loggedUser.login} </p>
-    				<h:form>
-    					<p:commandButton value="Déconnexion" action="#{userControlerBean.disconnectUser()}" update=":rightHeaderPanel">
-    					</p:commandButton>
-    				</h:form>
-    			</h:panelGroup>
-    			<h:panelGroup  id="panelConnect" rendered="#{empty loggedUser}">
-		 			<h:form class="connexionElem">
-		 				<p:inputText id="login" value="#{loginBean.login}" styleClass="connexionElem" placeholder="login"></p:inputText>
-		 				<p:password id="pwd" value="#{loginBean.pwd}" styleClass="connexionElem" placeholder="password"></p:password>
-		 				<p:commandButton value="Connexion" action="#{userControlerBean.checkUser(loginBean)}" icon="ui-icon-check" update=":rightHeaderPanel" >
-		 				</p:commandButton>
-		 			</h:form>
-		 			<div class="inscriptionHeader">
-		 				<h:form>
-		 					<p:commandLink id="registrationLink" action="registration.jsf" Styleclass="connexionElem"><i class="fa fa-plus-circle"/></p:commandLink>
-		 					<label for="registrationLink" class="connexionElem" >Become Member</label>
-		 				</h:form>
-		 			</div>
-				</h:panelGroup>
-	 		</h:panelGroup>
-	 	</div>
-	 	
-	 	</ui:insert>
-	 	</p:layoutUnit>
-	 	<p:layoutUnit position="center" resizable="true" size="500" minSize="40" maxSize="200">
-	 	<div class="content">
-	 		<ui:insert name="content"> <h1>Default content</h1> </ui:insert>
- 		</div>
- 		</p:layoutUnit>
- 		<p:layoutUnit position="south" resizable="true" size="100" minSize="40" maxSize="200">
- 		<div class="footer">
-	 		<ui:insert name="footer"> <h1>Default footer</h1> </ui:insert>
-	 	</div>
-	 	</p:layoutUnit>
-	 </p:layout>	
+		 	<p:layoutUnit position="north" resizable="true" size="120" minSize="40" maxSize="200">
+			 	<ui:insert name="header">
+			 	
+				 	<div class="header">
+				 	
+				 		<div class="headerTitle">
+					 		<ui:insert name="headerTitle">
+					 		
+						 		<h1>
+					 				<h:form>
+					 					<h:commandLink action="#{accueilControl.goToAccueil()}" value="CookMe"/>
+				 					</h:form>
+				 				</h1>
+					 		
+					 		</ui:insert>
+					 		
+				 		</div>
+				 		<h:panelGroup id="rightHeaderPanel" class="rightHeader">
+				 			<h:panelGroup id="panelLogin" rendered="#{not empty loggedUser}">
+			
+			    				<p>#{loggedUser.login} </p>
+			    				<h:form>
+			    					<p:commandButton value="Déconnexion" action="#{userControl.disconnectUser()}" update=":rightHeaderPanel">
+			    					</p:commandButton>
+			    				</h:form>
+			    			</h:panelGroup>
+			    			<h:panelGroup  id="panelConnect" rendered="#{empty loggedUser}">
+					 			<h:form class="connexionElem">
+					 				<p:inputText id="login" value="#{loginBean.login}" styleClass="connexionElem" placeholder="login"></p:inputText>
+					 				<p:password id="pwd" value="#{loginBean.pwd}" styleClass="connexionElem" placeholder="password"></p:password>
+					 				<p:commandButton value="Connexion" action="#{userControl.checkUser(loginBean)}" icon="ui-icon-check" update=":rightHeaderPanel" >
+					 				</p:commandButton>
+					 			</h:form>
+					 			<div class="inscriptionHeader">
+					 				<h:form>
+					 					<p:commandLink id="registrationLink" action="registration.jsf" Styleclass="connexionElem"><i class="fa fa-plus-circle"/></p:commandLink>
+					 					<p:outputLabel for="registrationLink" Styleclass="connexionElem">
+											Become Member
+										</p:outputLabel>
+					 				</h:form>
+					 			</div>
+							</h:panelGroup>
+				 		</h:panelGroup>
+				 	</div>
+			 	
+			 	</ui:insert>
+		 	</p:layoutUnit>
+		 	<p:layoutUnit position="center" resizable="true" size="500" minSize="40" maxSize="200">
+			 	<div class="content">
+			 		<ui:insert name="content"> <h1>Default content</h1> </ui:insert>
+		 		</div>
+		 		</p:layoutUnit>
+		 		<p:layoutUnit position="south" resizable="true" size="100" minSize="40" maxSize="200">
+		 		<div class="footer">
+			 		<ui:insert name="footer"> <h1>Default footer</h1> </ui:insert>
+			 	</div>
+		 	</p:layoutUnit>
+		 </p:layout>	
 	 </h:body>
  </html>

@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-@ManagedBean
+@ManagedBean(name="accueilControl")
 @ApplicationScoped
 public class AccueilControllerBean {
 	
@@ -19,5 +19,13 @@ public class AccueilControllerBean {
 		}
 	}
 	
+	public void goToAccueil(){
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		try {
+			context.redirect("accueil.jsf");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
 

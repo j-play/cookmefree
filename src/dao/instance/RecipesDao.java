@@ -75,4 +75,30 @@ public class RecipesDao {
 		}
 		return recipeList;
 	}
+	
+	/**
+	 * Récupération de la liste des recettes
+	 * @return ArrayList contenant des beans RecipeModelBean
+	 */
+	public RecipeModel getRecipesByID(int id){ 
+		RecipeModel recipe = null;
+		
+		try {
+			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
+			
+			java.sql.PreparedStatement query = connection.prepareStatement("select * from recipe where id=?");
+			query.setInt(1, id);
+			ResultSet rs = query.executeQuery(); 
+			
+			rs.next();
+			recipe = new RecipeModel(rs.getString("title"), rs.getString("description"), rs.getInt("Expertise"),
+					rs.getInt("duration"), rs.getInt("nbPeople"), rs.getString("type"));
+			
+			connection.close();
+		} 
+		catch (SQLException e) { 
+			e.printStackTrace();
+		}
+		return recipe;
+	}
 }

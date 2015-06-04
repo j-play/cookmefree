@@ -1,5 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
 				xmlns:p="http://primefaces.org/ui"
 				xmlns:ui="http://java.sun.com/jsf/facelets"
 				template="template.xhtml">
@@ -20,56 +21,60 @@
 			
 				<div id="newRecipeForm">
 					<div class="newRecipeFormElement1">
-						<i class="fa-clock-o fa fa-2x"/>
-						<label>Preparation duration (minutes) </label>
+						<p:outputLabel for="duration">
+							<i class="fa-clock-o fa fa-2x"/>
+							Preparation duration (minutes) 
+						</p:outputLabel>
 						<br/>
-						<input type="number" value="0"/>
+		    			<p:inputText id="duration" value="0" required="true" 
+				    			size="30" maxlength="30">
+		    				<f:validateLongRange minimum="0" maximum="1000" />
+		    			</p:inputText>
 					</div>
 					
 					<div class="newRecipeFormElement2">
-						<i class="fa-pencil-square-o fa fa-2x"/>
-						<label>Cook expertise </label>
-						    <p:growl id="messages" showDetail="true" />
-						    <h:panelGrid columns="1" cellpadding="5">
-						        <p:rating value="#{ratingView.rating1}" cancel="false"/>
-						    </h:panelGrid>
+						<p:outputLabel for="expertise">
+							<i class="fa-pencil-square-o fa fa-2x"/>
+							Cook expertise 
+						</p:outputLabel>
+						<br/>
+					    <p:growl id="expertise" showDetail="true" />
+					    <h:panelGrid columns="1" cellpadding="5">
+					        <p:rating cancel="false"/>
+					    </h:panelGrid>
 					</div>
 					
 					<br/>
 					
 					<div class="newRecipeFormElement1">
-						<i class="fa-users fa fa-2x"/>
-						<label>For how many people ? </label>
-						
-						<br/>
-						
-						<span id="range">0</span>
-						<input type="range" min="0" max="10" value="0" onchange="showValue(this.value)" />
-						<script type="text/javascript">
-							function showValue(newValue)
-							{
-								document.getElementById("range").innerHTML=newValue;
-							}
-						</script>
+						<h:panelGrid columns="1">
+							<p:outputLabel for="people">
+								<i class="fa-users fa fa-2x"/>
+								For how many people ? 
+							</p:outputLabel>
+					        <h:outputText id="output" value="1"/>
+					        <h:inputHidden id="people" value="1" />
+					        <p:slider for="people" minValue="1" maxValue="10"
+					         	display="output" displayTemplate="{value}" />
+			         	</h:panelGrid>
 					</div>
 					
 					<div class="newRecipeFormElement2">
-						<i class="fa-bookmark-o fa fa-2x"/>
-						<label>Cook type </label>
-						
+						<p:outputLabel for="cookType">
+							<i class="fa-bookmark-o fa fa-2x"/>
+							Cook type 
+						</p:outputLabel>
 						<br/>
-						
-						<select>
-							<option value="meal">Meal</option>
-							<option value="salad">Salad</option>
-							<option value="fish">Fish</option>
-							<option value="dessert">Dessert</option>
-						</select>
+						<p:selectOneMenu value="Select type" id="cookType">  
+				            <f:selectItem itemLabel="Meal" itemValue="meal" />  
+				            <f:selectItem itemLabel="Salad" itemValue="salad" />  
+				            <f:selectItem itemLabel="Fish" itemValue="fish" />  
+				            <f:selectItem itemLabel="Dessert" itemValue="dessert" />  
+				        </p:selectOneMenu>
 					</div>
 				</div>
 				
-				<input type="submit" id="teachMeButton" value="Teach me !"/>
-				
+				<p:commandButton value="Teach me !" Styleclass="teachMeButton" actionListener="#{recipeControl.goToResult()}" ajax="false" />
 			</h:form>
 		</div>
 	</ui:define>

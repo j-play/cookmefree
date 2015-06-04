@@ -50,7 +50,7 @@ body
 	font-style: italic;
 }
 
-#teachMeButton
+.teachMeButton
 {
 	width: 70%;
 	height: 5%;
@@ -154,6 +154,11 @@ input.connexionElem{
 .button3
 {
 	background : #44ff44;
+}
+
+#peopleSlider
+{
+	width: 3%;
 }
 
 /*

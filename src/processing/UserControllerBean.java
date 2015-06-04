@@ -14,12 +14,12 @@ import model.UserSubmissionModelBean;
 import dao.fabric.DaoFabric;
 import dao.instance.UserDao;
 
-@ManagedBean
+@ManagedBean(name="userControl")
 @ApplicationScoped // Utilisation de application scope afin d'offrir un point d'entrée unique à l'ensemble des clients
-public class UserControlerBean {
+public class UserControllerBean {
 	private UserDao userDao; 
 	
-	public UserControlerBean() {
+	public UserControllerBean() {
 		this.userDao=DaoFabric.getInstance().createUserDao();
 	}
 	
