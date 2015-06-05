@@ -8,11 +8,11 @@ import javax.faces.bean.ManagedBean;
 public class AccueilControllerBean {
 	
 	public String goToRecipes(){
-		return("searchRecipe.jsf");
+		return("searchRecipe.jsf?faces-redirect=true");
 	}
 	
 	public String goToAccueil(){
-		return("accueil.jsf");
+		return("accueil.jsf?faces-redirect=true");
 	}
 }
 

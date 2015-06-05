@@ -18,8 +18,6 @@ import dao.instance.RecipesDao;
 @ManagedBean(name="recipeControl")
 @ApplicationScoped
 public class RecipeControllerBean {
-	@ManagedProperty(value="#{param.idRecipe}")
-	private String idRecipe;
 	
 	private RecipesDao recipeDao;
 	
@@ -41,7 +39,7 @@ public class RecipeControllerBean {
 	}
 	
 	public void loadRecipeByID(){
-		RecipeModel recipe = this.recipeDao.getRecipesByID(Integer.valueOf(idRecipe));
+		RecipeModel recipe = this.recipeDao.getRecipesByID(1);
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		Map<String, Object> requestMap = externalContext.getRequestMap();
 		requestMap.put("recipe", recipe);
@@ -52,6 +50,6 @@ public class RecipeControllerBean {
 	
 	public String goToResult(){
 		this.loadRecipeByID();
-		return("showRecipe.jsf");
+		return("showRecipe.jsf?faces-redirect=true");
 	}
 }
