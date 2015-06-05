@@ -12,7 +12,7 @@ public class AccueilControllerBean {
 	}
 	
 	public String goToAccueil(){
-		return("accueil.jsf?faces-redirect=true");
+		return("index.jsf?faces-redirect=true");
 	}
 }
 
