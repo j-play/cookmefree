@@ -1,12 +1,12 @@
 package processing;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
@@ -17,7 +17,10 @@ import dao.instance.RecipesDao;
 
 @ManagedBean(name="recipeControl")
 @ApplicationScoped
-public class RecipeControllerBean { 
+public class RecipeControllerBean {
+	@ManagedProperty(value="#{param.idRecipe}")
+	private String idRecipe;
+	
 	private RecipesDao recipeDao;
 	
 	public RecipeControllerBean() {
@@ -38,29 +41,17 @@ public class RecipeControllerBean {
 	}
 	
 	public void loadRecipeByID(){
-		RecipeModel recipe = this.recipeDao.getRecipesByID(1);
-		if(recipe != null){
-			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-			Map<String, Object> requestMap = externalContext.getRequestMap();
-			requestMap.put("recipe", recipe);
-			FacesContext.getCurrentInstance().addMessage(null, 
-			        new FacesMessage(null, "<h1>Recette récupérée avec succès</h1>")
-			);
-		}
-		else{
-			FacesContext.getCurrentInstance().addMessage(null, 
-			        new FacesMessage(null, "<h1>Erreur dans la récupération de la recette</h1>")
-			);
-		}
+		RecipeModel recipe = this.recipeDao.getRecipesByID(Integer.valueOf(idRecipe));
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		Map<String, Object> requestMap = externalContext.getRequestMap();
+		requestMap.put("recipe", recipe);
+		FacesContext.getCurrentInstance().addMessage(null, 
+		        new FacesMessage(null, "<h1>Recette récupérée avec succès</h1>")
+		);
 	}
 	
-	public void goToResult(){
+	public String goToResult(){
 		this.loadRecipeByID();
-		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-		try {
-			context.redirect("showRecipe.jsf");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		return("showRecipe.jsf");
 	}
 }

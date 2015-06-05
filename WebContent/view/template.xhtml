@@ -15,7 +15,7 @@
 	 
 	 <h:body>
 	 	<p:layout fullPage="true">
-		 	<p:layoutUnit position="north" resizable="true" size="120" minSize="40" maxSize="200">
+		 	<p:layoutUnit position="north" resizable="false">
 			 	<ui:insert name="header">
 			 	
 				 	<div class="header">
@@ -30,12 +30,16 @@
 				 				</h1>
 					 		
 					 		</ui:insert>
-					 		
 				 		</div>
+				 		
+				 		<div class="headerMenu">
+				 			
+				 		</div>
+				 		
 				 		<h:panelGroup id="rightHeaderPanel" class="rightHeader">
 				 			<h:panelGroup id="panelLogin" rendered="#{not empty loggedUser}">
 			
-			    				<p>#{loggedUser.login} </p>
+			    				<p>Welcome <h:outputText value="#{loggedUser.login} "/></p>
 			    				<h:form>
 			    					<p:commandButton value="Déconnexion" action="#{userControl.disconnectUser()}" update=":rightHeaderPanel">
 			    					</p:commandButton>
@@ -48,10 +52,11 @@
 					 				<p:commandButton value="Connexion" action="#{userControl.checkUser(loginBean)}" icon="ui-icon-check" update=":rightHeaderPanel" >
 					 				</p:commandButton>
 					 			</h:form>
+				 				<br/><br/><br/>
 					 			<div class="inscriptionHeader">
 					 				<h:form>
-					 					<p:commandLink id="registrationLink" action="registration.jsf" Styleclass="connexionElem"><i class="fa fa-plus-circle"/></p:commandLink>
-					 					<p:outputLabel for="registrationLink" Styleclass="connexionElem">
+					 					<p:commandLink id="registrationLink" action="registration.jsf" styleClass="connexionElem"><i class="fa fa-plus-circle"/></p:commandLink>
+					 					<p:outputLabel for="registrationLink" styleClass="connexionElem">
 											Become Member
 										</p:outputLabel>
 					 				</h:form>
@@ -62,12 +67,12 @@
 			 	
 			 	</ui:insert>
 		 	</p:layoutUnit>
-		 	<p:layoutUnit position="center" resizable="true" size="500" minSize="40" maxSize="200">
+		 	<p:layoutUnit position="center" resizable="false">
 			 	<div class="content">
 			 		<ui:insert name="content"> <h1>Default content</h1> </ui:insert>
 		 		</div>
-		 		</p:layoutUnit>
-		 		<p:layoutUnit position="south" resizable="true" size="100" minSize="40" maxSize="200">
+	 		</p:layoutUnit>
+	 		<p:layoutUnit position="south" resizable="false">
 		 		<div class="footer">
 			 		<ui:insert name="footer"> <h1>Default footer</h1> </ui:insert>
 			 	</div>

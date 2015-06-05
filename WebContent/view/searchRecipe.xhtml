@@ -19,8 +19,8 @@
 			
 			<h:form>
 			
-				<div id="newRecipeForm">
-					<div class="newRecipeFormElement1">
+				<div id="searchRecipeForm">
+					<div class="searchRecipeFormElement1">
 						<p:outputLabel for="duration">
 							<i class="fa-clock-o fa fa-2x"/>
 							Preparation duration (minutes) 
@@ -37,15 +37,17 @@
 						</p:outputLabel>
 					</div>
 					
-					<div class="newRecipeFormElement2">
+					<div class="searchRecipeFormElement2">
 						<p:outputLabel for="expertise">
 							<i class="fa-pencil-square-o fa fa-2x"/>
 							Cook expertise 
 						</p:outputLabel>
 						<br/>
-					    <p:growl id="expertise" showDetail="true" />
-					    <h:panelGrid columns="1" cellpadding="5">
-					        <p:rating cancel="false"/>
+					    <p:growl id="growl" showDetail="true" />
+					    <h:panelGrid columns="1">
+					    	<h:outputText id="outputRating" value="0"/>
+					    	<h:inputHidden id="expertise" value="0"/>
+					        <p:rating cancel="false" for="expertise" display="outputRating" displayTemplate="{value}"/>
 					    </h:panelGrid>
 					    <p:selectBooleanCheckbox id="indiff2" value="true"/>
 		    			<p:outputLabel for="indiff2">
@@ -55,16 +57,16 @@
 					
 					<br/>
 					
-					<div class="newRecipeFormElement1">
+					<div class="searchRecipeFormElement1">
 						<h:panelGrid columns="1">
 							<p:outputLabel for="people">
 								<i class="fa-users fa fa-2x"/>
 								For how many people ? 
 							</p:outputLabel>
-					        <h:outputText id="output" value="1"/>
+					        <h:outputText id="outputSlider" value="1"/>
 					        <h:inputHidden id="people" value="1" />
 					        <p:slider for="people" minValue="1" maxValue="10"
-					         	display="output" displayTemplate="{value}" />
+					         	display="outputSlider" displayTemplate="{value}" />
 			         	</h:panelGrid>
 			         	<br/>
 			         	<p:selectBooleanCheckbox id="indiff3" value="true"/>
@@ -73,7 +75,7 @@
 						</p:outputLabel>
 					</div>
 					
-					<div class="newRecipeFormElement2">
+					<div class="searchRecipeFormElement2">
 						<p:outputLabel for="cookType">
 							<i class="fa-bookmark-o fa fa-2x"/>
 							Cook type 
@@ -92,8 +94,12 @@
 						</p:outputLabel>
 					</div>
 				</div>
-				
-				<p:commandButton value="Teach me !" Styleclass="teachMeButton" actionListener="#{recipeControl.goToResult()}" ajax="false" />
+				<br/>
+				<button class="teachMeButton">
+					<p:commandLink value="Teach me !" action="#{recipeControl.goToResult}" ajax="false">
+						<f:param name="idRecipe" value="1"/>
+					</p:commandLink>
+				</button>
 			</h:form>
 		</div>
 	</ui:define>

@@ -17,17 +17,19 @@
 	</ui:define>
 	<ui:define name="content" rendered="#{not empty recipe}">
 		<div id="showRecipeDetails">
-			<i class="fa-bookmark-o fa fa-2x"/>#{recipe.type}
+			<i class="fa-bookmark-o fa fa-2x"/><h:outputText value="#{recipe.type}"/>
 			<br/><br/>
-			<i class="fa-clock-o fa fa-2x"/>#{recipe.duration} minutes
+			<i class="fa-clock-o fa fa-2x"/><h:outputText value="#{recipe.duration}"/> minutes
 			<br/><br/>
-			<i class="fa-users fa fa-2x"/>#{recipe.nbPeople} people
+			<i class="fa-users fa fa-2x"/><h:outputText value="#{recipe.nbPeople}"/> people
 			<br/><br/>
-			<i class="fa-pencil-square-o fa fa-2x"/>Difficulty : #{recipe.expertise}/5
+			<i class="fa-pencil-square-o fa fa-2x"/>Difficulty : <h:outputText value="#{recipe.expertise}"/>/5
 		</div>
 		<div id="recipeContent">
-			<h1>#{recipe.title}aa</h1>
-			#{recipe.description}
+			<h1>
+				<h:outputText value="#{recipe.title}"/>
+			</h1>
+			<h:outputText value="#{recipe.description}"/>
 			aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
 			aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
 			aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
