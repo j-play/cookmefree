@@ -22,18 +22,16 @@
 				 	
 				 		<div class="headerTitle">
 					 		<ui:insert name="headerTitle">
-					 		
 						 		<h1>
-					 				<h:form>
-					 					<h:commandLink action="#{accueilControl.goToAccueil()}" value="CookMe"/>
-				 					</h:form>
+					 				CookMe
 				 				</h1>
-					 		
 					 		</ui:insert>
 				 		</div>
 				 		
 				 		<div class="headerMenu">
-				 			
+				 			<h:form>
+			 					<h:commandLink action="#{accueilControl.goToAccueil()}" value="Accueil"/>
+		 					</h:form>
 				 		</div>
 				 		
 				 		<h:panelGroup id="rightHeaderPanel" class="rightHeader">
