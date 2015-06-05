@@ -30,6 +30,11 @@
 				    			size="30" maxlength="30">
 		    				<f:validateLongRange minimum="0" maximum="1000" />
 		    			</p:inputText>
+		    			<br/>
+		    			<p:selectBooleanCheckbox id="indiff1" value="true"/>
+		    			<p:outputLabel for="indiff1">
+							 Indifférent
+						</p:outputLabel>
 					</div>
 					
 					<div class="newRecipeFormElement2">
@@ -42,6 +47,10 @@
 					    <h:panelGrid columns="1" cellpadding="5">
 					        <p:rating cancel="false"/>
 					    </h:panelGrid>
+					    <p:selectBooleanCheckbox id="indiff2" value="true"/>
+		    			<p:outputLabel for="indiff2">
+							 Indifférent
+						</p:outputLabel>
 					</div>
 					
 					<br/>
@@ -57,6 +66,11 @@
 					        <p:slider for="people" minValue="1" maxValue="10"
 					         	display="output" displayTemplate="{value}" />
 			         	</h:panelGrid>
+			         	<br/>
+			         	<p:selectBooleanCheckbox id="indiff3" value="true"/>
+		    			<p:outputLabel for="indiff3">
+							 Indifférent
+						</p:outputLabel>
 					</div>
 					
 					<div class="newRecipeFormElement2">
@@ -71,6 +85,11 @@
 				            <f:selectItem itemLabel="Fish" itemValue="fish" />  
 				            <f:selectItem itemLabel="Dessert" itemValue="dessert" />  
 				        </p:selectOneMenu>
+				        <br/>
+				        <p:selectBooleanCheckbox id="indiff4" value="true"/>
+		    			<p:outputLabel for="indiff4">
+							 Indifférent
+						</p:outputLabel>
 					</div>
 				</div>
 				

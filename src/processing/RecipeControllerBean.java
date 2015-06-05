@@ -44,12 +44,12 @@ public class RecipeControllerBean {
 			Map<String, Object> requestMap = externalContext.getRequestMap();
 			requestMap.put("recipe", recipe);
 			FacesContext.getCurrentInstance().addMessage(null, 
-			        new FacesMessage(FacesMessage.SEVERITY_INFO, "<h1>Recette récupérée avec succès</h1>", null)
+			        new FacesMessage(null, "<h1>Recette récupérée avec succès</h1>")
 			);
 		}
 		else{
 			FacesContext.getCurrentInstance().addMessage(null, 
-			        new FacesMessage(FacesMessage.SEVERITY_INFO, "<h1>Erreur dans la récupération de la recette</h1>", null)
+			        new FacesMessage(null, "<h1>Erreur dans la récupération de la recette</h1>")
 			);
 		}
 	}
