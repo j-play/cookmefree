@@ -17,5 +17,9 @@ public class AccueilControllerBean implements Serializable {
 	public String goToAccueil(){
 		return("index.jsf?faces-redirect=true");
 	}
+	
+	public String goToAdmin(){
+		return("userAdmin.jsf?faces-redirect=true");
+	}
 }
 

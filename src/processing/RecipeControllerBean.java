@@ -3,11 +3,10 @@ package processing;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
-
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
@@ -17,7 +16,7 @@ import dao.fabric.DaoFabric;
 import dao.instance.RecipesDao;
 
 @ManagedBean(name="recipeControl")
-@ApplicationScoped
+@RequestScoped
 public class RecipeControllerBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 

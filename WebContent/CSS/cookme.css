@@ -223,7 +223,7 @@ input.connexionElem{
 	vertical-align: middle;
 }
 
-.headerMenu
+#headerMenu
 {
 	display: inline-block;
 	left: 20%;
@@ -234,6 +234,11 @@ input.connexionElem{
 	margin-left: 4%;
 }
 
+#headerMenu a
+{
+	margin-right: 2%;
+}
+
 .rightHeader
 {
 	height: 99%;
@@ -242,11 +247,6 @@ input.connexionElem{
 	display: inline-block;
 	text-align: right;
 	vertical-align: top;
-}
-
-.headerMenu a
-{
-	margin-right: 2%;
 }
 
 .inscriptionHeader

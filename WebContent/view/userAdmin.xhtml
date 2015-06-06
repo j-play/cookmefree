@@ -5,7 +5,7 @@
 				template="template.xhtml">
 
 	<ui:define name="headerTitle">
-		<div class="adminHeader">
+		<div class="administrationHeader">
 			<div class="incline">
 				<h1>Administration</h1>
 			</div>
@@ -13,39 +13,44 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h:form id="usersTableForm">
-			<p:dataTable var="user" 
-						value="#{userListModelBean.userList}" 
-						tableStyle="table-layout: auto;"
-						paginator="true"
-                        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                        rowsPerPageTemplate="5,10,15">
-	    		<p:column headerText="Name">
-	        		<h:outputText value="#{user.lastname}" />
-	    		</p:column>
-	 
-	    		<p:column headerText="Login">
-	       			<h:outputText value="#{user.login}" />
-	    		</p:column>
-	    		
-	    		<p:column headerText="Admin">
-	    			<p:selectBooleanCheckbox disabled="true" id="chkIsAdmin" value="#{user.isAdmin}"/>
-	    		</p:column>
-	 
-	    		<p:column headerText="Delete">
-	        		<p:commandButton icon="ui-icon-trash"
-	                        title="Delete this user"
-	                        ajax="false" />
-	    		</p:column>
-	    	
-	    		<!-- actionListener="#{userControl.remove(user)}" -->
-	    		<p:column headerText="Modify">
-	    			
-	        		<p:commandButton icon="ui-icon-wrench"
-	                        title="Modify this user"
-	                        ajax="false" />
-	    		</p:column>
-			</p:dataTable>
-		</h:form>
+		<h:panelGroup rendered="#{not empty loggedUser and loggedUser.isAdmin}">
+			<h:form id="usersTableForm">
+				<p:dataTable var="user" 
+							value="#{userListModelBean.userList}" 
+							tableStyle="table-layout: auto;"
+							paginator="true"
+	                        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+	                        rowsPerPageTemplate="5,10,15">
+		    		<p:column headerText="Name">
+		        		<h:outputText value="#{user.lastname}" />
+		    		</p:column>
+		 
+		    		<p:column headerText="Login">
+		       			<h:outputText value="#{user.login}" />
+		    		</p:column>
+		    		
+		    		<p:column headerText="Admin">
+		    			<p:selectBooleanCheckbox disabled="true" id="chkIsAdmin" value="#{user.isAdmin}"/>
+		    		</p:column>
+		 
+		    		<p:column headerText="Delete">
+		        		<p:commandButton icon="ui-icon-trash"
+		                        title="Delete this user"
+		                        ajax="false" />
+		    		</p:column>
+		    	
+		    		<!-- actionListener="#{userControl.remove(user)}" -->
+		    		<p:column headerText="Modify">
+		    			
+		        		<p:commandButton icon="ui-icon-wrench"
+		                        title="Modify this user"
+		                        ajax="false" />
+		    		</p:column>
+				</p:dataTable>
+			</h:form>
+		</h:panelGroup>
+		<h:panelGroup rendered="#{empty loggedUser or !loggedUser.isAdmin}">
+			<h1>Vous n'avez pas accès à cette page, désolé.</h1>
+		</h:panelGroup>
 	</ui:define>
 </ui:composition>

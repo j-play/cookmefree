@@ -1,13 +1,16 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ViewScoped;
+
+import dao.instance.RecipesDao;
+import dao.instance.UserDao;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class RecipeModel implements Serializable{
 
 	private static final long serialVersionUID = 1L;

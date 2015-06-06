@@ -28,18 +28,20 @@
 					 		</ui:insert>
 				 		</div>
 				 		
-				 		<div class="headerMenu">
+				 		<h:panelGroup id="headerMenu">
 				 			<h:form>
 			 					<h:commandLink action="#{accueilControl.goToAccueil()}" value="Accueil"/>
+			 					<h:commandLink action="#{accueilControl.goToAdmin()}" value="Administration" rendered="#{not empty loggedUser and loggedUser.isAdmin}"/>
 		 					</h:form>
-				 		</div>
+				 		</h:panelGroup>
 				 		
 				 		<h:panelGroup id="rightHeaderPanel" class="rightHeader">
+					 		
 				 			<h:panelGroup id="panelLogin" rendered="#{not empty loggedUser}">
 			
 			    				<p>Welcome <h:outputText value="#{loggedUser.login} "/></p>
 			    				<h:form>
-			    					<p:commandButton value="Déconnexion" action="#{userControl.disconnectUser()}" update=":rightHeaderPanel">
+			    					<p:commandButton value="Déconnexion" action="#{userControl.disconnectUser()}" update=":rightHeaderPanel,:headerMenu">
 			    					</p:commandButton>
 			    				</h:form>
 			    			</h:panelGroup>
@@ -47,7 +49,7 @@
 					 			<h:form class="connexionElem">
 					 				<p:inputText id="login" value="#{loginBean.login}" styleClass="connexionElem" placeholder="login"></p:inputText>
 					 				<p:password id="pwd" value="#{loginBean.pwd}" styleClass="connexionElem" placeholder="password"></p:password>
-					 				<p:commandButton value="Connexion" action="#{userControl.checkUser(loginBean)}" icon="ui-icon-check" update=":rightHeaderPanel" >
+					 				<p:commandButton value="Connexion" action="#{userControl.checkUser(loginBean)}" icon="ui-icon-check" update=":rightHeaderPanel,:headerMenu" >
 					 				</p:commandButton>
 					 			</h:form>
 				 				<br/><br/><br/>
