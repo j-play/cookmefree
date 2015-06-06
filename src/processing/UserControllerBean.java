@@ -1,8 +1,6 @@
 package processing;
 
 import java.util.Map;
-
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;

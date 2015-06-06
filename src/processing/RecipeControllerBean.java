@@ -1,5 +1,6 @@
 package processing;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -17,8 +18,10 @@ import dao.instance.RecipesDao;
 
 @ManagedBean(name="recipeControl")
 @ApplicationScoped
-public class RecipeControllerBean {
-	@ManagedProperty(value="#{param.idRecipe}")
+public class RecipeControllerBean implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@ManagedProperty(value="#{idRecipe}")
 	private String idRecipe;
 	
 	private RecipesDao recipeDao;
@@ -49,10 +52,12 @@ public class RecipeControllerBean {
 	}
 	
 	public void loadRecipeByID(){
-		RecipeModel recipe = this.recipeDao.getRecipesByID(Integer.valueOf(idRecipe));
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		Map<String, Object> requestMap = externalContext.getRequestMap();
+		
+		RecipeModel recipe = this.recipeDao.getRecipesByID(Integer.valueOf((String)requestMap.get("idRecipe")));
 		requestMap.put("recipe", recipe);
+		
 		FacesContext.getCurrentInstance().addMessage(null, 
 		        new FacesMessage(null, "<h1>Recette récupérée avec succès</h1>")
 		);
