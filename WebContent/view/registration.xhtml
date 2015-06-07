@@ -6,8 +6,8 @@
 				template="template.xhtml">
 
 	<ui:define name="content">
-		<h:form id="registrationForm">
-			<p:panel header="Registration">
+		<p:panel header="Registration">
+			<h:form id="registrationForm">
 				<h:panelGrid columns="3">
 	    			<p:outputLabel for="firstname">First name:</p:outputLabel>
 	    			<p:inputText id="firstname" value="#{userSubmissionModelBean.surname}" required="true" 
@@ -61,7 +61,7 @@
 					<p:commandButton value="Inscription" action="#{userControl.registerUser(userSubmissionModelBean)}" 
 					ajax="false" icon="ui-icon-check" validateClient="true" />
 	       		</h:panelGrid>
-  			</p:panel>
-		</h:form>
+  			</h:form>
+		</p:panel>
 	</ui:define>
 </ui:composition>
