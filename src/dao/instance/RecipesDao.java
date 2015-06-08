@@ -146,25 +146,35 @@ public class RecipesDao {
 				}
 				queryString+="type=? ";
 			}
+			
+			if(!preceded){
+				queryString+="1=1";
+			}
+			
 			java.sql.PreparedStatement query = connection.prepareStatement(queryString);
+			int nbParam=1;
 			if(!search.isIndiff1()){
-				query.setInt(1, search.getDuration());
+				query.setInt(nbParam, search.getDuration());
+				nbParam++;
 			}
 			if(!search.isIndiff2()){
-				query.setInt(2, search.getExpertise());
+				query.setInt(nbParam, search.getExpertise());
+				nbParam++;
 			}
 			if(!search.isIndiff3()){
-				query.setInt(3, search.getPeople());
+				query.setInt(nbParam, search.getPeople());
+				nbParam++;
 			}
 			if(!search.isIndiff4()){
-				query.setString(4, search.getType());
+				query.setString(nbParam, search.getType());
+				nbParam++;
 			}
 			
 			ResultSet rs = query.executeQuery();
 			while (rs.next()){ 
 				returnV.add(new RecipeModel(rs.getString("title"), rs.getString("description"), rs.getInt("Expertise"),
 						rs.getInt("duration"), rs.getInt("nbPeople"), rs.getString("type"))
-				); 
+				);
 			}
 			
 		} catch (SQLException e) {
