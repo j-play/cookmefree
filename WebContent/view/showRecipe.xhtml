@@ -12,24 +12,24 @@
 		</div>
 	</ui:define>
 	
-	<ui:define name="content" rendered="#{empty recipe}">
+	<ui:define name="content" rendered="#{empty recipeControl.specificRecipe}">
 		<h1>Désolé la recette demandée est inconnue</h1>
 	</ui:define>
-	<ui:define name="content" rendered="#{not empty recipe}">
+	<ui:define name="content" rendered="#{not empty recipeControl.specificRecipe}">
 		<div id="showRecipeDetails">
-			<i class="fa-bookmark-o fa fa-2x"/><h:outputText value="#{recipe.type}"/>
+			<i class="fa-bookmark-o fa fa-2x"/><h:outputText value="#{recipeControl.specificRecipe.type}"/>
 			<br/><br/>
-			<i class="fa-clock-o fa fa-2x"/><h:outputText value="#{recipe.duration}"/> minutes
+			<i class="fa-clock-o fa fa-2x"/><h:outputText value="#{recipeControl.specificRecipe.duration}"/> minutes
 			<br/><br/>
-			<i class="fa-users fa fa-2x"/><h:outputText value="#{recipe.nbPeople}"/> people
+			<i class="fa-users fa fa-2x"/><h:outputText value="#{recipeControl.specificRecipe.nbPeople}"/> people
 			<br/><br/>
-			<i class="fa-pencil-square-o fa fa-2x"/>Difficulty : <h:outputText value="#{recipe.expertise}"/>/5
+			<i class="fa-pencil-square-o fa fa-2x"/>Difficulty : <h:outputText value="#{recipeControl.specificRecipe.expertise}"/>/5
 		</div>
 		<div id="recipeContent">
 			<h1>
-				<h:outputText value="#{recipe.title}"/>aa
+				<h:outputText value="#{recipeControl.specificRecipe.title}"/>aa
 			</h1>
-			<h:outputText value="#{recipe.description}"/>
+			<h:outputText value="#{recipeControl.specificRecipe.description}"/>
 			aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
 			aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>
 			aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>

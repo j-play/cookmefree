@@ -3,10 +3,8 @@ package processing;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
@@ -16,21 +14,15 @@ import dao.fabric.DaoFabric;
 import dao.instance.RecipesDao;
 
 @ManagedBean(name="recipeControl")
-@RequestScoped
+@ViewScoped
 public class RecipeControllerBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@ManagedProperty(value="#{idRecipe}")
-	private String idRecipe;
 	
+	private RecipeModel specificRecipe;
 	private RecipesDao recipeDao;
-	
-	public String getIdRecipe() {
-		return idRecipe;
-	}
 
-	public void setIdRecipe(String idRecipe) {
-		this.idRecipe = idRecipe;
+	public RecipeModel getSpecificRecipe() {
+		return specificRecipe;
 	}
 
 	public RecipeControllerBean() {
@@ -50,20 +42,8 @@ public class RecipeControllerBean implements Serializable {
 		sessionMap.put("recipeList", recipeList);
 	}
 	
-	public void loadRecipeByID(){
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-		Map<String, Object> requestMap = externalContext.getRequestMap();
-		
-		RecipeModel recipe = this.recipeDao.getRecipesByID(Integer.valueOf((String)requestMap.get("idRecipe")));
-		requestMap.put("recipe", recipe);
-		
-		FacesContext.getCurrentInstance().addMessage(null, 
-		        new FacesMessage(null, "<h1>Recette récupérée avec succès</h1>")
-		);
-	}
-	
 	public String goToResult(){
-		this.loadRecipeByID();
+		specificRecipe = this.recipeDao.getRecipesByID(1);
 		return("showRecipe.jsf?faces-redirect=true");
 	}
 }

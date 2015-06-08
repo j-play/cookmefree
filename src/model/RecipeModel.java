@@ -1,13 +1,8 @@
 package model;
 
 import java.io.Serializable;
-import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-
-import dao.instance.RecipesDao;
-import dao.instance.UserDao;
 
 @ManagedBean
 @RequestScoped
