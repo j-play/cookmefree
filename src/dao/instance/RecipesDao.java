@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import model.RecipeModel;
+import model.SearchModelBean;
 
 public class RecipesDao {
 	private static String dB_HOST;   
@@ -100,5 +102,75 @@ public class RecipesDao {
 			e.printStackTrace();
 		}
 		return recipe;
+	}
+	
+	public ArrayList<RecipeModel> getRecipesByCriteria(SearchModelBean search){
+		ArrayList<RecipeModel> returnV=new ArrayList<>();
+		try {
+			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
+			String queryString="select * from recipe where ";
+			boolean preceded=false;
+			if(!search.isIndiff1()){
+				if(preceded){
+					queryString+="and ";
+				}
+				else{
+					preceded=true;
+				}
+				queryString+="duration=? ";
+			}
+			if(!search.isIndiff2()){
+				if(preceded){
+					queryString+="and ";
+				}
+				else{
+					preceded=true;
+				}
+				queryString+="expertise=? ";
+			}
+			if(!search.isIndiff3()){
+				if(preceded){
+					queryString+="and ";
+				}
+				else{
+					preceded=true;
+				}
+				queryString+="people=? ";
+			}
+			if(!search.isIndiff4()){
+				if(preceded){
+					queryString+="and ";
+				}
+				else{
+					preceded=true;
+				}
+				queryString+="type=? ";
+			}
+			java.sql.PreparedStatement query = connection.prepareStatement(queryString);
+			if(!search.isIndiff1()){
+				query.setInt(1, search.getDuration());
+			}
+			if(!search.isIndiff2()){
+				query.setInt(2, search.getExpertise());
+			}
+			if(!search.isIndiff3()){
+				query.setInt(3, search.getPeople());
+			}
+			if(!search.isIndiff4()){
+				query.setString(4, search.getType());
+			}
+			
+			ResultSet rs = query.executeQuery();
+			while (rs.next()){ 
+				returnV.add(new RecipeModel(rs.getString("title"), rs.getString("description"), rs.getInt("Expertise"),
+						rs.getInt("duration"), rs.getInt("nbPeople"), rs.getString("type"))
+				); 
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return returnV;
 	}
 }
