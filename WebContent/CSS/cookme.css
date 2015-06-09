@@ -70,8 +70,17 @@ body
 	
 }
 
-.customHeight{
+#userAdminAddButton {
+	margin-top: 2%;
+}
+
+#userAdminButtons{
+	margin-top: 5%;
+}
+
+.customColumns{
 	height: 99%;
+	width: 50%;
 }
 
 #userListPanel{

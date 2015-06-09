@@ -40,13 +40,23 @@ public class UserControllerBean {
 	}
 	
 	/**
-	 * Vérifie qu'un utilisateur n'existe pas encore en base de données puis l'ajoute
-	 * @param userSubmitted utilisateur à ajouter
+	 * Register a new user in the database
+	 * @param userSubmitted
 	 */
 	public String registerUser(UserSubmissionModelBean userSubmitted){
 		this.userDao.addUser(userSubmitted);
 		return "accueil.jsf";
 	}
+	
+	/**
+	 * Delete the specified user from the database
+	 * @param id identifier of the user to delete
+	 */
+	public void deleteUser(Integer id){
+		this.userDao.deleteUser(id);
+	}
+	
+	
 	
 	/**
 	 * déconnecte l'utilisateur

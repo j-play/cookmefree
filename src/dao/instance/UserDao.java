@@ -25,12 +25,16 @@ public class UserDao {
 	       dB_PWD = DB_PWD;
 	}
 	
+	/**
+	 * 
+	 * @param user
+	 */
 	public void addUser(UserModelBean user) {
 		try {
-			//TODO créez la requête permettant d’ajout un utilisateur avec ts ces paramètres //((`surname`, `lastname`, `age`, `login`, `pwd`)
-			
+
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
 			
+			// TODO : to modify with isAdmin, etc.
 			String sql = "INSERT INTO user (login, pwd, surname, lastname, age, mail) VALUES(?,?,?,?,?,?,?)";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(1, user.getLogin());
@@ -50,19 +54,44 @@ public class UserDao {
 		}
 	}
 	
-	public ArrayList<UserModelBean> getAllUser(){ //return value
+	/**
+	 * Delete the user with the specified id
+	 * @param id
+	 */
+	public void deleteUser(Integer id) {
+		try {
+
+			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
+			
+			String sql = "DELETE USER WHERE ID = ?)";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setInt(1, id);
+			
+			statement.executeUpdate();
+			
+			connection.close(); 
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Return all users from the database
+	 * @return ArrayList<UserModelBean> 
+	 */
+	public ArrayList<UserModelBean> getAllUser(){ 
 		ArrayList<UserModelBean> userList=new ArrayList<UserModelBean>();
 	    // Création de la requête
 		
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
 			
-			//TODO récupérez l’ensemble des paramètres de tous les utilisateurs de la table ((`surname`, `lastname`, `age`, `login`, `pwd`)
 			java.sql.Statement query = connection.createStatement(); 
 			ResultSet rs = query.executeQuery("select * from user"); 
 			
 			while (rs.next()){ 
-				userList.add(new UserModelBean(rs.getString("lastname"), rs.getString("surname"), 
+				userList.add(new UserModelBean(rs.getInt("id"), rs.getString("lastname"), rs.getString("surname"), 
 						rs.getInt("age"), rs.getString("mail"), rs.getString("login"), rs.getString("pwd"), 
 						rs.getBoolean("isAdmin"))
 				); 
@@ -77,10 +106,10 @@ public class UserDao {
 	}
 	
 	/**
-	 * Renvoie l'utilisateur avec le login/pwd spécifié si il existe
+	 * Return the specified user
 	 * @param login
 	 * @param password
-	 * @return UserModelBean si l'utilisateur existe, null sinon
+	 * @return UserModelBean if the user exists, null either
 	 */
 	public UserModelBean checkUser(String login, String password){
 		try {

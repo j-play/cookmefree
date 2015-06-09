@@ -15,12 +15,12 @@
 
 	<ui:define name="content">
 		<h:panelGroup rendered="#{not empty loggedUser and loggedUser.isAdmin}">
-			<h:panelGrid columns="2" id="userAdminPanelGrid" columnClasses="customHeight">
+			<h:panelGrid columns="2" id="userAdminPanelGrid" columnClasses="customColumns">
 				<p:panel header="Users list" id="userListPanel">
 					<h:form id="userTableForm">
 						<p:dataTable var="user" 
 									value="#{userListModelBean.userList}" 
-									tableStyle="table-layout: auto;"
+									tableStyle="table-layout: auto; text-align: center;"
 									paginator="true"
 				                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				                    rowsPerPageTemplate="10,15">
@@ -36,31 +36,38 @@
 					    		<p:selectBooleanCheckbox disabled="true" id="chkIsAdmin" value="#{user.isAdmin}"/>
 					    	</p:column>
 					 
-					 		<!-- NE MARCHE PAS -->
 					    	<p:column headerText="Delete">
-					        	<p:commandButton icon="ui-icon-trash"
-					                       	title="Delete this user"
-					                        ajax="false" />
+					        	<p:commandButton icon="ui-icon-trash" title="Delete this user" ajax="true" >
+					        		<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+					        	</p:commandButton>
 					    	</p:column>
 					    	<!-- actionListener="#{userControl.remove(user)}" -->
 					    	
 					    	<p:column headerText="Modify">
-					        	<p:commandButton icon="ui-icon-wrench" title="Modify this user" oncomplete="PF('userDetailsPanel').show()" update=":userDetailsPanel" >
+					        	<p:commandButton icon="ui-icon-wrench" title="Modify this user" update="userDetailsPanel" ajax="true" >
 					    			<f:setPropertyActionListener value="#{user}" target="#{userListModelBean.selectedUser}" />
 					    		</p:commandButton>
 					    	</p:column>
 						</p:dataTable>
+						
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+       						<p:commandButton value="Yes" type="button" icon="ui-icon-check" />
+        					<p:commandButton value="No" type="button" icon="ui-icon-close" />
+    					</p:confirmDialog>
 					</h:form>
-					<h:form id="userAddForm">
-							<p:commandButton icon="ui-icon-plus"
+					<div id="userAdminAddButton">
+						<p:commandButton icon="ui-icon-plus"
 					                        title="Add a new User"
 					                        value="Add user"
 					                        ajax="true"
 					                         />
-						</h:form>
+					</div>
 					</p:panel>
-					<p:panel header="User edition" id="userDetailsPanel" widgetVar="userDetailsPanel" visible="false">
-						<h:form id="usersDetailsForm">
+					<p:panel header="User details" id="userDetailsPanel">
+						<h:panelGroup rendered="#{empty userListModelBean.selectedUser}">
+							No user selected.
+						</h:panelGroup>
+						<h:form id="usersDetailsForm" rendered="#{not empty userListModelBean.selectedUser}" >
 							<h:panelGrid columns="3">
 				    			<p:outputLabel for="firstname">First name:</p:outputLabel>
 				    			<p:inputText id="firstname" value="#{userListModelBean.selectedUser.surname}" required="true" 
@@ -110,21 +117,19 @@
 				    			<p:password id="confirm" binding="#{confirm}" required="true" 
 				    			requiredMessage="Password confirmation is required." size="30" maxlength="30" />
 					        	<p:message showDetail="true" for="confirm" errorClass="error" />
-			
-								<!-- NE MARCHE PAS -->
-								<p:commandButton value="Cancel" icon="ui-icon-close" onclick="PF('userDetailsPanel').hide()"/>
-								
-								<!-- NE MARCHE PAS -->
+				       		</h:panelGrid>
+				       		<div id="userAdminButtons">
+								<p:commandButton value="Cancel" ajax="true" icon="ui-icon-close" immediate="true" update="userDetailsPanel" actionListener="#{userListModelBean.resetSelectedUser()}"/>
 								<p:commandButton value="Save" action="#{userControl.updateUser(userSubmissionModelBean)}" 
 								ajax="false" icon="ui-icon-check" validateClient="true" />
-				       		</h:panelGrid>
+							</div>
 						</h:form>
 					</p:panel>
 				</h:panelGrid>
 
 		</h:panelGroup>
 		<h:panelGroup rendered="#{empty loggedUser or !loggedUser.isAdmin}">
-			<h1>You doesn't have access to this page.</h1>
+			<h1>You don't have access to this page.</h1>
 		</h:panelGroup>
 	</ui:define>
 </ui:composition>

@@ -12,6 +12,7 @@ public class UserModelBean implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Integer id;
 	private String lastname;
 	private String surname; 
 	private Integer age; 
@@ -22,7 +23,7 @@ public class UserModelBean implements Serializable{
 	
 	public UserModelBean(){
 	}
-	
+
 	public UserModelBean(String lastname,String surname,Integer age,String mail,String login,String pwd) { 
 		this.lastname = lastname;
 		this.surname = surname; 
@@ -32,7 +33,7 @@ public class UserModelBean implements Serializable{
 		this.pwd = pwd;
 		this.isAdmin = false;
 	}
-	
+
 	public UserModelBean(String lastname,String surname,Integer age,String mail,String login,String pwd,boolean isAdmin) { 
 		this.lastname = lastname;
 		this.surname = surname; 
@@ -43,6 +44,24 @@ public class UserModelBean implements Serializable{
 		this.isAdmin = isAdmin;
 	}
 	
+	public UserModelBean(Integer id, String lastname,String surname,Integer age,String mail,String login,String pwd,boolean isAdmin) { 
+		this.lastname = lastname;
+		this.surname = surname; 
+		this.age = age; 
+		this.mail = mail;
+		this.login = login;
+		this.pwd = pwd;
+		this.isAdmin = isAdmin;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getLastname() { 
 		return lastname; 
 	}
@@ -93,12 +112,7 @@ public class UserModelBean implements Serializable{
 		return isAdmin;
 	}
 
-	public void setAdmin(boolean isAdmin) {
+	public void setIsAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
-	}
-
-	@Override
-	public String toString() { 
-		return"[SURNAME]:"+this.getSurname()+",[LASTNAME]:"+this.getLastname()+",[AGE]:"+this.getAge()+", [LOGIN]:"+this.getLogin()+",[PWD]:"+this.getPwd();
 	}
 }
