@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				template="template.xhtml">
+
+	<ui:define name="headerTitle">
+		<div class="recipesHeader">
+			<div class="incline">
+				<h1>Recipes</h1>
+			</div>
+		</div>
+	</ui:define>
+
+	<ui:define name="content" rendered="#{empty recipeListModelBean.recipeList}">
+		<h1>Désolé aucune recette ne correspond à votre demande.</h1>
+	</ui:define>
+	<ui:define name="content">
+		<h:panelGroup rendered="#{not empty recipeListModelBean.recipeList}">
+			<p:dataGrid var="recipe" value="#{recipeListModelBean.recipeList}" columns="2" layout="grid"
+        rows="2" paginator="true" id="recipeList"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16">
+        		 <p:panel header="#{recipe.title}" >
+		            <h:panelGrid columns="2" style="width:100%">
+		            	<h:panelGrid columns="1">
+		            		<h:panelGroup><i class="fa-bookmark-o fa"></i><h:outputText value=" #{recipe.type}" /></h:panelGroup>
+		            		<h:panelGroup><i class="fa-clock-o fa"/><h:outputText value=" #{recipe.duration}" /></h:panelGroup>
+		            		<h:panelGroup><i class="fa-users fa"></i><h:outputText value=" #{recipe.nbPeople}" /></h:panelGroup>
+		            		<h:panelGroup><i class="fa-pencil-square-o fa"></i><p:rating value="#{recipe.expertise}" readonly="true" /></h:panelGroup>
+		            		
+		            	</h:panelGrid>
+						<h:panelGrid columns="1">
+							<h:panelGroup><h:outputText value="#{recipe.title}" /></h:panelGroup>
+		            		<h:panelGroup><h:outputText value="#{recipe.description}" /></h:panelGroup>
+		 				</h:panelGrid>
+		                <!--  <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
+		                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+		                    <f:setPropertyActionListener value="#{car}" target="#{dataGridView.selectedCar}" />
+		                </p:commandLink>-->
+		            </h:panelGrid>
+		        </p:panel>
+        	</p:dataGrid>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>

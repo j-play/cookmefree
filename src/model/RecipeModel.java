@@ -9,6 +9,7 @@ import javax.faces.bean.RequestScoped;
 public class RecipeModel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	private int id;
 	private String title;
 	private String description; 
 	private int expertise;
@@ -27,7 +28,24 @@ public class RecipeModel implements Serializable{
 		this.nbPeople = nbPeople;
 		this.type = type;
 	}
+	
+	public RecipeModel(int id, String title, String description, int expertise, int duration, int nbPeople, String type) {
+		this.id= id;
+		this.title = title;
+		this.description = description;
+		this.expertise = expertise;
+		this.duration = duration;
+		this.nbPeople = nbPeople;
+		this.type = type;
+	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getTitle() {
 		return title;
 	}
