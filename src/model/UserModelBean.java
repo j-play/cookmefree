@@ -45,6 +45,7 @@ public class UserModelBean implements Serializable{
 	}
 	
 	public UserModelBean(Integer id, String lastname,String surname,Integer age,String mail,String login,String pwd,boolean isAdmin) { 
+		this.id = id;
 		this.lastname = lastname;
 		this.surname = surname; 
 		this.age = age; 

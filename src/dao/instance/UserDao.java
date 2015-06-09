@@ -57,23 +57,35 @@ public class UserDao {
 	/**
 	 * Delete the user with the specified id
 	 * @param id
+	 * @return true if the user has been deleted, false either
 	 */
-	public void deleteUser(Integer id) {
+	public boolean deleteUser(Integer id) {
+		
+		Integer rowCount;
+		
 		try {
-
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
 			
-			String sql = "DELETE USER WHERE ID = ?)";
+			String sql = "DELETE FROM USER WHERE ID = ?";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setInt(1, id);
 			
-			statement.executeUpdate();
+			rowCount = statement.executeUpdate();
 			
 			connection.close(); 
+			
+			if(rowCount != 1){
+				return false;
+			}
+			else{
+				return true;
+			}
 		} 
 		catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
+		
 	}
 	
 	/**

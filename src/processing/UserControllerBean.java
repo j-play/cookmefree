@@ -1,6 +1,9 @@
 package processing;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Map;
+
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
@@ -14,7 +17,9 @@ import dao.instance.UserDao;
 
 @ManagedBean(name="userControl")
 @ApplicationScoped // Utilisation de application scope afin d'offrir un point d'entrée unique à l'ensemble des clients
-public class UserControllerBean {
+public class UserControllerBean implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private UserDao userDao; 
 	
 	public UserControllerBean() {
@@ -49,20 +54,18 @@ public class UserControllerBean {
 	}
 	
 	/**
-	 * Delete the specified user from the database
-	 * @param id identifier of the user to delete
-	 */
-	public void deleteUser(Integer id){
-		this.userDao.deleteUser(id);
-	}
-	
-	
-	
-	/**
 	 * déconnecte l'utilisateur
 	 */
 	public void disconnectUser(){
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+	}
+	
+	public ArrayList<UserModelBean> getAllUsers(){
+		return this.userDao.getAllUser();
+	}
+	
+	public boolean deleteUser(Integer id){
+		return this.userDao.deleteUser(id);
 	}
 
 }

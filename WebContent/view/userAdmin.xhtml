@@ -18,6 +18,7 @@
 			<h:panelGrid columns="2" id="userAdminPanelGrid" columnClasses="customColumns">
 				<p:panel header="Users list" id="userListPanel">
 					<h:form id="userTableForm">
+						<p:messages id="usersAdminMessages" autoUpdate="true" closable="true" />
 						<p:dataTable var="user" 
 									value="#{userListModelBean.userList}" 
 									tableStyle="table-layout: auto; text-align: center;"
@@ -37,11 +38,10 @@
 					    	</p:column>
 					 
 					    	<p:column headerText="Delete">
-					        	<p:commandButton icon="ui-icon-trash" title="Delete this user" ajax="true" >
-					        		<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+					        	<p:commandButton icon="ui-icon-trash" title="Delete this user" ajax="true" actionListener="#{userListModelBean.deleteUser(user)}" update="userTableForm">
+									<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />					        	
 					        	</p:commandButton>
 					    	</p:column>
-					    	<!-- actionListener="#{userControl.remove(user)}" -->
 					    	
 					    	<p:column headerText="Modify">
 					        	<p:commandButton icon="ui-icon-wrench" title="Modify this user" update="userDetailsPanel" ajax="true" >
@@ -51,8 +51,8 @@
 						</p:dataTable>
 						
 						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-       						<p:commandButton value="Yes" type="button" icon="ui-icon-check" />
-        					<p:commandButton value="No" type="button" icon="ui-icon-close" />
+        					<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        					<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
     					</p:confirmDialog>
 					</h:form>
 					<div id="userAdminAddButton">
@@ -104,23 +104,10 @@
 				    				<f:validator validatorId="validators.login"></f:validator>
 				    			</p:inputText>
 					        	<p:message showDetail="true" for="login" errorClass="error" />
-					        		
-					        	<p:outputLabel for="pwd">Password:</p:outputLabel>
-				    			<p:password id="pwd" value="#{userListModelBean.selectedUser.pwd}" required="true" 
-				    			requiredMessage="Password is required." size="30" maxlength="30" autocomplete="off">
-				    				<f:validator validatorId="validators.password"></f:validator>
-				    				<f:attribute name="confirm" value="#{confirm}" />
-				    			</p:password>
-					        	<p:message showDetail="true" for="pwd" errorClass="error" />
-					        		
-					        	<p:outputLabel for="confirm">Re-enter password:</p:outputLabel>
-				    			<p:password id="confirm" binding="#{confirm}" required="true" 
-				    			requiredMessage="Password confirmation is required." size="30" maxlength="30" />
-					        	<p:message showDetail="true" for="confirm" errorClass="error" />
 				       		</h:panelGrid>
 				       		<div id="userAdminButtons">
 								<p:commandButton value="Cancel" ajax="true" icon="ui-icon-close" immediate="true" update="userDetailsPanel" actionListener="#{userListModelBean.resetSelectedUser()}"/>
-								<p:commandButton value="Save" action="#{userControl.updateUser(userSubmissionModelBean)}" 
+								<p:commandButton value="Save" action="#{userListModelBean.updateUser(userListModelBean.selectedUser)}" 
 								ajax="false" icon="ui-icon-check" validateClient="true" />
 							</div>
 						</h:form>
