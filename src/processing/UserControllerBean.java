@@ -60,12 +60,40 @@ public class UserControllerBean implements Serializable {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 	}
 	
+	/**
+	 * Return the list of the registered users
+	 * @return ArrayList<UserModelBean>
+	 */
 	public ArrayList<UserModelBean> getAllUsers(){
 		return this.userDao.getAllUser();
 	}
 	
+	/**
+	 * Delete the specified
+	 * @param id user identifiant
+	 * @return true is the user has been successfully deleted, false either
+	 */
 	public boolean deleteUser(Integer id){
 		return this.userDao.deleteUser(id);
 	}
+	
+	/**
+	 * Update the specified
+	 * @param user UserModelBean
+	 * @return true is the user has been successfully updated, false either
+	 */
+	public boolean updateUser(UserModelBean user){
+		return this.userDao.updateUser(user);
+	}
+	
+	/**
+	 * Register a new user in the database from the admin panel
+	 * @param userSubmitted
+	 */
+	public boolean registerUserAdmin(UserSubmissionModelBean userSubmitted){
+		return this.userDao.addUser(userSubmitted);
+	}
+	
+	
 
 }

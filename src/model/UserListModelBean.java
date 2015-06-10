@@ -19,12 +19,16 @@ public class UserListModelBean implements Serializable {
 	private List<UserModelBean> userList;
 	private UserModelBean selectedUser;
 	
+	// Constructor
 	public UserListModelBean() {
 		this.userController = new UserControllerBean();
 		this.userList = this.userController.getAllUsers();
 		this.selectedUser = null;
 	}
 	
+	/*
+	 * GETTERS / SETTERS
+	 */
 	public List<UserModelBean> getUserList(){
 		this.userList = this.userController.getAllUsers();
 		return this.userList;
@@ -38,10 +42,17 @@ public class UserListModelBean implements Serializable {
 		this.selectedUser = selectedUser;
 	}
 	
+	/**
+	 * Reset the selected user in the datatable
+	 */
 	public void resetSelectedUser(){
 		this.selectedUser = null;
 	}
 	
+	/**
+	 * Delete the specified user from the database
+	 * @param user
+	 */
 	public void deleteUser(UserModelBean user){
 		
 		if(this.userController.deleteUser(user.getId())){
@@ -57,5 +68,44 @@ public class UserListModelBean implements Serializable {
 		}
 		
 	}
+	
+	/**
+	 * Update the specified user and his data
+	 */
+	public void updateUser(UserModelBean user){
+		if(this.userController.updateUser(user)){
+			this.selectedUser = null;
+			FacesMessage msg;
+	        msg = new FacesMessage("The user has been updated.");
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+		else{
+			// Error case
+			FacesMessage msg;
+	        msg = new FacesMessage("There was a problem trying to update this user.");
+	        msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+	}
+	
+	/**
+	 * Add the specified user and his data
+	 */
+	public void registerUser(UserSubmissionModelBean user){
+		if(this.userController.registerUserAdmin(user)){
+			FacesMessage msg;
+	        msg = new FacesMessage("The user has been added.");
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+		else{
+			// Error case
+			FacesMessage msg;
+	        msg = new FacesMessage("There was a problem trying to add this user.");
+	        msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+	}
+	
+	
 	
 }

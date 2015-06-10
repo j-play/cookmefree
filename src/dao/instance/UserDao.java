@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import model.UserModelBean;
 
-public class UserDao {
+public class UserDao{
 	
 	private static String dB_HOST;   
 	private static String dB_PORT;
@@ -26,16 +26,19 @@ public class UserDao {
 	}
 	
 	/**
-	 * 
-	 * @param user
+	 * Add a new user in the database
+	 * @param user UserModelBean
+	 * @return true is the user has been successfully registered, false either
 	 */
-	public void addUser(UserModelBean user) {
+	public boolean addUser(UserModelBean user) {
+		
+		Integer rowCount;
+		
 		try {
 
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
 			
-			// TODO : to modify with isAdmin, etc.
-			String sql = "INSERT INTO user (login, pwd, surname, lastname, age, mail) VALUES(?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO user (login, pwd, surname, lastname, age, mail, isAdmin) VALUES(?,?,?,?,?,?,false)";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(1, user.getLogin());
 			statement.setString(2, user.getPwd());
@@ -43,20 +46,27 @@ public class UserDao {
 			statement.setString(4, user.getLastname());
 			statement.setInt(5, user.getAge());
 			statement.setString(6, user.getMail());
-			statement.setBoolean(7, user.getIsAdmin());
 			
-			statement.executeUpdate();
+			rowCount = statement.executeUpdate();
 			
 			connection.close(); 
+			
+			if(rowCount != 1){
+				return false;
+			}
+			else{
+				return true;
+			}
 		} 
 		catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
 	/**
 	 * Delete the user with the specified id
-	 * @param id
+	 * @param id user identifiant
 	 * @return true if the user has been deleted, false either
 	 */
 	public boolean deleteUser(Integer id) {
@@ -85,7 +95,45 @@ public class UserDao {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	/**
+	 * Update the specified user
+	 * @param user UserModelBean
+	 * @return true if the user has been updated, false either
+	 */
+	public boolean updateUser(UserModelBean user) {
 		
+		Integer rowCount;
+		
+		try {
+			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
+			
+			String sql = "UPDATE USER SET login = ?, surname = ?, lastname = ?, age = ?, mail = ?, isAdmin = ? WHERE ID = ?";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, user.getLogin());
+			statement.setString(2, user.getSurname());
+			statement.setString(3, user.getLastname());
+			statement.setInt(4, user.getAge());
+			statement.setString(5, user.getMail());
+			statement.setBoolean(6, user.getIsAdmin());
+			statement.setInt(7, user.getId());
+			
+			rowCount = statement.executeUpdate();
+			
+			connection.close(); 
+			
+			if(rowCount != 1){
+				return false;
+			}
+			else{
+				return true;
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	/**
