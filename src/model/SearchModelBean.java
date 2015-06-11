@@ -12,6 +12,7 @@ public class SearchModelBean implements Serializable {
 	private int duration=0, expertise, people=1;
 	private String type;
 	private boolean indiff1=false, indiff2=false, indiff3=false, indiff4=false;
+	private boolean blockedindiff2=false, blockedindiff3=false;
 	
 	public int getDuration() {
 		return duration;
@@ -26,13 +27,21 @@ public class SearchModelBean implements Serializable {
 		if(expertise <=5 && expertise >= 1){
 			this.expertise = expertise;
 		}
+		else{
+			this.indiff2 = true;
+			this.blockedindiff2=true;
+		}
 	}
 	public int getPeople() {
 		return people;
 	}
 	public void setPeople(int people) {
-		if(people <=5 && people >= 1){
+		if(people <=10 && people >= 1){
 			this.people = people;
+		}
+		else{
+			this.indiff3 = true;
+			this.blockedindiff3=true;
 		}
 	}
 	public String getType() {
@@ -51,13 +60,17 @@ public class SearchModelBean implements Serializable {
 		return indiff2;
 	}
 	public void setIndiff2(boolean indiff2) {
-		this.indiff2 = indiff2;
+		if(!this.blockedindiff2){
+			this.indiff2 = indiff2;
+		}
 	}
 	public boolean isIndiff3() {
 		return indiff3;
 	}
 	public void setIndiff3(boolean indiff3) {
-		this.indiff3 = indiff3;
+		if(!this.blockedindiff3){
+			this.indiff3 = indiff3;
+		}
 	}
 	public boolean isIndiff4() {
 		return indiff4;

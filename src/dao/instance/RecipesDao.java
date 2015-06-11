@@ -221,7 +221,7 @@ public class RecipesDao implements Serializable{
 				else{
 					preceded=true;
 				}
-				queryString+="people=? ";
+				queryString+="nbPeople=? ";
 			}
 			if(!search.isIndiff4()){
 				if(preceded){
