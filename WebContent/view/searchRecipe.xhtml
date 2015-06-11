@@ -45,9 +45,8 @@
 						<br/>
 					    <p:growl id="growl" showDetail="true" />
 					    <h:panelGrid columns="1">
-					    	<h:outputText id="outputRating" value="0"/>
-					    	<h:inputHidden id="expertise" value="0"/>
-					        <p:rating cancel="false" for="expertise" display="outputRating" displayTemplate="{value}" value="#{searchModelBean.expertise}"/>
+					    	<h:inputHidden id="expertise" value="#{searchModelBean.expertise}"/>
+					        <p:rating cancel="false" for="expertise"/>
 					    </h:panelGrid>
 					    <p:selectBooleanCheckbox id="indiff2" value="#{searchModelBean.indiff2}"/>
 		    			<p:outputLabel for="indiff2">
