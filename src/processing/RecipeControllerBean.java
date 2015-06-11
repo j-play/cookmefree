@@ -3,7 +3,10 @@ package processing;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -14,7 +17,7 @@ import dao.fabric.DaoFabric;
 import dao.instance.RecipesDao;
 
 @ManagedBean(name="recipeControl")
-@ViewScoped
+@SessionScoped
 public class RecipeControllerBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -25,6 +28,13 @@ public class RecipeControllerBean implements Serializable {
 		return specificRecipe;
 	}
 
+	/**
+	 * recupere une recette a partir de son id
+	 * @return RecipeModel
+	 */
+	public RecipeModel getRecipeById(int id) {
+		return recipeDao.getRecipesByID(id);
+	}
 	public RecipeControllerBean() {
 		this.recipeDao=DaoFabric.getInstance().createRecipesDao();
 	}
@@ -48,5 +58,10 @@ public class RecipeControllerBean implements Serializable {
 		//return("showRecipe.jsf?faces-redirect=true");
 		return("resultRecipe.jsf?faces-redirect=true");
 
+	}
+	
+	public String goToShowRecipe(int id){
+		specificRecipe = this.recipeDao.getRecipesByID(id);
+		return("showRecipe.jsf?faces-redirect=true");
 	}
 }

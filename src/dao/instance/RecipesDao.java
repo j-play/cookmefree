@@ -65,7 +65,7 @@ public class RecipesDao {
 			ResultSet rs = query.executeQuery("select * from recipe"); 
 			
 			while (rs.next()){ 
-				recipeList.add(new RecipeModel(rs.getString("title"), rs.getString("description"), rs.getInt("Expertise"),
+				recipeList.add(new RecipeModel(rs.getInt("id"),rs.getString("title"), rs.getString("description"), rs.getInt("Expertise"),
 						rs.getInt("duration"), rs.getInt("nbPeople"), rs.getString("type"))
 				); 
 			}

@@ -24,6 +24,7 @@
         		 <p:panel header="#{recipe.title}" >
 		            <h:panelGrid columns="2" style="width:100%">
 		            	<h:panelGrid columns="1">
+		            		
 		            		<h:panelGroup><i class="fa-bookmark-o fa"></i><h:outputText value=" #{recipe.type}" /></h:panelGroup>
 		            		<h:panelGroup><i class="fa-clock-o fa"/><h:outputText value=" #{recipe.duration}" /></h:panelGroup>
 		            		<h:panelGroup><i class="fa-users fa"></i><h:outputText value=" #{recipe.nbPeople}" /></h:panelGroup>
@@ -31,7 +32,11 @@
 		            		
 		            	</h:panelGrid>
 						<h:panelGrid columns="1">
-							<h:panelGroup><h:outputText value="#{recipe.title}" /></h:panelGroup>
+							<h:panelGroup>
+								<p:commandLink id="titleRecipeLink" action="#{recipeControl.goToShowRecipe(recipe.id)}">
+       						 		<h:outputText value="#{recipe.title}" ajax="false" />
+    							</p:commandLink>
+    						</h:panelGroup>
 		            		<h:panelGroup><h:outputText value="#{recipe.description}" /></h:panelGroup>
 		 				</h:panelGrid>
 		                <!--  <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
