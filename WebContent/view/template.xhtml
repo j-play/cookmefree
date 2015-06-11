@@ -6,7 +6,6 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
- 
 	 <h:head>
 	 	<title>Cook me Free</title>
 	 	<link rel="stylesheet" type="text/css" href="../CSS/cookme.css"/>
@@ -41,7 +40,7 @@
 			
 			    				<p>Welcome <h:outputText value="#{loggedUser.login} "/></p>
 			    				<h:form>
-			    					<p:commandButton value="Déconnexion" action="#{userControl.disconnectUser()}" update=":rightHeaderPanel,:headerMenu">
+			    					<p:commandButton value="Déconnexion" ajax="false" action="#{userControl.disconnectUser()}" update=":rightHeaderPanel,:headerMenu">
 			    					</p:commandButton>
 			    				</h:form>
 			    			</h:panelGroup>
@@ -72,9 +71,10 @@
 			 		<ui:insert name="content"> <h1>Default content</h1> </ui:insert>
 		 		</div>
 	 		</p:layoutUnit>
-	 		<p:layoutUnit position="south" resizable="false" size="90">
+	 		<p:layoutUnit position="south" resizable="false" size="75">
 		 		<div class="footer">
-			 		<ui:insert name="footer"> <h1>Default footer</h1> </ui:insert>
+			 		<span id="copyright">Copyright © 2013 all rights reserved</span>
+			 		<img id="logoFooter" src="../IMG/logo.png" alt="CookMe logo" width="140" height="70"/>
 			 	</div>
 		 	</p:layoutUnit>
 		 </p:layout>	
