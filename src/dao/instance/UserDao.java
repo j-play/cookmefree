@@ -1,5 +1,6 @@
 package dao.instance;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,8 +9,9 @@ import java.util.ArrayList;
 
 import model.UserModelBean;
 
-public class UserDao{
+public class UserDao implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private static String dB_HOST;   
 	private static String dB_PORT;
 	private static String dB_NAME;
@@ -142,7 +144,7 @@ public class UserDao{
 	 */
 	public ArrayList<UserModelBean> getAllUser(){ 
 		ArrayList<UserModelBean> userList=new ArrayList<UserModelBean>();
-	    // Création de la requête
+	    // CreÌ�ation de la requeÌ‚te
 		
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);

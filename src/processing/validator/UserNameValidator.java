@@ -1,5 +1,6 @@
 package processing.validator;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,8 +12,9 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 @FacesValidator(value = "validators.username")
-public class UserNameValidator implements Validator {
+public class UserNameValidator implements Validator, Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private static final String USERNAME_PATTERN = "^[A-Za-z0-9]+";
 	private Pattern pattern;
 	private Matcher matcher;

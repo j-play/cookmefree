@@ -12,12 +12,12 @@
 		</div>
 	</ui:define>
 
-	<ui:define name="content" rendered="#{empty recipeListModelBean.recipeList}">
+	<ui:define name="content" rendered="#{empty recipeControl.recipeList}">
 		<h1>Désolé aucune recette ne correspond à votre demande.</h1>
 	</ui:define>
 	<ui:define name="content">
-		<h:panelGroup rendered="#{not empty recipeListModelBean.recipeList}">
-			<p:dataGrid var="recipe" value="#{recipeListModelBean.recipeList}" columns="2" layout="grid"
+		<h:panelGroup rendered="#{not empty recipeControl.recipeList}">
+			<p:dataGrid var="recipe" value="#{recipeControl.recipeList}" columns="2" layout="grid"
         rows="2" paginator="true" id="recipeList"
         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="6,12,16">

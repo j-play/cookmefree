@@ -1,10 +1,13 @@
 package dao.fabric;
 
+import java.io.Serializable;
+
 import dao.instance.RecipesDao;
 import dao.instance.UserDao;
 
-public class DaoFabric {
+public class DaoFabric implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private static volatile DaoFabric instance = null;
 	private static final String DB_HOST = "localhost"; 
 	private static final String DB_PORT = "3306";
@@ -15,7 +18,7 @@ public class DaoFabric {
 	private DaoFabric() { 
 		super();
 		try {
-			//Chargement du Driver, puis établissement de la connexion 
+			//Chargement du Driver, puis eÌ�tablissement de la connexion 
 			Class.forName("com.mysql.jdbc.Driver");
 		} 
 		catch (ClassNotFoundException e) { 

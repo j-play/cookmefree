@@ -26,12 +26,12 @@
 							Preparation duration (minutes) 
 						</p:outputLabel>
 						<br/>
-		    			<p:inputText id="duration" value="#{searchModelBean.duration}" required="true" 
+		    			<p:inputText id="duration" value="#{recipeControl.search.duration}" required="true" 
 				    			size="30" maxlength="30">
 		    				<f:validateLongRange minimum="0" maximum="1000" />
 		    			</p:inputText>
 		    			<br/>
-		    			<p:selectBooleanCheckbox id="indiff1" value="#{searchModelBean.indiff1}"/>
+		    			<p:selectBooleanCheckbox id="indiff1" value="#{recipeControl.search.indiff1}"/>
 		    			<p:outputLabel for="indiff1">
 							 Indifférent
 						</p:outputLabel>
@@ -45,10 +45,9 @@
 						<br/>
 					    <p:growl id="growl" showDetail="true" />
 					    <h:panelGrid columns="1">
-					    	<h:inputHidden id="expertise" value="#{searchModelBean.expertise}"/>
-					        <p:rating cancel="false" for="expertise"/>
+					        <p:rating cancel="false" id="expertise" value="#{recipeControl.search.expertise}"/>
 					    </h:panelGrid>
-					    <p:selectBooleanCheckbox id="indiff2" value="#{searchModelBean.indiff2}"/>
+					    <p:selectBooleanCheckbox id="indiff2" value="#{recipeControl.search.indiff2}"/>
 		    			<p:outputLabel for="indiff2">
 							 Indifférent
 						</p:outputLabel>
@@ -63,12 +62,12 @@
 								For how many people ? 
 							</p:outputLabel>
 					        <h:outputText id="outputSlider" value="1"/>
-					        <h:inputHidden id="people" value="#{searchModelBean.people}" />
+					        <h:inputHidden id="people" value="#{recipeControl.search.people}" />
 					        <p:slider for="people" minValue="1" maxValue="10"
 					         	display="outputSlider" displayTemplate="{value}" />
 			         	</h:panelGrid>
 			         	<br/>
-			         	<p:selectBooleanCheckbox id="indiff3" value="#{searchModelBean.indiff3}"/>
+			         	<p:selectBooleanCheckbox id="indiff3" value="#{recipeControl.search.indiff3}"/>
 		    			<p:outputLabel for="indiff3">
 							 Indifférent
 						</p:outputLabel>
@@ -80,14 +79,14 @@
 							Cook type 
 						</p:outputLabel>
 						<br/>
-						<p:selectOneMenu value="#{searchModelBean.type}" id="cookType">  
+						<p:selectOneMenu value="#{recipeControl.search.type}" id="cookType">  
 				            <f:selectItem itemLabel="Meal" itemValue="meal" />  
 				            <f:selectItem itemLabel="Salad" itemValue="salad" />  
 				            <f:selectItem itemLabel="Fish" itemValue="fish" />  
 				            <f:selectItem itemLabel="Dessert" itemValue="dessert" />  
 				        </p:selectOneMenu>
 				        <br/>
-				        <p:selectBooleanCheckbox id="indiff4" value="#{searchModelBean.indiff4}"/>
+				        <p:selectBooleanCheckbox id="indiff4" value="#{recipeControl.search.indiff4}"/>
 		    			<p:outputLabel for="indiff4">
 							 Indifférent
 						</p:outputLabel>

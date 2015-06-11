@@ -1,3 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/dao/fabric/DaoFabric.java=UTF-8
+encoding//src/dao/instance/UserDao.java=UTF-8
+encoding//src/model/UserSubmissionModelBean.java=UTF-8
 encoding//src/processing/RecipeControllerBean.java=UTF-8
 encoding//src/processing/UserControllerBean.java=UTF-8

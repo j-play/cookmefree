@@ -1,12 +1,14 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 @ManagedBean
-@RequestScoped //Durée de vue uniquement lors d'une requète 
-//même propriétés que UserModelBean mais portée différente
-public class UserSubmissionModelBean extends UserModelBean{
+@RequestScoped //DureÌ�e de vue uniquement lors d'une requeÌ€te 
+//meÌ‚me proprieÌ�teÌ�s que UserModelBean mais porteÌ�e diffeÌ�rente
+public class UserSubmissionModelBean extends UserModelBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private String pwdVerify;

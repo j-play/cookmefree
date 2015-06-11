@@ -11,7 +11,7 @@ public class SearchModelBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int duration=0, expertise, people=1;
 	private String type;
-	private boolean indiff1=true, indiff2=true, indiff3=true, indiff4=true;
+	private boolean indiff1=false, indiff2=false, indiff3=false, indiff4=false;
 	
 	public int getDuration() {
 		return duration;

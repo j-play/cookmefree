@@ -1,5 +1,7 @@
 package processing.validator;
 
+import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
@@ -9,8 +11,10 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 @FacesValidator(value = "validators.password")
-public class UserPwdValidator implements Validator {
+public class UserPwdValidator implements Validator, Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public void validate(FacesContext arg0, UIComponent component, Object value) throws ValidatorException {
         String password = (String) value;

@@ -1,17 +1,17 @@
 package dao.instance;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import model.RecipeModel;
 import model.SearchModelBean;
-import model.UserModelBean;
 
-public class RecipesDao {
-	
+
+public class RecipesDao implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private static String dB_HOST;   
 	private static String dB_PORT;
 	private static String dB_NAME;
