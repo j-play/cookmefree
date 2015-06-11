@@ -8,8 +8,10 @@ import java.util.ArrayList;
 
 import model.RecipeModel;
 import model.SearchModelBean;
+import model.UserModelBean;
 
 public class RecipesDao {
+	
 	private static String dB_HOST;   
 	private static String dB_PORT;
 	private static String dB_NAME;
@@ -26,10 +28,14 @@ public class RecipesDao {
 	}
 	
 	/**
-	 * Ajout d'un élément recipe en base de données
+	 * Add a new recipe to the database
 	 * @param recipe
+	 * @return true if the recipe has been added, false either
 	 */
-	public void addRecipe(RecipeModel recipe) {
+	public boolean addRecipe(RecipeModel recipe) {
+		
+		Integer rowCount;
+		
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
 			
@@ -42,18 +48,98 @@ public class RecipesDao {
 			statement.setInt(5, recipe.getNbPeople());
 			statement.setString(6, recipe.getType());
 			
-			statement.executeUpdate();
+			rowCount = statement.executeUpdate();
 			
 			connection.close(); 
+			
+			if(rowCount != 1){
+				return false;
+			}
+			else{
+				return true;
+			}
 		} 
 		catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
 	/**
-	 * Récupération de la liste des recettes
-	 * @return ArrayList contenant des beans RecipeModelBean
+	 * Delete the recipe with the specified id
+	 * @param id recipe identifiant
+	 * @return true if the user has been deleted, false otherwise
+	 */
+	public boolean deleteRecipe(Integer id) {
+		
+		Integer rowCount;
+		
+		try {
+			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
+			
+			String sql = "DELETE FROM RECIPE WHERE ID = ?";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setInt(1, id);
+			
+			rowCount = statement.executeUpdate();
+			
+			connection.close(); 
+			
+			if(rowCount != 1){
+				return false;
+			}
+			else{
+				return true;
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	/**
+	 * Update the specified recipe
+	 * @param user RecipeModel
+	 * @return true if the recipe has been updated, false otherwise
+	 */
+	public boolean updateRecipe(RecipeModel recipe) {
+		
+		Integer rowCount;
+		
+		try {
+			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
+			
+			String sql = "UPDATE USER SET title = ?, description = ?, expertise = ?, duration = ?, nbPeople = ?, type = ? WHERE ID = ?";
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, recipe.getTitle());
+			statement.setString(2, recipe.getDescription());
+			statement.setInt(3, recipe.getExpertise());
+			statement.setInt(4, recipe.getDuration());
+			statement.setInt(5, recipe.getNbPeople());
+			statement.setString(6, recipe.getType());
+			statement.setInt(7, recipe.getId());
+			
+			rowCount = statement.executeUpdate();
+			
+			connection.close(); 
+			
+			if(rowCount != 1){
+				return false;
+			}
+			else{
+				return true;
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	/**
+	 * Retrieve the list of the existing recipes
+	 * @return ArrayList<RecipeModel>
 	 */
 	public ArrayList<RecipeModel> getAllRecipes(){ 
 		ArrayList<RecipeModel> recipeList=new ArrayList<RecipeModel>();
