@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import model.RecipeModel;
+import model.RecipeModelBean;
 import model.SearchModelBean;
 
 
@@ -32,7 +32,7 @@ public class RecipesDao implements Serializable{
 	 * @param recipe
 	 * @return true if the recipe has been added, false either
 	 */
-	public boolean addRecipe(RecipeModel recipe) {
+	public boolean addRecipe(RecipeModelBean recipe) {
 		
 		Integer rowCount;
 		
@@ -103,7 +103,7 @@ public class RecipesDao implements Serializable{
 	 * @param user RecipeModel
 	 * @return true if the recipe has been updated, false otherwise
 	 */
-	public boolean updateRecipe(RecipeModel recipe) {
+	public boolean updateRecipe(RecipeModelBean recipe) {
 		
 		Integer rowCount;
 		
@@ -141,8 +141,8 @@ public class RecipesDao implements Serializable{
 	 * Retrieve the list of the existing recipes
 	 * @return ArrayList<RecipeModel>
 	 */
-	public ArrayList<RecipeModel> getAllRecipes(){ 
-		ArrayList<RecipeModel> recipeList=new ArrayList<RecipeModel>();
+	public ArrayList<RecipeModelBean> getAllRecipes(){ 
+		ArrayList<RecipeModelBean> recipeList=new ArrayList<RecipeModelBean>();
 		
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
@@ -151,7 +151,7 @@ public class RecipesDao implements Serializable{
 			ResultSet rs = query.executeQuery("select * from recipe"); 
 			
 			while (rs.next()){ 
-				recipeList.add(new RecipeModel(rs.getInt("id"),rs.getString("title"), rs.getString("description"), rs.getInt("Expertise"),
+				recipeList.add(new RecipeModelBean(rs.getInt("id"),rs.getString("title"), rs.getString("description"), rs.getInt("Expertise"),
 						rs.getInt("duration"), rs.getInt("nbPeople"), rs.getString("type"))
 				); 
 			}
@@ -168,8 +168,8 @@ public class RecipesDao implements Serializable{
 	 * Récupération de la liste des recettes
 	 * @return ArrayList contenant des beans RecipeModelBean
 	 */
-	public RecipeModel getRecipesByID(int id){ 
-		RecipeModel recipe = null;
+	public RecipeModelBean getRecipesByID(int id){ 
+		RecipeModelBean recipe = null;
 		
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
@@ -178,10 +178,13 @@ public class RecipesDao implements Serializable{
 			query.setInt(1, id);
 			ResultSet rs = query.executeQuery(); 
 			
-			rs.next();
-			recipe = new RecipeModel(rs.getString("title"), rs.getString("description"), rs.getInt("Expertise"),
-					rs.getInt("duration"), rs.getInt("nbPeople"), rs.getString("type"));
-			
+			if(rs.next()){
+				recipe = new RecipeModelBean(rs.getString("title"), rs.getString("description"), rs.getInt("Expertise"),
+						rs.getInt("duration"), rs.getInt("nbPeople"), rs.getString("type"));
+			}
+			else{
+				recipe = null;
+			}
 			connection.close();
 		} 
 		catch (SQLException e) { 
@@ -190,8 +193,8 @@ public class RecipesDao implements Serializable{
 		return recipe;
 	}
 	
-	public ArrayList<RecipeModel> getRecipesByCriteria(SearchModelBean search){
-		ArrayList<RecipeModel> returnV=new ArrayList<>();
+	public ArrayList<RecipeModelBean> getRecipesByCriteria(SearchModelBean search){
+		ArrayList<RecipeModelBean> returnV=new ArrayList<>();
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
 			String queryString="select * from recipe where ";
@@ -258,7 +261,7 @@ public class RecipesDao implements Serializable{
 			
 			ResultSet rs = query.executeQuery();
 			while (rs.next()){ 
-				returnV.add(new RecipeModel(rs.getString("title"), rs.getString("description"), rs.getInt("Expertise"),
+				returnV.add(new RecipeModelBean(rs.getString("title"), rs.getString("description"), rs.getInt("Expertise"),
 						rs.getInt("duration"), rs.getInt("nbPeople"), rs.getString("type"))
 				);
 			}

@@ -6,7 +6,7 @@ import javax.faces.bean.RequestScoped;
 
 @ManagedBean
 @RequestScoped
-public class RecipeModel implements Serializable{
+public class RecipeModelBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private int id;
@@ -17,10 +17,10 @@ public class RecipeModel implements Serializable{
 	private int nbPeople;
 	private String type;
 	
-	public RecipeModel(){
+	public RecipeModelBean(){
 	}
 	
-	public RecipeModel(String title, String description, int expertise, int duration, int nbPeople, String type) {
+	public RecipeModelBean(String title, String description, int expertise, int duration, int nbPeople, String type) {
 		this.title = title;
 		this.description = description;
 		this.expertise = expertise;
@@ -29,7 +29,7 @@ public class RecipeModel implements Serializable{
 		this.type = type;
 	}
 	
-	public RecipeModel(int id, String title, String description, int expertise, int duration, int nbPeople, String type) {
+	public RecipeModelBean(int id, String title, String description, int expertise, int duration, int nbPeople, String type) {
 		this.id= id;
 		this.title = title;
 		this.description = description;

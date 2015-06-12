@@ -14,8 +14,8 @@ public class RecipeListModelBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private RecipeControllerBean recipeController;
-	private List<RecipeModel> recipeList;
-	private RecipeModel selectedRecipe;
+	private List<RecipeModelBean> recipeList;
+	private RecipeModelBean selectedRecipe;
 	
 	// Constructor
 	public RecipeListModelBean() {
@@ -27,16 +27,16 @@ public class RecipeListModelBean implements Serializable {
 	/*
 	 * GETTERS / SETTERS
 	 */
-	public List<RecipeModel> getRecipeList(){
+	public List<RecipeModelBean> getRecipeList(){
 		this.recipeList = this.recipeController.getAllRecipes();
 		return this.recipeList;
 	}
 
-	public RecipeModel getSelectedRecipe() {
+	public RecipeModelBean getSelectedRecipe() {
 		return selectedRecipe;
 	}
 
-	public void setSelectedUser(RecipeModel selectedRecipe) {
+	public void setSelectedUser(RecipeModelBean selectedRecipe) {
 		this.selectedRecipe = selectedRecipe;
 	}
 	
@@ -49,9 +49,9 @@ public class RecipeListModelBean implements Serializable {
 	
 	/**
 	 * Delete the specified recipe from the database
-	 * @param RecipeModel
+	 * @param RecipeModelBean
 	 */
-	public void deleteUser(RecipeModel recipe){
+	public void deleteUser(RecipeModelBean recipe){
 		
 		if(this.recipeController.deleteRecipe(recipe.getId())){
 			FacesMessage msg;
@@ -70,9 +70,9 @@ public class RecipeListModelBean implements Serializable {
 	
 	/**
 	 * Update the specified recipe and his data
-	 * @param RecipeModel
+	 * @param RecipeModelBean
 	 */
-	public void updateUser(RecipeModel recipe){
+	public void updateUser(RecipeModelBean recipe){
 		if(this.recipeController.updateRecipe(recipe)){
 			this.selectedRecipe = null;
 			FacesMessage msg;
@@ -90,9 +90,9 @@ public class RecipeListModelBean implements Serializable {
 	
 	/**
 	 * Add the specified recipe and his data
-	 * @param RecipeModel
+	 * @param RecipeModelBean
 	 */
-	public void registerUser(RecipeModel recipe){
+	public void registerUser(RecipeModelBean recipe){
 		if(this.recipeController.addRecipe(recipe)){
 			FacesMessage msg;
 	        msg = new FacesMessage("The recipe has been added.");

@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import model.RecipeModel;
+import model.RecipeModelBean;
 import model.SearchModelBean;
 import dao.fabric.DaoFabric;
 import dao.instance.RecipesDao;
@@ -18,8 +18,8 @@ public class RecipeControllerBean implements Serializable {
 	//ATTRIBUTES
 	private static final long serialVersionUID = 1L;
 	private RecipesDao recipeDao;
-	private RecipeModel specificRecipe;
-	private List<RecipeModel> recipeList;
+	private RecipeModelBean specificRecipe;
+	private List<RecipeModelBean> recipeList;
 	private SearchModelBean search;
 
 	//MUTATORS
@@ -29,10 +29,10 @@ public class RecipeControllerBean implements Serializable {
 	public void setSearch(SearchModelBean search) {
 		this.search = search;
 	}
-	public List<RecipeModel> getRecipeList() {
+	public List<RecipeModelBean> getRecipeList() {
 		return recipeList;
 	}
-	public RecipeModel getSpecificRecipe() {
+	public RecipeModelBean getSpecificRecipe() {
 		return specificRecipe;
 	}
 	
@@ -66,7 +66,7 @@ public class RecipeControllerBean implements Serializable {
 	 * Retrieve the list of the existing recipes
 	 * @return List<RecipeModel>
 	 */
-	public List<RecipeModel> getAllRecipes(){
+	public List<RecipeModelBean> getAllRecipes(){
 		return this.recipeDao.getAllRecipes();
 	}
 	
@@ -84,7 +84,7 @@ public class RecipeControllerBean implements Serializable {
 	 * @param user UserModelBean
 	 * @return true is the recipe has been successfully updated, false otherwise
 	 */
-	public boolean updateRecipe(RecipeModel recipe){
+	public boolean updateRecipe(RecipeModelBean recipe){
 		return this.recipeDao.updateRecipe(recipe);
 	}
 	
@@ -93,7 +93,7 @@ public class RecipeControllerBean implements Serializable {
 	 * @param recipe 
 	 * @return true is the recipe has been successfully added, false otherwise
 	 */
-	public boolean addRecipe(RecipeModel recipe){
+	public boolean addRecipe(RecipeModelBean recipe){
 		return this.recipeDao.addRecipe(recipe);
 	}
 }
