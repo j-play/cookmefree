@@ -39,6 +39,8 @@ public class RecipeControllerBean implements Serializable {
 	//CONSTRUCTORS
 	public RecipeControllerBean() {
 		this.recipeDao=DaoFabric.getInstance().createRecipesDao();
+		specificRecipe=null;
+		recipeList=null;
 		this.search = new SearchModelBean();
 	}
 	
@@ -50,16 +52,6 @@ public class RecipeControllerBean implements Serializable {
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
 		//place la liste de recette dans l'espace de meÌ�moire de JSF
 		sessionMap.put("recipeList", recipeList);
-	}
-	
-	public String goToResult(){
-		recipeList=recipeDao.getRecipesByCriteria(search);
-		return("resultRecipe.jsf?faces-redirect=true");
-	}
-	
-	public String goToShowRecipe(int id){
-		specificRecipe = this.recipeDao.getRecipesByID(id);
-		return("showRecipe.jsf?faces-redirect=true");
 	}
 	
 	/**
@@ -96,4 +88,16 @@ public class RecipeControllerBean implements Serializable {
 	public boolean addRecipe(RecipeModelBean recipe){
 		return this.recipeDao.addRecipe(recipe);
 	}
+	
+	//REDIRECTIONS
+	public String goToResult(){
+		recipeList=recipeDao.getRecipesByCriteria(search);
+		return("resultRecipe.jsf?faces-redirect=true");
+	}
+
+	public String goToShowRecipe(int id){
+		specificRecipe = this.recipeDao.getRecipesByID(id);
+		return("showRecipe.jsf?faces-redirect=true");
+	}
 }
+

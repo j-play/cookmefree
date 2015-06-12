@@ -265,11 +265,16 @@ public class RecipesDao implements Serializable{
 						rs.getInt("duration"), rs.getInt("nbPeople"), rs.getString("type"))
 				);
 			}
-			
+			if(returnV.isEmpty()){
+				return null;
+			}
+			else{
+				return returnV;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return returnV;
+		return null;
 	}
 }
