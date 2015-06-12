@@ -61,4 +61,39 @@ public class RecipeControllerBean implements Serializable {
 		specificRecipe = this.recipeDao.getRecipesByID(id);
 		return("showRecipe.jsf?faces-redirect=true");
 	}
+	
+	/**
+	 * Retrieve the list of the existing recipes
+	 * @return List<RecipeModel>
+	 */
+	public List<RecipeModel> getAllRecipes(){
+		return this.recipeDao.getAllRecipes();
+	}
+	
+	/**
+	 * Delete the specified recipe
+	 * @param id recipe identifiant
+	 * @return true is the recipe has been successfully deleted, false otherwise
+	 */
+	public boolean deleteRecipe(Integer id){
+		return this.recipeDao.deleteRecipe(id);
+	}
+	
+	/**
+	 * Update the specified recipe
+	 * @param user UserModelBean
+	 * @return true is the recipe has been successfully updated, false otherwise
+	 */
+	public boolean updateRecipe(RecipeModel recipe){
+		return this.recipeDao.updateRecipe(recipe);
+	}
+	
+	/**
+	 * Add a new recipe in the database
+	 * @param recipe 
+	 * @return true is the recipe has been successfully added, false otherwise
+	 */
+	public boolean addRecipe(RecipeModel recipe){
+		return this.recipeDao.addRecipe(recipe);
+	}
 }

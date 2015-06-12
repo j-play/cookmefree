@@ -2,12 +2,10 @@ package model;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
 import processing.RecipeControllerBean;
 
 @ManagedBean
@@ -22,7 +20,7 @@ public class RecipeListModelBean implements Serializable {
 	// Constructor
 	public RecipeListModelBean() {
 		this.recipeController = new RecipeControllerBean();
-		//this.recipeList = this.recipeController.getAllRecipes();
+		this.recipeList = this.recipeController.getAllRecipes();
 		this.selectedRecipe = null;
 	}
 	
@@ -30,7 +28,7 @@ public class RecipeListModelBean implements Serializable {
 	 * GETTERS / SETTERS
 	 */
 	public List<RecipeModel> getRecipeList(){
-		//this.recipeList = this.recipeController.getAllRecipes();
+		this.recipeList = this.recipeController.getAllRecipes();
 		return this.recipeList;
 	}
 
@@ -55,19 +53,19 @@ public class RecipeListModelBean implements Serializable {
 	 */
 	public void deleteUser(RecipeModel recipe){
 		
-		//if(this.recipeController.deleteRecipe(recipe.getId())){
-		//	FacesMessage msg;
-	    //    msg = new FacesMessage("The recipe has been deleted.");
-	   //     FacesContext.getCurrentInstance().addMessage(null, msg);
-		//}
-		//else{
+		if(this.recipeController.deleteRecipe(recipe.getId())){
+			FacesMessage msg;
+	        msg = new FacesMessage("The recipe has been deleted.");
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+		else{
 			// Error case
-		//	FacesMessage msg;
-	    //    msg = new FacesMessage("There was a problem trying to delete this recipe.");
-	    //    msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-	    //    FacesContext.getCurrentInstance().addMessage(null, msg);
-		//}
-		//
+			FacesMessage msg;
+	        msg = new FacesMessage("There was a problem trying to delete this recipe.");
+	        msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+		
 	}
 	
 	/**
@@ -75,19 +73,19 @@ public class RecipeListModelBean implements Serializable {
 	 * @param RecipeModel
 	 */
 	public void updateUser(RecipeModel recipe){
-		//if(this.recipeController.updateRecipe(recipe)){
-		//	this.selectedRecipe = null;
-		//	FacesMessage msg;
-	    //    msg = new FacesMessage("The recipe has been updated.");
-	    //    FacesContext.getCurrentInstance().addMessage(null, msg);
-		//}
-		//else{
+		if(this.recipeController.updateRecipe(recipe)){
+			this.selectedRecipe = null;
+			FacesMessage msg;
+	        msg = new FacesMessage("The recipe has been updated.");
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+		else{
 			// Error case
-		//	FacesMessage msg;
-	    //    msg = new FacesMessage("There was a problem trying to update this recipe.");
-	    //    msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-	    //    FacesContext.getCurrentInstance().addMessage(null, msg);
-		//}
+			FacesMessage msg;
+	        msg = new FacesMessage("There was a problem trying to update this recipe.");
+	        msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
 	}
 	
 	/**
@@ -95,20 +93,18 @@ public class RecipeListModelBean implements Serializable {
 	 * @param RecipeModel
 	 */
 	public void registerUser(RecipeModel recipe){
-		//if(this.recipeController.addRecipe(recipe)){
-		//	FacesMessage msg;
-	    //    msg = new FacesMessage("The recipe has been added.");
-	    //    FacesContext.getCurrentInstance().addMessage(null, msg);
-		//}
-		//else{
+		if(this.recipeController.addRecipe(recipe)){
+			FacesMessage msg;
+	        msg = new FacesMessage("The recipe has been added.");
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+		else{
 			// Error case
-		//	FacesMessage msg;
-	    //    msg = new FacesMessage("There was a problem trying to add this recipe.");
-	    //    msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-	     //   FacesContext.getCurrentInstance().addMessage(null, msg);
-		//}
+			FacesMessage msg;
+	        msg = new FacesMessage("There was a problem trying to add this recipe.");
+	        msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
 	}
-	
-	
 	
 }
