@@ -179,7 +179,7 @@ public class RecipesDao implements Serializable{
 			ResultSet rs = query.executeQuery(); 
 			
 			if(rs.next()){
-				recipe = new RecipeModelBean(rs.getString("title"), rs.getString("description"), rs.getInt("Expertise"),
+				recipe = new RecipeModelBean(rs.getInt("id"),rs.getString("title"), rs.getString("description"), rs.getInt("Expertise"),
 						rs.getInt("duration"), rs.getInt("nbPeople"), rs.getString("type"));
 			}
 			else{
@@ -261,7 +261,7 @@ public class RecipesDao implements Serializable{
 			
 			ResultSet rs = query.executeQuery();
 			while (rs.next()){ 
-				returnV.add(new RecipeModelBean(rs.getString("title"), rs.getString("description"), rs.getInt("Expertise"),
+				returnV.add(new RecipeModelBean(rs.getInt("id"),rs.getString("title"), rs.getString("description"), rs.getInt("Expertise"),
 						rs.getInt("duration"), rs.getInt("nbPeople"), rs.getString("type"))
 				);
 			}

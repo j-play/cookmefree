@@ -97,6 +97,8 @@ public class RecipeControllerBean implements Serializable {
 
 	public String goToShowRecipe(int id){
 		specificRecipe = this.recipeDao.getRecipesByID(id);
+		System.out.println(id);
+		System.out.println(specificRecipe.getTitle());
 		return("showRecipe.jsf?faces-redirect=true");
 	}
 }
