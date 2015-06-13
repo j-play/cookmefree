@@ -8,18 +8,22 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class SearchModelBean implements Serializable {
+	
+	//////////ATTRIBUTES
 	private static final long serialVersionUID = 1L;
 	private int duration=0, expertise, people=1;
 	private String type;
 	private boolean indiff1=false, indiff2=false, indiff3=false, indiff4=false;
 	private boolean blockedindiff2=false, blockedindiff3=false;
 	
+	////////////MUTATORS
 	public int getDuration() {
 		return duration;
 	}
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
+	
 	public int getExpertise() {
 		return expertise;
 	}
@@ -32,6 +36,7 @@ public class SearchModelBean implements Serializable {
 			this.blockedindiff2=true;
 		}
 	}
+	
 	public int getPeople() {
 		return people;
 	}
@@ -44,18 +49,21 @@ public class SearchModelBean implements Serializable {
 			this.blockedindiff3=true;
 		}
 	}
+	
 	public String getType() {
 		return type;
 	}
 	public void setType(String type) {
 		this.type = type;
 	}
+	
 	public boolean isIndiff1() {
 		return indiff1;
 	}
 	public void setIndiff1(boolean indiff1) {
 		this.indiff1 = indiff1;
 	}
+	
 	public boolean isIndiff2() {
 		return indiff2;
 	}
@@ -64,6 +72,7 @@ public class SearchModelBean implements Serializable {
 			this.indiff2 = indiff2;
 		}
 	}
+	
 	public boolean isIndiff3() {
 		return indiff3;
 	}
@@ -72,12 +81,15 @@ public class SearchModelBean implements Serializable {
 			this.indiff3 = indiff3;
 		}
 	}
+	
 	public boolean isIndiff4() {
 		return indiff4;
 	}
 	public void setIndiff4(boolean indiff4) {
 		this.indiff4 = indiff4;
 	}
+	
+	/////////CONSTRUCTORS
 	public SearchModelBean(int duration, int expertise, int people,
 			String type, boolean indiff1, boolean indiff2, boolean indiff3,
 			boolean indiff4) {

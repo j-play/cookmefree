@@ -147,16 +147,6 @@ input.connexionElem{
 */
 
 /*
-* <SHOW-SEARCH-RESULTS>////////////////////////////////////////////////////////////////////////////
-*/
-
-/* BAPTISTE les classes de la page r�sultat de recherche ici =) ////////////////////////////////////////////////////////*/
-
-/*
-* <SHOW-SEARCH-RESULTS>////////////////////////////////////////////////////////////////////////////
-*/
-
-/*
 * <SEARCH-RECIPE-FORM>////////////////////////////////////////////////////////////////////////////
 */
 
@@ -194,11 +184,11 @@ input.connexionElem{
 	width: 3%;
 }
 
-.teachMeButton
+.ui-button[class*=teachMeButton]
 {
 	width: 70%;
 	height: 7%;
-	background-color: #7777DD;
+	background: #7777DD;
 	text-weight: bold;
 	font-size: 2em;
 	margin-top: 1%;
@@ -212,29 +202,44 @@ input.connexionElem{
 * <ACCUEIL>////////////////////////////////////////////////////////////////////////////
 */
 
-.bigbutton
+.inlineForm
+{
+	display: inline;
+}
+
+.inlineForm .ui-button[class*=bigbutton]
 {
 	height : 50%;
 	width : 20%;
 	margin: 2%;
 	font-size: 3em;
     font-weight: bold;
-
 }
 
-.button1
+.bigbutton .ui-button-text
 {
-	background : #ff4444;
+	-webkit-transform: rotate(340deg);
+	-moz-transform: rotate(340deg);
+	-o-transform: rotate(340deg);
+	writing-mode: lr-tb;
 }
 
-.button2
+.inlineForm .ui-button[class*=button1]
 {
-	background : #4444ff;
+	background-color: #ff4444;
+	background-image: none;
 }
 
-.button3
+.inlineForm .ui-button[class*=button2]
 {
-	background : #44ff44;
+	background-color: #4444ff;
+	background-image: none;
+}
+
+.inlineForm .ui-button[class*=button3]
+{
+	background-color: #44ff44;
+	background-image: none;
 }
 
 /*

@@ -61,7 +61,7 @@
 								<i class="fa-users fa fa-2x"/>
 								For how many people ? 
 							</p:outputLabel>
-					        <h:outputText id="outputSlider" value="1"/>
+					        <h:outputText id="outputSlider" value="#{recipeControl.search.people}"/>
 					        <h:inputHidden id="people" value="#{recipeControl.search.people}" />
 					        <p:slider for="people" minValue="1" maxValue="10"
 					         	display="outputSlider" displayTemplate="{value}" />
@@ -93,11 +93,7 @@
 					</div>
 				</div>
 				<br/>
-				<button class="teachMeButton">
-					<p:commandLink value="Teach me !" action="#{recipeControl.goToResult}" ajax="false">
-						<f:param name="idRecipe" value="1"/>
-					</p:commandLink>
-				</button>
+				<p:commandButton styleClass="teachMeButton" value="Teach me !" action="#{recipeControl.goToResult}" ajax="false"/>
 			</h:form>
 		</div>
 	</ui:define>
