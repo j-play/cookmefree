@@ -2,6 +2,7 @@ package dao.fabric;
 
 import java.io.Serializable;
 
+import dao.instance.CommentDao;
 import dao.instance.RecipesDao;
 import dao.instance.UserDao;
 
@@ -46,4 +47,9 @@ public class DaoFabric implements Serializable{
 		RecipesDao receipesDao = new RecipesDao(this.DB_HOST,this.DB_PORT,this.DB_NAME,this.DB_USER,this.DB_PWD); 
 		return receipesDao;
 	}
+	public CommentDao createCommentDao(){ 
+		CommentDao commentDao = new CommentDao(this.DB_HOST,this.DB_PORT,this.DB_NAME,this.DB_USER,this.DB_PWD); 
+		return commentDao;
+	}
+	
 }

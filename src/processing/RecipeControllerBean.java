@@ -1,15 +1,21 @@
 package processing;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+
+import model.CommentModelBean;
+import model.InputCommentBean;
 import model.RecipeModelBean;
 import model.SearchModelBean;
 import dao.fabric.DaoFabric;
+import dao.instance.CommentDao;
 import dao.instance.RecipesDao;
 
 @ManagedBean(name="recipeControl")
@@ -18,6 +24,7 @@ public class RecipeControllerBean implements Serializable {
 	//ATTRIBUTES
 	private static final long serialVersionUID = 1L;
 	private RecipesDao recipeDao;
+	private CommentDao commentDao;
 	private RecipeModelBean specificRecipe;
 	private List<RecipeModelBean> recipeList;
 	private SearchModelBean search;
@@ -39,6 +46,7 @@ public class RecipeControllerBean implements Serializable {
 	//CONSTRUCTORS
 	public RecipeControllerBean() {
 		this.recipeDao=DaoFabric.getInstance().createRecipesDao();
+		this.commentDao=DaoFabric.getInstance().createCommentDao();
 		specificRecipe=null;
 		recipeList=null;
 		this.search = new SearchModelBean();
@@ -89,6 +97,25 @@ public class RecipeControllerBean implements Serializable {
 		return this.recipeDao.addRecipe(recipe);
 	}
 	
+	/**
+	 * Retrieve the list of the commments of a recipe
+	 * @param idRecipe
+	 * @return
+	 */
+	public List<CommentModelBean>getCommentsByIdRecipe(int idRecipe){
+		return commentDao.getCommentsByIdRecipe(idRecipe);
+	}
+	
+	/**
+	 * Add a new comment in the database
+	 * @param recipe 
+	 * @return true is the comment has been successfully added, false otherwise
+	 */
+	public boolean addComment(InputCommentBean inputComment, int idUser, int idRecipe){
+		CommentModelBean comment = new CommentModelBean(idUser, idRecipe, inputComment.getContent(),
+				inputComment.getMark(),new Date());
+		return this.commentDao.addComment(comment);
+	}
 	//REDIRECTIONS
 	public String goToResult(){
 		recipeList=recipeDao.getRecipesByCriteria(search);
@@ -97,8 +124,6 @@ public class RecipeControllerBean implements Serializable {
 
 	public String goToShowRecipe(int id){
 		specificRecipe = this.recipeDao.getRecipesByID(id);
-		System.out.println(id);
-		System.out.println(specificRecipe.getTitle());
 		return("showRecipe.jsf?faces-redirect=true");
 	}
 }

@@ -21,7 +21,7 @@
         rows="2" paginator="true" id="recipeList"
         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="6,12,16">
-        		 <p:panel header="#{recipe.title}" >
+        		 <p:panel >
 		            <h:panelGrid columns="2" style="width:100%">
 		            	<h:panelGrid columns="1">
 		            		
@@ -39,10 +39,6 @@
     						</h:panelGroup>
 		            		<h:panelGroup><h:outputText value="#{recipe.description}" /></h:panelGroup>
 		 				</h:panelGrid>
-		                <!--  <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail">
-		                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
-		                    <f:setPropertyActionListener value="#{car}" target="#{dataGridView.selectedCar}" />
-		                </p:commandLink>-->
 		            </h:panelGrid>
 		        </p:panel>
         	</p:dataGrid>

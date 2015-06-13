@@ -31,6 +31,29 @@
 			</h1>
 			<h:outputText value="#{recipeControl.specificRecipe.description}"/>
 		</div>
+		<hr/>
+		<p:dataScroller value="#{recipeControl.getCommentsByIdRecipe(recipeControl.specificRecipe.id)}" var="comment" chunkSize="10">
+			<p:outputPanel>
+			<h:panelGrid columns="2" style="width:100%" columnClasses="user,content">
+	 			 	<h:outputText value="UserNameTest" style="font-weight: bold"/>
+	                <h:panelGrid columns="3">
+	                    <h:outputText value="#{comment.date}" style="font-weight: bold"/>
+	 
+	                    <h:outputText value="#{comment.content}" style="font-weight: bold"/>
+	 					<p:rating value="#{comment.mark}" readonly="true" />
+	                </h:panelGrid>
+       	 	</h:panelGrid>
+       	 	</p:outputPanel>
+		</p:dataScroller>
+		<h:panelGroup rendered="#{not empty loggedUser}">
+		<h:form>
+			<p:inputTextarea rows="6" cols="60" value="#{inputCommentBean.content}"/>
+			<p:rating value="#{inputCommentBean.mark}" />
+			<p:commandButton value="Post Your Comment"
+								action="#{recipeControl.addComment(inputCommentBean, loggedUser.id, recipeControl.specificRecipe.id)}"
+								ajax="false" icon="ui-icon-check" validateClient="true" />
+		</h:form>
+		</h:panelGroup>	
 	</ui:define>
 				
 </ui:composition>
