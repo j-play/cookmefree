@@ -43,7 +43,7 @@
 								<p:commandButton icon="ui-icon-trash" title="Delete this user"
 									ajax="true"
 									actionListener="#{userListModelBean.deleteUser(user)}"
-									update="userTableForm">
+									update="userTableForm, userDetailsPanel">
 									<p:confirm header="Confirmation" message="Are you sure?"
 										icon="ui-icon-alert" />
 								</p:commandButton>

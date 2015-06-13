@@ -110,7 +110,7 @@ public class RecipesDao implements Serializable{
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
 			
-			String sql = "UPDATE USER SET title = ?, description = ?, expertise = ?, duration = ?, nbPeople = ?, type = ? WHERE ID = ?";
+			String sql = "UPDATE RECIPE SET title = ?, description = ?, expertise = ?, duration = ?, nbPeople = ?, type = ? WHERE ID = ?";
 			PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(1, recipe.getTitle());
 			statement.setString(2, recipe.getDescription());

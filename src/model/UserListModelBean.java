@@ -56,6 +56,7 @@ public class UserListModelBean implements Serializable {
 	public void deleteUser(UserModelBean user){
 		
 		if(this.userController.deleteUser(user.getId())){
+			this.resetSelectedUser();
 			FacesMessage msg;
 	        msg = new FacesMessage("The user has been deleted.");
 	        FacesContext.getCurrentInstance().addMessage(null, msg);

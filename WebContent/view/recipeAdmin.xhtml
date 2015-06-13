@@ -15,6 +15,164 @@
 	<ui:define name="content">
 		<h:panelGroup
 			rendered="#{not empty loggedUser and loggedUser.isAdmin}">
+			<h:panelGrid columns="2" id="recipeAdminPanelGrid"
+				columnClasses="customColumns">
+				<p:panel header="Recipes list" id="recipeListPanel">
+					<h:form id="recipeTableForm">
+						<p:messages id="recipesAdminMessages" autoUpdate="true"
+							closable="true" />
+						<p:dataTable var="recipe" value="#{recipeListModelBean.recipeList}"
+							tableStyle="table-layout: auto; text-align: center;"
+							paginator="true"
+							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="10,15">
+							<p:column headerText="Name">
+								<h:outputText value="#{recipe.title}" />
+							</p:column>
+
+							<p:column headerText="Delete">
+								<p:commandButton icon="ui-icon-trash" title="Delete this title"
+									ajax="true"
+									actionListener="#{recipeListModelBean.deleteRecipe(recipe)}"
+									update="recipeTableForm, recipeDetailsPanel">
+									<p:confirm header="Confirmation" message="Are you sure?"
+										icon="ui-icon-alert" />
+								</p:commandButton>
+							</p:column>
+
+							<p:column headerText="Modify">
+								<p:commandButton icon="ui-icon-wrench" title="Modify this recipe"
+									update="recipeDetailsPanel" ajax="true">
+									<f:setPropertyActionListener value="#{recipe}"
+										target="#{recipeListModelBean.selectedRecipe}" />
+								</p:commandButton>
+							</p:column>
+						</p:dataTable>
+
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+							<p:commandButton value="Yes" type="button"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+							<p:commandButton value="No" type="button"
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						</p:confirmDialog>
+					</h:form>
+				</p:panel>
+				<p:panel header="Recipe details" id="recipeDetailsPanel">
+
+					<!-- UPDATE RECIPE FORM -->
+					<h:form id="recipeUpdateForm"
+						rendered="#{not empty recipeListModelBean.selectedRecipe}">
+						<h2>Recipe update form</h2>
+						<h:panelGrid columns="3">
+						
+							<p:outputLabel for="title">Title:</p:outputLabel>
+							<p:inputText id="title"
+								value="#{recipeListModelBean.selectedRecipe.title}"
+								required="true" requiredMessage="Title is required."
+								size="30" maxlength="30" />
+							<p:message showDetail="true" for="title" errorClass="error" />
+
+							<p:outputLabel for="duration">Preparation duration:</p:outputLabel>
+							<p:inputText id="duration"
+								value="#{recipeListModelBean.selectedRecipe.duration}"
+								required="true" requiredMessage="Duration is required."
+								size="30" maxlength="30" />
+							<p:message showDetail="true" for="duration" errorClass="error" />
+
+							<p:outputLabel for="expertise">Cook expertise:</p:outputLabel>
+							<p:inputText id="expertise"
+								value="#{recipeListModelBean.selectedRecipe.expertise}" required="true"
+								requiredMessage="Expertise is required." size="30" maxlength="30" />
+							<p:message showDetail="true" for="expertise" errorClass="error" />
+
+							<p:outputLabel for="nbPeople">For how many people:</p:outputLabel>
+							<p:inputText id="nbPeople"
+								value="#{recipeListModelBean.selectedRecipe.nbPeople}" required="true"
+								requiredMessage="Number of people is required." size="30" maxlength="30" />
+							<p:message showDetail="true" for="nbPeople" errorClass="error" />
+
+							<p:outputLabel for="type">Cook type:</p:outputLabel>
+							<p:inputText id="type"
+								value="#{recipeListModelBean.selectedRecipe.type}" required="true"
+								requiredMessage="Type is required." size="30" maxlength="30"/>
+							<p:message showDetail="true" for="type" errorClass="error" />
+
+							<p:outputLabel for="description">Description:</p:outputLabel>
+							<p:inputTextarea id="description"
+								value="#{recipeListModelBean.selectedRecipe.description}" required="true"
+								requiredMessage="Description is required."/>
+							<p:message showDetail="true" for="description" errorClass="error" />
+
+						</h:panelGrid>
+						<div class="recipeAdminButtons">
+							<p:commandButton icon="ui-icon-close" value="Cancel" ajax="true"
+								immediate="true" update="recipeDetailsPanel"
+								actionListener="#{recipeListModelBean.resetSelectedRecipe()}" />
+
+							<p:commandButton value="Save"
+								action="#{recipeListModelBean.updateRecipe(recipeListModelBean.selectedRecipe)}"
+								ajax="false" icon="ui-icon-check" validateClient="true" />
+						</div>
+					</h:form>
+
+					<!-- ADD RECIPE FORM -->
+					<h:form id="recipeAddForm"
+						rendered="#{empty recipeListModelBean.selectedRecipe}">
+						<h2>Recipe add form</h2>
+												<h:panelGrid columns="3">
+						
+							<p:outputLabel for="title">Title:</p:outputLabel>
+							<p:inputText id="title"
+								value="#{recipeModelBean.title}"
+								required="true" requiredMessage="Title is required."
+								size="30" maxlength="30" />
+							<p:message showDetail="true" for="title" errorClass="error" />
+
+							<p:outputLabel for="duration">Preparation duration:</p:outputLabel>
+							<p:inputText id="duration"
+								value="#{recipeModelBean.duration}"
+								required="true" requiredMessage="Duration is required."
+								size="30" maxlength="30" />
+							<p:message showDetail="true" for="duration" errorClass="error" />
+
+							<p:outputLabel for="expertise">Cook expertise:</p:outputLabel>
+							<p:inputText id="expertise"
+								value="#{recipeModelBean.expertise}" required="true"
+								requiredMessage="Expertise is required." size="30" maxlength="30" />
+							<p:message showDetail="true" for="expertise" errorClass="error" />
+
+							<p:outputLabel for="nbPeople">For how many people:</p:outputLabel>
+							<p:inputText id="nbPeople"
+								value="#{recipeModelBean.nbPeople}" required="true"
+								requiredMessage="Number of people is required." size="30" maxlength="30" />
+							<p:message showDetail="true" for="nbPeople" errorClass="error" />
+
+							<p:outputLabel for="type">Cook type:</p:outputLabel>
+							<p:inputText id="type"
+								value="#{recipeModelBean.type}" required="true"
+								requiredMessage="Type is required." size="30" maxlength="30" />
+							<p:message showDetail="true" for="type" errorClass="error" />
+
+							<p:outputLabel for="description">Description:</p:outputLabel>
+							<p:inputTextarea id="description"
+								value="#{recipeModelBean.description}" required="true"
+								requiredMessage="Description is required." />
+							<p:message showDetail="true" for="description" errorClass="error" />
+
+						</h:panelGrid>
+						<div class="recipeAdminButtons">
+							<p:commandButton icon="ui-icon-close" value="Reset" ajax="true"
+								immediate="true">
+								<p:ajax update="recipeDetailsPanel" resetValues="true" />
+							</p:commandButton>
+
+							<p:commandButton value="Add"
+								action="#{recipeListModelBean.addRecipe(recipeModelBean)}"
+								ajax="false" icon="ui-icon-check" validateClient="true" />
+						</div>
+					</h:form>
+				</p:panel>
+			</h:panelGrid>
 
 		</h:panelGroup>
 		<h:panelGroup rendered="#{empty loggedUser or !loggedUser.isAdmin}">

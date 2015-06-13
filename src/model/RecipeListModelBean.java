@@ -36,14 +36,14 @@ public class RecipeListModelBean implements Serializable {
 		return selectedRecipe;
 	}
 
-	public void setSelectedUser(RecipeModelBean selectedRecipe) {
+	public void setSelectedRecipe(RecipeModelBean selectedRecipe) {
 		this.selectedRecipe = selectedRecipe;
 	}
 	
 	/**
 	 * Reset the selected recipe in the datatable
 	 */
-	public void resetSelectedUser(){
+	public void resetSelectedRecipe(){
 		this.selectedRecipe = null;
 	}
 	
@@ -51,9 +51,10 @@ public class RecipeListModelBean implements Serializable {
 	 * Delete the specified recipe from the database
 	 * @param RecipeModelBean
 	 */
-	public void deleteUser(RecipeModelBean recipe){
+	public void deleteRecipe(RecipeModelBean recipe){
 		
 		if(this.recipeController.deleteRecipe(recipe.getId())){
+			this.resetSelectedRecipe();
 			FacesMessage msg;
 	        msg = new FacesMessage("The recipe has been deleted.");
 	        FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -72,7 +73,7 @@ public class RecipeListModelBean implements Serializable {
 	 * Update the specified recipe and his data
 	 * @param RecipeModelBean
 	 */
-	public void updateUser(RecipeModelBean recipe){
+	public void updateRecipe(RecipeModelBean recipe){
 		if(this.recipeController.updateRecipe(recipe)){
 			this.selectedRecipe = null;
 			FacesMessage msg;
@@ -92,7 +93,7 @@ public class RecipeListModelBean implements Serializable {
 	 * Add the specified recipe and his data
 	 * @param RecipeModelBean
 	 */
-	public void registerUser(RecipeModelBean recipe){
+	public void addRecipe(RecipeModelBean recipe){
 		if(this.recipeController.addRecipe(recipe)){
 			FacesMessage msg;
 	        msg = new FacesMessage("The recipe has been added.");
