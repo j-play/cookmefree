@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import model.RecipeModelBean;
 import model.UserModelBean;
 
 public class UserDao implements Serializable{
@@ -185,7 +186,7 @@ public class UserDao implements Serializable{
 			statement.execute();
 			
 			while (rs.next()){ 
-				return new UserModelBean(rs.getString("lastname"), rs.getString("surname"), 
+				return new UserModelBean(rs.getInt("id"),rs.getString("lastname"), rs.getString("surname"), 
 						rs.getInt("age"), rs.getString("mail"), rs.getString("login"), rs.getString("pwd"), 
 						rs.getBoolean("isAdmin")); 
 			}
@@ -198,5 +199,32 @@ public class UserDao implements Serializable{
 		return null;
 		
 	}
+	
+
+	public UserModelBean getUserById(int id){ 
+		UserModelBean user = null;
+		
+		try {
+			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
+			
+			java.sql.PreparedStatement query = connection.prepareStatement("select * from user where id=?");
+			query.setInt(1, id);
+			ResultSet rs = query.executeQuery(); 
+			
+			if(rs.next()){
+				user = new UserModelBean(rs.getInt("id"),rs.getString("lastname"),rs.getString("surname"), rs.getInt("age"),rs.getString("mail"), rs.getString("login"),
+						rs.getString("pwd"), rs.getBoolean("isAdmin"));
+			}
+			else{
+				user = null;
+			}
+			connection.close();
+		} 
+		catch (SQLException e) { 
+			e.printStackTrace();
+		}
+		return user;
+	}
+	
 	
 }

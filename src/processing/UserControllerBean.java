@@ -94,6 +94,14 @@ public class UserControllerBean implements Serializable {
 		return this.userDao.addUser(userSubmitted);
 	}
 	
+	/**
+	 *  Retrieve a user thank his id
+	 * @param userSubmitted
+	 */
+	public UserModelBean getUserById(int id){
+		return this.userDao.getUserById(id);
+	}
+	
 	
 
 }

@@ -35,7 +35,7 @@
 		<p:dataScroller value="#{recipeControl.getCommentsByIdRecipe(recipeControl.specificRecipe.id)}" var="comment" chunkSize="10">
 			<p:outputPanel>
 			<h:panelGrid columns="2" style="width:100%" columnClasses="user,content">
-	 			 	<h:outputText value="UserNameTest" style="font-weight: bold"/>
+	 			 	<h:outputText value="#{userControl.getUserById(comment.idUser).login}" style="font-weight: bold"/>
 	                <h:panelGrid columns="3">
 	                    <h:outputText value="#{comment.date}" style="font-weight: bold"/>
 	 
