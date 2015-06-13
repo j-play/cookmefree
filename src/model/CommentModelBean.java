@@ -10,6 +10,10 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class CommentModelBean implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int id;
 	int idUser;
 	int idRecipe;
