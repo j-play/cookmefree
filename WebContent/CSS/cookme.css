@@ -16,6 +16,7 @@ body
 
 .content
 {
+	height:99%;
 	overflow-y: auto;
 }
 
@@ -231,6 +232,11 @@ input.connexionElem{
 * <ACCUEIL>////////////////////////////////////////////////////////////////////////////
 */
 
+.troisBoutons
+{
+	height: 50%;
+}
+
 .inlineForm
 {
 	display: inline;
@@ -238,7 +244,7 @@ input.connexionElem{
 
 .inlineForm .ui-button[class*=bigbutton]
 {
-	height : 50%;
+	height : 100%;
 	width : 20%;
 	margin: 2%;
 	font-size: 3em;

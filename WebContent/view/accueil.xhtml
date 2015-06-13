@@ -5,15 +5,17 @@
 				template="template.xhtml">
 
 	<ui:define name="content">
-		<h:form styleClass="inlineForm">
-			<p:commandButton styleClass="bigbutton button1" action="#{accueilControl.goToRecipes()}" value="Emergency"/>
-		</h:form>
-		<h:form styleClass="inlineForm">
-			<p:commandButton styleClass="bigbutton button2" action="#{accueilControl.goToRecipes()}" value="Recipes"/>
-		</h:form>
-		<h:form styleClass="inlineForm">
-			<p:commandButton styleClass="bigbutton button3" action="#{accueilControl.goToRecipes()}" value="Shop"/>
-		</h:form>
+		<div class="troisBoutons">
+			<h:form styleClass="inlineForm">
+				<p:commandButton styleClass="bigbutton button1" action="#{accueilControl.goToRecipes()}" value="Emergency"/>
+			</h:form>
+			<h:form styleClass="inlineForm">
+				<p:commandButton styleClass="bigbutton button2" action="#{accueilControl.goToRecipes()}" value="Recipes"/>
+			</h:form>
+			<h:form styleClass="inlineForm">
+				<p:commandButton styleClass="bigbutton button3" action="#{accueilControl.goToRecipes()}" value="Shop"/>
+			</h:form>
+		</div>
 	</ui:define>
 	
 </ui:composition>
