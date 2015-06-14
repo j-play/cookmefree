@@ -3,10 +3,13 @@ package processing;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
+
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+
 import model.LoginBean;
 import model.UserModelBean;
 import model.UserSubmissionModelBean;
@@ -30,22 +33,32 @@ public class UserControllerBean implements Serializable {
 	}
 	
 	//////////////METHODS
+	/**
+	 * Log the user if he's valid
+	 * @param loginBean
+	 */
 	public void checkUser(LoginBean loginBean){
 		UserModelBean user = this.userDao.checkUser(loginBean.getLogin(),loginBean.getPwd());
 		
 		if( user!=null){
-			//récupère l'espace de mémoire de JSF
+			// Retrieve the JSF memory space
 			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 			Map<String, Object> sessionMap = externalContext.getSessionMap();
-			//place l'utilisateur dans l'espace de mémoire de JSF
-		    sessionMap.put("loggedUser", user);
-		    //redirect the current page
-		    //return "userdisplay.xhtml"; 
+			// Place the user in the JSF memory space
+		    sessionMap.put("loggedUser", user); 
+		    
+		    FacesMessage msg;
+	        msg = new FacesMessage("Connection sucessful.");
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 		else{
-			//redirect the current page
-			//return "userLogin.xhtml";
+			// Error case
+			FacesMessage msg;
+			msg = new FacesMessage("Connection failed.");
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
+		
 	}
 	
 	/**
@@ -58,7 +71,7 @@ public class UserControllerBean implements Serializable {
 	}
 	
 	/**
-	 * déconnecte l'utilisateur
+	 * Disconnect the user 
 	 */
 	public void disconnectUser(){
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();

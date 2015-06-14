@@ -49,7 +49,7 @@
 					 			<h:form class="connexionElem">
 					 				<p:inputText id="login" value="#{loginBean.login}" styleClass="connexionElem" placeholder="login"></p:inputText>
 					 				<p:password id="pwd" value="#{loginBean.pwd}" styleClass="connexionElem" placeholder="password"></p:password>
-					 				<p:commandButton value="Connexion" ajax="false" action="#{userControl.checkUser(loginBean)}" icon="ui-icon-check" update=":rightHeaderPanel,:headerMenu" >
+					 				<p:commandButton value="Connexion" ajax="false" action="#{userControl.checkUser(loginBean)}" icon="ui-icon-check" update=":rightHeaderPanel,:headerMenu,loginMessages" >
 					 				</p:commandButton>
 					 			</h:form>
 				 				<br/><br/><br/>
@@ -64,10 +64,11 @@
 							</h:panelGroup>
 				 		</h:panelGroup>
 				 	</div>
-			 	
 			 	</ui:insert>
 		 	</p:layoutUnit>
 		 	<p:layoutUnit position="center" resizable="false">
+		 		<p:messages id="loginMessages" autoUpdate="true"
+								closable="true" />
 			 	<div class="content">
 			 		<ui:insert name="content"> <h1>Default content</h1> </ui:insert>
 		 		</div>
