@@ -75,6 +75,9 @@ public class UserControllerBean implements Serializable {
 	 */
 	public void disconnectUser(){
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		FacesMessage msg;
+        msg = new FacesMessage("Disconnection sucessful.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 	
 	/**
