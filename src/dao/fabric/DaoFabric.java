@@ -19,13 +19,12 @@ public class DaoFabric implements Serializable{
 	private static final String DB_PORT = "3306";
 	private static final String DB_NAME = "cookme"; 
 	private static final String DB_USER = "root"; 
-	private static final String DB_PWD = "";
+	private static final String DB_PWD = "root";
 	
 	//////////////////PRIVATE CONSTRUCTOR
 	private DaoFabric() { 
 		super();
 		try {
-			//Chargement du Driver, puis eÌ�tablissement de la connexion 
 			Class.forName("com.mysql.jdbc.Driver");
 		} 
 		catch (ClassNotFoundException e) { 
