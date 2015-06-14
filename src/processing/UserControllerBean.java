@@ -67,7 +67,7 @@ public class UserControllerBean implements Serializable {
 	 */
 	public String registerUser(UserSubmissionModelBean userSubmitted){
 		this.userDao.addUser(userSubmitted);
-		return "accueil.jsf";
+		return "accueil.jsf?faces-redirect=true";
 	}
 	
 	/**
@@ -121,7 +121,4 @@ public class UserControllerBean implements Serializable {
 	public UserModelBean getUserById(int id){
 		return this.userDao.getUserById(id);
 	}
-	
-	
-
 }

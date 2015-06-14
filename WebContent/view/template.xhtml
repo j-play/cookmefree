@@ -15,60 +15,54 @@
 	 <h:body>
 	 	<p:layout fullPage="true">
 		 	<p:layoutUnit position="north" resizable="false" size="150">
-			 	<ui:insert name="header">
+			 	<div class="header">
 			 	
-				 	<div class="header">
-				 	
-				 		<div class="headerTitle">
-					 		<ui:insert name="headerTitle">
-						 		<h1>
-					 				CookMe
-				 				</h1>
-					 		</ui:insert>
-				 		</div>
-				 		
-				 		<h:form id="headerMenuForm">  
-						    <p:growl id="headerMenu"/>
-						    <p:menubar>
-						    	<p:menuitem value="Home" url="#{accueilControl.goToAccueil()}" icon="ui-icon-home" />
-						    	
-						    	<p:submenu label="Administration" icon="ui-icon-gear" rendered="#{not empty loggedUser and loggedUser.isAdmin}">
-						            <p:menuitem value="Recipes" url="#{accueilControl.goToAdminRecipe()}" />
-						            <p:separator />
-						            <p:menuitem value="Users" url="#{accueilControl.goToAdminUser()}" />
-						        </p:submenu>
-						    </p:menubar>
-						</h:form>
-				 		
-				 		<h:panelGroup id="rightHeaderPanel" class="rightHeader">
-				 			<h:panelGroup id="panelLogin" rendered="#{not empty loggedUser}">
-			
-			    				<p>Welcome <h:outputText value="#{loggedUser.login} "/></p>
-			    				<h:form>
-			    					<p:commandButton value="Déconnexion" ajax="false" action="#{userControl.disconnectUser()}" update=":rightHeaderPanel,:headerMenu">
-			    					</p:commandButton>
-			    				</h:form>
-			    			</h:panelGroup>
-			    			<h:panelGroup  id="panelConnect" rendered="#{empty loggedUser}">
-					 			<h:form class="connexionElem">
-					 				<p:inputText id="login" value="#{loginBean.login}" styleClass="connexionElem" placeholder="login"></p:inputText>
-					 				<p:password id="pwd" value="#{loginBean.pwd}" styleClass="connexionElem" placeholder="password"></p:password>
-					 				<p:commandButton value="Connexion" ajax="false" action="#{userControl.checkUser(loginBean)}" icon="ui-icon-check" update=":rightHeaderPanel,:headerMenu,loginMessages" >
-					 				</p:commandButton>
-					 			</h:form>
-				 				<br/><br/><br/>
-					 			<div class="inscriptionHeader">
-					 				<h:form>
-					 					<p:commandLink id="registrationLink" action="registration.jsf" styleClass="connexionElem"><i class="fa fa-plus-circle"/></p:commandLink>
-					 					<p:outputLabel for="registrationLink" styleClass="connexionElem">
-											Become Member
-										</p:outputLabel>
-					 				</h:form>
-					 			</div>
-							</h:panelGroup>
-				 		</h:panelGroup>
-				 	</div>
-			 	</ui:insert>
+			 		<div class="headerTitle">
+				 		<ui:insert name="headerTitle">
+					 		<h1>
+				 				CookMe
+			 				</h1>
+				 		</ui:insert>
+			 		</div>
+			 		
+			 		<h:form id="headerMenuForm">  
+					    <p:growl id="headerMenu"/>
+					    <p:menubar>
+					    	<p:menuitem value="Home" url="#{accueilControl.goToAccueil()}" icon="ui-icon-home" />
+					    	
+					    	<p:submenu label="Administration" icon="ui-icon-gear" rendered="#{not empty loggedUser and loggedUser.isAdmin}">
+					            <p:menuitem value="Recipes" url="#{accueilControl.goToAdminRecipe()}" />
+					            <p:separator />
+					            <p:menuitem value="Users" url="#{accueilControl.goToAdminUser()}" />
+					        </p:submenu>
+					    </p:menubar>
+					</h:form>
+			 		
+			 		<h:panelGroup id="rightHeaderPanel" class="rightHeader">
+			 			<h:panelGroup id="panelLogin" rendered="#{not empty loggedUser}">
+		
+		    				<p>Welcome <h:outputText value="#{loggedUser.login} "/></p>
+		    				<h:form>
+		    					<p:commandButton value="Déconnexion" ajax="false" action="#{userControl.disconnectUser()}" update=":rightHeaderPanel,:headerMenuForm">
+		    					</p:commandButton>
+		    				</h:form>
+		    			</h:panelGroup>
+		    			<h:panelGroup  id="panelConnect" rendered="#{empty loggedUser}">
+				 			<h:form class="connexionElem">
+				 				<p:inputText id="login" value="#{loginBean.login}" styleClass="connexionElem" placeholder="login"></p:inputText>
+				 				<p:password id="pwd" value="#{loginBean.pwd}" styleClass="connexionElem" placeholder="password"></p:password>
+				 				<p:commandButton value="Connexion" ajax="false" action="#{userControl.checkUser(loginBean)}" icon="ui-icon-check" update=":rightHeaderPanel,:headerMenu,loginMessages" >
+				 				</p:commandButton>
+				 			</h:form>
+			 				<br/><br/><br/><br/><br/>
+				 			<div class="inscriptionHeader">
+				 				<h:form>
+				 					<p:commandLink id="registrationLink" action="#{accueilControl.goToRegistration()}" styleClass="connexionElem"><i class="fa fa-plus-circle"/>Become Member</p:commandLink>
+				 				</h:form>
+				 			</div>
+						</h:panelGroup>
+			 		</h:panelGroup>
+			 	</div>
 		 	</p:layoutUnit>
 		 	<p:layoutUnit position="center" resizable="false">
 			 	<div class="content">
