@@ -13,14 +13,11 @@
 	</ui:define>
 
 	<ui:define name="content">
-		<h:panelGroup
-			rendered="#{not empty loggedUser and loggedUser.isAdmin}">
-			<h:panelGrid columns="2" id="recipeAdminPanelGrid"
-				columnClasses="customColumns">
+		<h:panelGroup rendered="#{not empty loggedUser and loggedUser.isAdmin}">
+			<h:panelGrid columns="2" id="recipeAdminPanelGrid" columnClasses="customColumns">
 				<p:panel header="Recipes list" id="recipeListPanel">
 					<h:form id="recipeTableForm">
-						<p:messages id="recipesAdminMessages" autoUpdate="true"
-							closable="true" />
+						<p:messages id="recipesAdminMessages" autoUpdate="true" closable="true" />
 						<p:dataTable var="recipe" value="#{recipeListModelBean.recipeList}"
 							tableStyle="table-layout: auto; text-align: center;"
 							paginator="true"
@@ -60,8 +57,7 @@
 				<p:panel header="Recipe details" id="recipeDetailsPanel">
 
 					<!-- UPDATE RECIPE FORM -->
-					<h:form id="recipeUpdateForm"
-						rendered="#{not empty recipeListModelBean.selectedRecipe}">
+					<h:form id="recipeUpdateForm" rendered="#{not empty recipeListModelBean.selectedRecipe}">
 						<h2>Recipe update form</h2>
 						<div id="adminRecipeForm">
 						<p:outputLabel for="title">Title:</p:outputLabel>
@@ -148,8 +144,7 @@
 					</h:form>
 
 					<!-- ADD RECIPE FORM -->
-					<h:form id="recipeAddForm"
-						rendered="#{empty recipeListModelBean.selectedRecipe}">
+					<h:form id="recipeAddForm" rendered="#{empty recipeListModelBean.selectedRecipe}">
 						<h2>Recipe update form</h2>
 						<div id="adminRecipeForm">
 						<p:outputLabel for="title">Title:</p:outputLabel>
@@ -224,8 +219,7 @@
 								<p:message showDetail="true" for="description" errorClass="error" />
 							</div>
 							<div class="recipeAdminButtons">
-								<p:commandButton icon="ui-icon-close" value="Reset" ajax="true"
-								immediate="true">
+								<p:commandButton icon="ui-icon-close" value="Reset" ajax="true" immediate="true">
 									<p:ajax update="recipeDetailsPanel" resetValues="true" />
 								</p:commandButton>
 								<p:commandButton value="Add"
