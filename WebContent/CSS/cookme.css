@@ -408,7 +408,10 @@ input.connexionElem{
 	bottom: 0; 
 	left: 0;
 }
-
+#headerMenuForm{
+	display:inline-block;
+	width: 50%;
+}
 
 /*
 * <PRIMEFACES>/////////////////////////////////////////////////////////////////////////////////
