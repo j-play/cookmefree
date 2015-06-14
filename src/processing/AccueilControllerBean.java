@@ -5,6 +5,9 @@ import java.io.Serializable;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
+/*
+ * This controller is used by the welcome page and by the template to set the action attributes of the buttons
+ */
 @ManagedBean(name="accueilControl")
 @ApplicationScoped
 public class AccueilControllerBean implements Serializable {

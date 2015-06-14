@@ -10,25 +10,28 @@ import javax.faces.context.FacesContext;
 
 import processing.UserControllerBean;
 
+/*
+ * This model bean represents a list of users
+ */
 @ManagedBean
 @ViewScoped
 public class UserListModelBean implements Serializable {
 
+	///////////////ATTRIBUTES
 	private static final long serialVersionUID = 1L;
 	private UserControllerBean userController;
 	private List<UserModelBean> userList;
 	private UserModelBean selectedUser;
 	
-	// Constructor
+	//////////////CONSTRUCTOR
 	public UserListModelBean() {
+		super();
 		this.userController = new UserControllerBean();
 		this.userList = this.userController.getAllUsers();
 		this.selectedUser = null;
 	}
 	
-	/*
-	 * GETTERS / SETTERS
-	 */
+	/////////////MUTATORS
 	public List<UserModelBean> getUserList(){
 		this.userList = this.userController.getAllUsers();
 		return this.userList;
@@ -37,7 +40,6 @@ public class UserListModelBean implements Serializable {
 	public UserModelBean getSelectedUser() {
 		return selectedUser;
 	}
-
 	public void setSelectedUser(UserModelBean selectedUser) {
 		this.selectedUser = selectedUser;
 	}
@@ -106,7 +108,5 @@ public class UserListModelBean implements Serializable {
 	        FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 	}
-	
-	
 	
 }

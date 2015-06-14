@@ -5,10 +5,14 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+/*
+ * This model bean represents an user
+ */
 @ManagedBean
 @SessionScoped
 public class UserModelBean implements Serializable{
 
+	////////////////ATTRIBUTES
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String lastname;
@@ -19,9 +23,10 @@ public class UserModelBean implements Serializable{
 	private String pwd;
 	private boolean isAdmin;
 	
+	//////////////CONSTRUCTORS
 	public UserModelBean(){
+		super();
 	}
-
 	public UserModelBean(String lastname,String surname,Integer age,String mail,String login,String pwd) { 
 		this.lastname = lastname;
 		this.surname = surname; 
@@ -31,7 +36,6 @@ public class UserModelBean implements Serializable{
 		this.pwd = pwd;
 		this.isAdmin = false;
 	}
-
 	public UserModelBean(String lastname,String surname,Integer age,String mail,String login,String pwd,boolean isAdmin) { 
 		this.lastname = lastname;
 		this.surname = surname; 
@@ -41,7 +45,6 @@ public class UserModelBean implements Serializable{
 		this.pwd = pwd;
 		this.isAdmin = isAdmin;
 	}
-	
 	public UserModelBean(Integer id, String lastname,String surname,Integer age,String mail,String login,String pwd,boolean isAdmin) { 
 		this.id = id;
 		this.lastname = lastname;
@@ -53,10 +56,10 @@ public class UserModelBean implements Serializable{
 		this.isAdmin = isAdmin;
 	}
 	
+	/////////////////MUTATORS
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -64,7 +67,6 @@ public class UserModelBean implements Serializable{
 	public String getLastname() { 
 		return lastname; 
 	}
-	
 	public void setLastname(String lastname) { 
 		this.lastname = lastname; 
 	} 
@@ -72,7 +74,6 @@ public class UserModelBean implements Serializable{
 	public String getSurname() { 
 		return surname; 
 	}
-	
 	public void setSurname(String surname) { 
 		this.surname = surname;
 	} 
@@ -80,7 +81,6 @@ public class UserModelBean implements Serializable{
 	public Integer getAge() { 
 		return age;
 	}
-	
 	public void setAge(Integer age) {
 		this.age = age;
 	}
@@ -88,7 +88,6 @@ public class UserModelBean implements Serializable{
 	public String getMail() { 
 		return mail;
 	}
-	
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
@@ -110,7 +109,6 @@ public class UserModelBean implements Serializable{
 	public boolean getIsAdmin() {
 		return isAdmin;
 	}
-
 	public void setIsAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}

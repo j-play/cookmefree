@@ -18,10 +18,13 @@ import dao.fabric.DaoFabric;
 import dao.instance.CommentDao;
 import dao.instance.RecipesDao;
 
+/*
+ * This controller is used for every action concerning recipes
+ */
 @ManagedBean(name="recipeControl")
 @SessionScoped
 public class RecipeControllerBean implements Serializable {
-	//ATTRIBUTES
+	///////////////////ATTRIBUTES
 	private static final long serialVersionUID = 1L;
 	private RecipesDao recipeDao;
 	private CommentDao commentDao;
@@ -29,7 +32,7 @@ public class RecipeControllerBean implements Serializable {
 	private List<RecipeModelBean> recipeList;
 	private SearchModelBean search;
 
-	//MUTATORS
+	/////////////////////MUTATORS
 	public SearchModelBean getSearch() {
 		return search;
 	}
@@ -43,7 +46,7 @@ public class RecipeControllerBean implements Serializable {
 		return specificRecipe;
 	}
 	
-	//CONSTRUCTORS
+	///////////////////CONSTRUCTORS
 	public RecipeControllerBean() {
 		this.recipeDao=DaoFabric.getInstance().createRecipesDao();
 		this.commentDao=DaoFabric.getInstance().createCommentDao();
@@ -52,7 +55,7 @@ public class RecipeControllerBean implements Serializable {
 		this.search = new SearchModelBean();
 	}
 	
-	//METHODS
+	//////////////////METHODS
 	public void loadAllRecipe(){
 		recipeList = this.recipeDao.getAllRecipes();
 		//reÌ�cupeÌ€re l'espace de meÌ�moire de JSF
@@ -116,12 +119,18 @@ public class RecipeControllerBean implements Serializable {
 				inputComment.getMark(),new Date());
 		return this.commentDao.addComment(comment);
 	}
-	//REDIRECTIONS
+	
+	/*
+	 * Redirects from the searchRecipe page to the resultRecipe page when the form is submitted
+	 */
 	public String goToResult(){
 		recipeList=recipeDao.getRecipesByCriteria(search);
 		return("resultRecipe.jsf?faces-redirect=true");
 	}
-
+	
+	/*
+	 * Redirects from the resultRecipe page to the showRecipe page when a specific recipe is clicked
+	 */
 	public String goToShowRecipe(int id){
 		specificRecipe = this.recipeDao.getRecipesByID(id);
 		return("showRecipe.jsf?faces-redirect=true");

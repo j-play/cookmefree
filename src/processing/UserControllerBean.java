@@ -3,29 +3,33 @@ package processing;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
-
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-
 import model.LoginBean;
 import model.UserModelBean;
 import model.UserSubmissionModelBean;
 import dao.fabric.DaoFabric;
 import dao.instance.UserDao;
 
+/*
+ * This controller is used for every action concerning users
+ */
 @ManagedBean(name="userControl")
-@ApplicationScoped // Utilisation de application scope afin d'offrir un point d'entrée unique à l'ensemble des clients
+@ApplicationScoped
 public class UserControllerBean implements Serializable {
 
+	//////////////ATTRIBUTES
 	private static final long serialVersionUID = 1L;
 	private UserDao userDao; 
 	
+	//////////////CONSTRUCTOR
 	public UserControllerBean() {
 		this.userDao=DaoFabric.getInstance().createUserDao();
 	}
 	
+	//////////////METHODS
 	public void checkUser(LoginBean loginBean){
 		UserModelBean user = this.userDao.checkUser(loginBean.getLogin(),loginBean.getPwd());
 		
