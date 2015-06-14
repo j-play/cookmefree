@@ -24,14 +24,14 @@
         rows="4" paginator="true" id="recipeList"
         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
         rowsPerPageTemplate="6,12,16">
-        		 <p:panel >
+        		 <p:panel>
 		            <h:panelGrid columns="2" style="width:100%" columnClasses="detailsRecipe, descriptionRecipe">
 		            	<h:panelGrid columns="1">
 		            		
-		            		<h:panelGroup><i class="fa-bookmark-o fa"></i><h:outputText value=" #{recipe.type}" /></h:panelGroup>
+		            		<h:panelGroup><i class="fa-bookmark-o fa"/><h:outputText value=" #{recipe.type}" /></h:panelGroup>
 		            		<h:panelGroup><i class="fa-clock-o fa"/><h:outputText value=" #{recipe.duration}" /></h:panelGroup>
-		            		<h:panelGroup><i class="fa-users fa"></i><h:outputText value=" #{recipe.nbPeople}" /></h:panelGroup>
-		            		<h:panelGroup><i class="fa-pencil-square-o fa"></i><p:rating value="#{recipe.expertise}" readonly="true" /></h:panelGroup>
+		            		<h:panelGroup><i class="fa-users fa"/><h:outputText value=" #{recipe.nbPeople}" /></h:panelGroup>
+		            		<h:panelGroup><i class="fa-pencil-square-o fa"/><p:rating value="#{recipe.expertise}" readonly="true" /></h:panelGroup>
 		            		
 		            	</h:panelGrid>
 						<h:panelGrid columns="1">
@@ -40,7 +40,7 @@
        						 		<h:outputText value="#{recipe.title}" ajax="false" />
     							</p:commandLink>
     						</h:panelGroup>
-		            		<h:panelGroup><h:outputText value="#{recipe.description}" /></h:panelGroup>
+		            		<h:panelGroup><h:outputText value="#{recipe.shortDescription()}..."/></h:panelGroup>
 		 				</h:panelGrid>
 		            </h:panelGrid>
 		        </p:panel>

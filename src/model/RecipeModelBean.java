@@ -92,6 +92,11 @@ public class RecipeModelBean implements Serializable{
 	public void setType(String type) {
 		this.type = type;
 	}
+	
+	///////////////METHODS
+	public String shortDescription(){
+		return description.substring(0, 200);
+	}
 
 	@Override
 	public String toString() { 
