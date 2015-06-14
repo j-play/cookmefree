@@ -4,10 +4,14 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+/*
+ * This model bean represents a recipe
+ */
 @ManagedBean
 @RequestScoped
 public class RecipeModelBean implements Serializable{
 
+	///////////////ATTRIBUTES
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String title;
@@ -17,9 +21,10 @@ public class RecipeModelBean implements Serializable{
 	private int nbPeople;
 	private String type;
 	
+	/////////////////CONSTRUCTORS
 	public RecipeModelBean(){
+		super();
 	}
-	
 	public RecipeModelBean(String title, String description, int expertise, int duration, int nbPeople, String type) {
 		this.title = title;
 		this.description = description;
@@ -28,7 +33,6 @@ public class RecipeModelBean implements Serializable{
 		this.nbPeople = nbPeople;
 		this.type = type;
 	}
-	
 	public RecipeModelBean(int id, String title, String description, int expertise, int duration, int nbPeople, String type) {
 		this.id= id;
 		this.title = title;
@@ -39,17 +43,17 @@ public class RecipeModelBean implements Serializable{
 		this.type = type;
 	}
 
+	//////////////////MUTATORS
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public String getTitle() {
 		return title;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -57,7 +61,6 @@ public class RecipeModelBean implements Serializable{
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -65,7 +68,6 @@ public class RecipeModelBean implements Serializable{
 	public int getExpertise() {
 		return expertise;
 	}
-
 	public void setExpertise(int expertise) {
 		this.expertise = expertise;
 	}
@@ -73,7 +75,6 @@ public class RecipeModelBean implements Serializable{
 	public int getDuration() {
 		return duration;
 	}
-
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
@@ -81,7 +82,6 @@ public class RecipeModelBean implements Serializable{
 	public int getNbPeople() {
 		return nbPeople;
 	}
-
 	public void setNbPeople(int nbPeople) {
 		this.nbPeople = nbPeople;
 	}
@@ -89,7 +89,6 @@ public class RecipeModelBean implements Serializable{
 	public String getType() {
 		return type;
 	}
-
 	public void setType(String type) {
 		this.type = type;
 	}

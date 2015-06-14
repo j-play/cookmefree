@@ -2,17 +2,19 @@ package dao.instance;
 
 import java.io.Serializable;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import model.CommentModelBean;
-import model.RecipeModelBean;
 
+/*
+ * DAO pour récupérer les commentaires liés aux recettes
+ */
 public class CommentDao implements Serializable {
+	
+	/////////////////ATTRIBUTES
 	private static final long serialVersionUID = 1L;
 	private static String dB_HOST;   
 	private static String dB_PORT;
@@ -21,6 +23,7 @@ public class CommentDao implements Serializable {
 	private static String dB_PWD;
 	private Connection connection;
 	
+	//////////////////CONSTRUCTOR
 	public CommentDao(String DB_HOST,String DB_PORT, String DB_NAME,String DB_USER,String DB_PWD) {
 	       dB_HOST = DB_HOST;
 	       dB_PORT = DB_PORT;
@@ -28,8 +31,9 @@ public class CommentDao implements Serializable {
 	       dB_USER = DB_USER;
 	       dB_PWD = DB_PWD;
 	}
+	
 	/**
-	 * Retrieve the list of the comments for a recipe
+	 * Retrieves the list of the comments for a recipe
 	 * @return ArrayList<RecipeModel>
 	 */
 	public List<CommentModelBean> getCommentsByIdRecipe(int idRecipe){ 
@@ -59,12 +63,10 @@ public class CommentDao implements Serializable {
 	/**
 	 * Add a new comment to the database
 	 * @param commentModelBean
-	 * @return true if the comment has been added, false either
+	 * @return true if the comment has been added, false otherwise
 	 */
 	public boolean addComment(CommentModelBean comment) {
-		
 		Integer rowCount;
-		
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
 			

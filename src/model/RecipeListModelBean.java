@@ -8,25 +8,27 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import processing.RecipeControllerBean;
 
+/*
+ * This model bean represents a list of recipes
+ */
 @ManagedBean
 @ViewScoped
 public class RecipeListModelBean implements Serializable {
 
+	///////////////ATTRIBUTES
 	private static final long serialVersionUID = 1L;
 	private RecipeControllerBean recipeController;
 	private List<RecipeModelBean> recipeList;
 	private RecipeModelBean selectedRecipe;
 	
-	// Constructor
+	/////////////CONSTRUCTOR
 	public RecipeListModelBean() {
 		this.recipeController = new RecipeControllerBean();
 		this.recipeList = this.recipeController.getAllRecipes();
 		this.selectedRecipe = null;
 	}
 	
-	/*
-	 * GETTERS / SETTERS
-	 */
+	//////////////MUTATORS
 	public List<RecipeModelBean> getRecipeList(){
 		this.recipeList = this.recipeController.getAllRecipes();
 		return this.recipeList;
@@ -35,7 +37,6 @@ public class RecipeListModelBean implements Serializable {
 	public RecipeModelBean getSelectedRecipe() {
 		return selectedRecipe;
 	}
-
 	public void setSelectedRecipe(RecipeModelBean selectedRecipe) {
 		this.selectedRecipe = selectedRecipe;
 	}
@@ -66,11 +67,10 @@ public class RecipeListModelBean implements Serializable {
 	        msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 	        FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
-		
 	}
 	
 	/**
-	 * Update the specified recipe and his data
+	 * Update the specified recipe and its data
 	 * @param RecipeModelBean
 	 */
 	public void updateRecipe(RecipeModelBean recipe){
@@ -90,7 +90,7 @@ public class RecipeListModelBean implements Serializable {
 	}
 	
 	/**
-	 * Add the specified recipe and his data
+	 * Add the specified recipe and its data
 	 * @param RecipeModelBean
 	 */
 	public void addRecipe(RecipeModelBean recipe){

@@ -9,8 +9,12 @@ import java.util.ArrayList;
 import model.RecipeModelBean;
 import model.SearchModelBean;
 
-
+/*
+ * DAO pour g�rer les recettes de la base
+ */
 public class RecipesDao implements Serializable{
+	
+	/////////////////ATTRIBUTES
 	private static final long serialVersionUID = 1L;
 	private static String dB_HOST;   
 	private static String dB_PORT;
@@ -19,6 +23,7 @@ public class RecipesDao implements Serializable{
 	private static String dB_PWD;
 	private Connection connection;
 	
+	/////////////////CONSTRUCTOR
 	public RecipesDao(String DB_HOST,String DB_PORT, String DB_NAME,String DB_USER,String DB_PWD) {
 	       dB_HOST = DB_HOST;
 	       dB_PORT = DB_PORT;
@@ -33,9 +38,7 @@ public class RecipesDao implements Serializable{
 	 * @return true if the recipe has been added, false either
 	 */
 	public boolean addRecipe(RecipeModelBean recipe) {
-		
 		Integer rowCount;
-		
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
 			
@@ -71,9 +74,7 @@ public class RecipesDao implements Serializable{
 	 * @return true if the user has been deleted, false otherwise
 	 */
 	public boolean deleteRecipe(Integer id) {
-		
 		Integer rowCount;
-		
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
 			
@@ -104,9 +105,7 @@ public class RecipesDao implements Serializable{
 	 * @return true if the recipe has been updated, false otherwise
 	 */
 	public boolean updateRecipe(RecipeModelBean recipe) {
-		
 		Integer rowCount;
-		
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
 			
@@ -138,7 +137,7 @@ public class RecipesDao implements Serializable{
 	}
 	
 	/**
-	 * Retrieve the list of the existing recipes
+	 * Retrieve the list of all the existing recipes
 	 * @return ArrayList<RecipeModel>
 	 */
 	public ArrayList<RecipeModelBean> getAllRecipes(){ 
@@ -165,8 +164,8 @@ public class RecipesDao implements Serializable{
 	}
 	
 	/**
-	 * Récupération de la liste des recettes
-	 * @return ArrayList contenant des beans RecipeModelBean
+	 * Retrieve the recipe with the specified ID
+	 * @return RecipeModelBean
 	 */
 	public RecipeModelBean getRecipesByID(int id){ 
 		RecipeModelBean recipe = null;
@@ -193,12 +192,18 @@ public class RecipesDao implements Serializable{
 		return recipe;
 	}
 	
+	/*
+	 * Retrieve a list of recipes matching a set of criteria defined in the SearchModelBean parameter
+	 * @return ArrayList<RecipeModelBean>
+	 */
 	public ArrayList<RecipeModelBean> getRecipesByCriteria(SearchModelBean search){
 		ArrayList<RecipeModelBean> returnV=new ArrayList<>();
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
+			//request base
 			String queryString="select * from recipe where ";
 			boolean preceded=false;
+			//duration part
 			if(!search.isIndiff1()){
 				if(preceded){
 					queryString+="and ";
@@ -208,6 +213,7 @@ public class RecipesDao implements Serializable{
 				}
 				queryString+="duration=? ";
 			}
+			//expertise part
 			if(!search.isIndiff2()){
 				if(preceded){
 					queryString+="and ";
@@ -217,6 +223,7 @@ public class RecipesDao implements Serializable{
 				}
 				queryString+="expertise=? ";
 			}
+			//people part
 			if(!search.isIndiff3()){
 				if(preceded){
 					queryString+="and ";
@@ -226,6 +233,7 @@ public class RecipesDao implements Serializable{
 				}
 				queryString+="nbPeople=? ";
 			}
+			//type part
 			if(!search.isIndiff4()){
 				if(preceded){
 					queryString+="and ";
@@ -235,11 +243,12 @@ public class RecipesDao implements Serializable{
 				}
 				queryString+="type=? ";
 			}
-			
+			//if no criteria matched, retrieve all recipes
 			if(!preceded){
 				queryString+="1=1";
 			}
 			
+			//Bind parameters
 			java.sql.PreparedStatement query = connection.prepareStatement(queryString);
 			int nbParam=1;
 			if(!search.isIndiff1()){
@@ -259,12 +268,14 @@ public class RecipesDao implements Serializable{
 				nbParam++;
 			}
 			
+			//construct the list with the ResultSet
 			ResultSet rs = query.executeQuery();
 			while (rs.next()){ 
 				returnV.add(new RecipeModelBean(rs.getInt("id"),rs.getString("title"), rs.getString("description"), rs.getInt("Expertise"),
 						rs.getInt("duration"), rs.getInt("nbPeople"), rs.getString("type"))
 				);
 			}
+			
 			if(returnV.isEmpty()){
 				return null;
 			}

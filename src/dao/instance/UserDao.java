@@ -6,12 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import model.RecipeModelBean;
 import model.UserModelBean;
 
+/*
+ * DAO pour récupérer les utilisateurs
+ */
 public class UserDao implements Serializable{
 	
+	///////////////ATTRIBUTES
 	private static final long serialVersionUID = 1L;
 	private static String dB_HOST;   
 	private static String dB_PORT;
@@ -20,6 +22,7 @@ public class UserDao implements Serializable{
 	private static String dB_PWD;
 	private Connection connection;
 	
+	///////////////CONSTRUCTOR
 	public UserDao(String DB_HOST,String DB_PORT, String DB_NAME,String DB_USER,String DB_PWD) {
 	       dB_HOST = DB_HOST;
 	       dB_PORT = DB_PORT;
@@ -31,14 +34,11 @@ public class UserDao implements Serializable{
 	/**
 	 * Add a new user in the database
 	 * @param user UserModelBean
-	 * @return true is the user has been successfully registered, false either
+	 * @return true iF the user has been successfully registered, false otherwise
 	 */
 	public boolean addUser(UserModelBean user) {
-		
 		Integer rowCount;
-		
 		try {
-
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
 			
 			String sql = "INSERT INTO user (login, pwd, surname, lastname, age, mail, isAdmin) VALUES(?,?,?,?,?,?,false)";
@@ -69,13 +69,11 @@ public class UserDao implements Serializable{
 	
 	/**
 	 * Delete the user with the specified id
-	 * @param id user identifiant
-	 * @return true if the user has been deleted, false either
+	 * @param id user id
+	 * @return true if the user has been deleted, false otherwise
 	 */
 	public boolean deleteUser(Integer id) {
-		
 		Integer rowCount;
-		
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
 			
@@ -103,12 +101,10 @@ public class UserDao implements Serializable{
 	/**
 	 * Update the specified user
 	 * @param user UserModelBean
-	 * @return true if the user has been updated, false either
+	 * @return true if the user has been updated, false otherwise
 	 */
 	public boolean updateUser(UserModelBean user) {
-		
 		Integer rowCount;
-		
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
 			
@@ -145,8 +141,7 @@ public class UserDao implements Serializable{
 	 */
 	public ArrayList<UserModelBean> getAllUser(){ 
 		ArrayList<UserModelBean> userList=new ArrayList<UserModelBean>();
-	    // CreÌ�ation de la requeÌ‚te
-		
+	    // create the request
 		try {
 			connection = java.sql.DriverManager.getConnection("jdbc:mysql://"+dB_HOST+":"+dB_PORT+"/"+dB_NAME, dB_USER, dB_PWD);
 			
@@ -169,10 +164,10 @@ public class UserDao implements Serializable{
 	}
 	
 	/**
-	 * Return the specified user
+	 * Return the user with the specified login / password
 	 * @param login
 	 * @param password
-	 * @return UserModelBean if the user exists, null either
+	 * @return UserModelBean if the user exists, null otherwise
 	 */
 	public UserModelBean checkUser(String login, String password){
 		try {
@@ -200,7 +195,9 @@ public class UserDao implements Serializable{
 		
 	}
 	
-
+	/*
+	 * Returns the user with the specified id
+	 */
 	public UserModelBean getUserById(int id){ 
 		UserModelBean user = null;
 		
