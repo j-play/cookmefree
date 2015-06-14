@@ -12,10 +12,13 @@
 		</div>
 	</ui:define>
 
-	<ui:define name="content" rendered="#{empty recipeControl.recipeList}">
-		<h1>Désolé aucune recette ne correspond à votre demande.</h1>
-	</ui:define>
 	<ui:define name="content">
+		<h:panelGroup rendered="#{empty recipeControl.recipeList}">
+			<h1>Sorry there is not recipe corresponding to these parameters.</h1>
+			<br/>
+			<p:commandButton action="#{accueilControl.goToRecipes()}" value="Back" icon="ui-icon-arrowreturnthick-1-w"/>
+		</h:panelGroup>
+		
 		<h:panelGroup rendered="#{not empty recipeControl.recipeList}">
 			<p:dataGrid var="recipe" value="#{recipeControl.recipeList}" columns="2" layout="grid"
         rows="4" paginator="true" id="recipeList"

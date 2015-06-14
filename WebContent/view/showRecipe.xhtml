@@ -12,62 +12,68 @@
 		</div>
 	</ui:define>
 	
-	<ui:define name="content" rendered="#{empty recipeControl.specificRecipe}">
-		<h1>Désolé la recette demandée est inconnue</h1>
-	</ui:define>
-	<ui:define name="content" rendered="#{not empty recipeControl.specificRecipe}">
-		<div id="showRecipeDetails">
-			<i class="fa-bookmark-o fa fa-2x"/><h:outputText value="#{recipeControl.specificRecipe.type}"/>
-			<br/><br/>
-			<i class="fa-clock-o fa fa-2x"/><h:outputText value="#{recipeControl.specificRecipe.duration}"/> minutes
-			<br/><br/>
-			<i class="fa-users fa fa-2x"/><h:outputText value="#{recipeControl.specificRecipe.nbPeople}"/> people
-			<br/><br/>
-			<i class="fa-pencil-square-o fa fa-2x"/>Difficulty : <h:outputText value="#{recipeControl.specificRecipe.expertise}"/>/5
-		</div>
-		<div id="recipeContent">
-			<h1>
-				<h:outputText value="#{recipeControl.specificRecipe.title}"/>
-			</h1>
-			<h:outputText value="#{recipeControl.specificRecipe.description}"/>
-		</div>
-		<hr/>
+	<ui:define name="content">
+		<h:panelGroup rendered="#{empty recipeControl.specificRecipe}">
+			<h1>Sorry the requested recipe does not exist.</h1>
+		</h:panelGroup>
 		
-		<p:dataScroller value="#{recipeControl.getCommentsByIdRecipe(recipeControl.specificRecipe.id)}" var="comment" chunkSize="10">
-			<p:panel>
-			<p:outputPanel>
-			<h:panelGrid columns="4" style="width: 100%" columnClasses="usernameComment,dateComment, contentComment, markComment">
-	 			 		<h:outputText value="#{userControl.getUserById(comment.idUser).login}" style="font-weight: bold"/>
-
-	                    <h:outputText value="#{comment.date}" style="font-weight: bold"/>
-
-	                    <h:outputText value="#{comment.content}" style="font-weight: bold"/>
-
-	 					<p:rating value="#{comment.mark}" readonly="true" />
-
-       	 	</h:panelGrid>
-       	 	</p:outputPanel>
-       	 	</p:panel>
-		</p:dataScroller>
-		<h:panelGroup rendered="#{not empty loggedUser}">
-		<h:form>
-		<h:panelGrid columns="4" style="width: 98%" columnClasses="usernameComment,dateComment,contentComment, markComment">
-			<h:panelGroup> 
+		<h:panelGroup rendered="#{not empty recipeControl.specificRecipe}">
+			<div id="showRecipeDetails">
+				<i class="fa-bookmark-o fa fa-2x"/> <h:outputText value="#{recipeControl.specificRecipe.type}"/>
+				<br/><br/>
+				<i class="fa-clock-o fa fa-2x"/> <h:outputText value="#{recipeControl.specificRecipe.duration}"/> minutes
+				<br/><br/>
+				<i class="fa-users fa fa-2x"/> <h:outputText value="#{recipeControl.specificRecipe.nbPeople}"/> people
+				<br/><br/>
+				<i class="fa-pencil-square-o fa fa-2x"/> Difficulty : <h:outputText value="#{recipeControl.specificRecipe.expertise}"/>/5
+			</div>
+			<div id="recipeContent">
+				<h1>
+					<h:outputText value="#{recipeControl.specificRecipe.title}"/>
+				</h1>
+				<h:outputText value="#{recipeControl.specificRecipe.description}"/>
+			</div>
+			<br/><br/>
+			<p:commandButton action="#{accueilControl.goToRecipes()}" value="Back" icon="ui-icon-arrowreturnthick-1-w"/>
+			<hr/>
+			
+			<h1>Comments</h1>
+			<p:dataScroller value="#{recipeControl.getCommentsByIdRecipe(recipeControl.specificRecipe.id)}" var="comment">
+				<p:panel>
+					<p:outputPanel>
+						<h:panelGrid columns="4" style="width: 100%" columnClasses="usernameComment,dateComment, contentComment, markComment">
+				 			 		<h:outputText value="#{userControl.getUserById(comment.idUser).login}" style="font-weight: bold"/>
+			
+				                    <h:outputText value="#{comment.date}" style="font-weight: bold"/>
+			
+				                    <h:outputText value="#{comment.content}" style="font-weight: bold"/>
+			
+				 					<p:rating value="#{comment.mark}" readonly="true" />
+			
+			       	 	</h:panelGrid>
+		       	 	</p:outputPanel>
+	       	 	</p:panel>
+			</p:dataScroller>
+			<h:panelGroup rendered="#{not empty loggedUser}">
+				<h:form>
+					<h:panelGrid columns="4" style="width: 98%" columnClasses="usernameComment,dateComment,contentComment, markComment">
+						<h:panelGroup> 
+						</h:panelGroup>
+						<h:panelGroup>
+						</h:panelGroup>
+						<p:inputTextarea style="width: 90%" value="#{inputCommentBean.content}"/>
+						<p:rating value="#{inputCommentBean.mark}" cancel="false"  />
+						<h:panelGroup> 
+						</h:panelGroup>
+						<h:panelGroup>
+						</h:panelGroup>
+						<p:commandButton value="Post Your Comment"
+											action="#{recipeControl.addComment(inputCommentBean, loggedUser.id, recipeControl.specificRecipe.id)}"
+											ajax="false" icon="ui-icon-check" validateClient="true" />
+					</h:panelGrid>
+				</h:form>
 			</h:panelGroup>
-			<h:panelGroup>
-			</h:panelGroup>
-			<p:inputTextarea style="width: 90%" value="#{inputCommentBean.content}"/>
-			<p:rating value="#{inputCommentBean.mark}" cancel="false"  />
-			<h:panelGroup> 
-			</h:panelGroup>
-			<h:panelGroup>
-			</h:panelGroup>
-			<p:commandButton value="Post Your Comment"
-								action="#{recipeControl.addComment(inputCommentBean, loggedUser.id, recipeControl.specificRecipe.id)}"
-								ajax="false" icon="ui-icon-check" validateClient="true" />
-		</h:panelGrid>
-		</h:form>
-		</h:panelGroup>	
+		</h:panelGroup>
 	</ui:define>
 				
 </ui:composition>

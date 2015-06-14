@@ -58,10 +58,8 @@ public class RecipeControllerBean implements Serializable {
 	//////////////////METHODS
 	public void loadAllRecipe(){
 		recipeList = this.recipeDao.getAllRecipes();
-		//reÌ�cupeÌ€re l'espace de meÌ�moire de JSF
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
-		//place la liste de recette dans l'espace de meÌ�moire de JSF
 		sessionMap.put("recipeList", recipeList);
 	}
 	
