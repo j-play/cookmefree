@@ -33,7 +33,7 @@ public class UserControllerBean implements Serializable {
 	public void checkUser(LoginBean loginBean){
 		UserModelBean user = this.userDao.checkUser(loginBean.getLogin(),loginBean.getPwd());
 		
-		if( user!=null){
+		if(user!=null){
 			//récupère l'espace de mémoire de JSF
 			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 			Map<String, Object> sessionMap = externalContext.getSessionMap();
