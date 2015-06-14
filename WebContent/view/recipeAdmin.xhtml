@@ -63,48 +63,79 @@
 					<h:form id="recipeUpdateForm"
 						rendered="#{not empty recipeListModelBean.selectedRecipe}">
 						<h2>Recipe update form</h2>
-						<h:panelGrid columns="3">
-						
-							<p:outputLabel for="title">Title:</p:outputLabel>
-							<p:inputText id="title"
+						<div id="adminRecipeForm">
+						<p:outputLabel for="title">Title:</p:outputLabel>
+						<p:inputText id="title"
 								value="#{recipeListModelBean.selectedRecipe.title}"
 								required="true" requiredMessage="Title is required."
 								size="30" maxlength="30" />
-							<p:message showDetail="true" for="title" errorClass="error" />
+						<p:message showDetail="true" for="title" errorClass="error" />
+						
+							<div class="searchRecipeFormElement1">
 
-							<p:outputLabel for="duration">Preparation duration:</p:outputLabel>
-							<p:inputText id="duration"
-								value="#{recipeListModelBean.selectedRecipe.duration}"
-								required="true" requiredMessage="Duration is required."
-								size="30" maxlength="30" />
-							<p:message showDetail="true" for="duration" errorClass="error" />
+								<p:outputLabel for="duration">
+									<i class="fa-clock-o fa fa-2x"/>
+									Preparation duration (minutes) 
+								</p:outputLabel>
+								<br/>
+								<p:inputText id="duration"
+									value="#{recipeListModelBean.selectedRecipe.duration}"
+									required="true" requiredMessage="Duration is required."
+									size="20" maxlength="20" />
+								<p:message showDetail="true" for="duration" errorClass="error" />
+							</div>
+							<div class="searchRecipeFormElement2">
+								<p:outputLabel for="expertise">
+									<i class="fa-pencil-square-o fa fa-2x"/>
+									Cook expertise 
+								</p:outputLabel>
+								<br/>
+								<p:growl id="growl" showDetail="true" />
+					    		<h:panelGrid columns="1">
+					       	 		<p:rating cancel="false" id="expertise" value="#{recipeListModelBean.selectedRecipe.expertise}" required="true"/>
+					    		</h:panelGrid>
+								<p:message showDetail="true" for="expertise" errorClass="error" />
+							</div>
+							<br/>
+					
+							<div class="searchRecipeFormElement1">
+								<h:panelGrid columns="1">
+								<p:outputLabel for="people">
+									<i class="fa-users fa fa-2x"/>
+									For how many people ? 
+								</p:outputLabel>
+								 <h:outputText id="outputSlider" value="#{recipeListModelBean.selectedRecipe.nbPeople}" />
+					        	<h:inputHidden id="people" value="#{recipeListModelBean.selectedRecipe.nbPeople}" required="true"/>
+					        	<p:slider for="people" minValue="1" maxValue="10"
+					         		display="outputSlider" displayTemplate="{value}" />
+			         			</h:panelGrid>
+			         			<p:message showDetail="true" for="people" errorClass="error" />
+			         		</div>
+			         		
+							<div class="searchRecipeFormElement2">
+								<p:outputLabel for="cookType">
+									<i class="fa-bookmark-o fa fa-2x"/>
+									Cook type 
+								</p:outputLabel>
+								<br/>
+								<p:selectOneMenu value="#{recipeListModelBean.selectedRecipe.type}" id="cookType" required="true">  
+						            <f:selectItem itemLabel="Meal" itemValue="meal" />  
+						            <f:selectItem itemLabel="Salad" itemValue="salad" />  
+						            <f:selectItem itemLabel="Fish" itemValue="fish" />  
+						            <f:selectItem itemLabel="Dessert" itemValue="dessert" />  
+						        </p:selectOneMenu>
+						        <p:message showDetail="true" for="cookType" errorClass="error" />
+						        <br/>
+							</div>
 
-							<p:outputLabel for="expertise">Cook expertise:</p:outputLabel>
-							<p:inputText id="expertise"
-								value="#{recipeListModelBean.selectedRecipe.expertise}" required="true"
-								requiredMessage="Expertise is required." size="30" maxlength="30" />
-							<p:message showDetail="true" for="expertise" errorClass="error" />
-
-							<p:outputLabel for="nbPeople">For how many people:</p:outputLabel>
-							<p:inputText id="nbPeople"
-								value="#{recipeListModelBean.selectedRecipe.nbPeople}" required="true"
-								requiredMessage="Number of people is required." size="30" maxlength="30" />
-							<p:message showDetail="true" for="nbPeople" errorClass="error" />
-
-							<p:outputLabel for="type">Cook type:</p:outputLabel>
-							<p:inputText id="type"
-								value="#{recipeListModelBean.selectedRecipe.type}" required="true"
-								requiredMessage="Type is required." size="30" maxlength="30"/>
-							<p:message showDetail="true" for="type" errorClass="error" />
-
-							<p:outputLabel for="description">Description:</p:outputLabel>
-							<p:inputTextarea id="description"
-								value="#{recipeListModelBean.selectedRecipe.description}" required="true"
-								requiredMessage="Description is required."/>
-							<p:message showDetail="true" for="description" errorClass="error" />
-
-						</h:panelGrid>
-						<div class="recipeAdminButtons">
+							<div class="searchRecipeFormElement1">
+								<p:outputLabel for="description">Description:</p:outputLabel>
+								<p:inputTextarea id="description"
+									value="#{recipeListModelBean.selectedRecipe.description}" required="true"
+									requiredMessage="Description is required." rows="10" cols="50"/>
+								<p:message showDetail="true" for="description" errorClass="error" />
+							</div>
+							<div class="recipeAdminButtons">
 							<p:commandButton icon="ui-icon-close" value="Cancel" ajax="true"
 								immediate="true" update="recipeDetailsPanel"
 								actionListener="#{recipeListModelBean.resetSelectedRecipe()}" />
@@ -112,63 +143,95 @@
 							<p:commandButton value="Save"
 								action="#{recipeListModelBean.updateRecipe(recipeListModelBean.selectedRecipe)}"
 								ajax="false" icon="ui-icon-check" validateClient="true" />
+							</div>
 						</div>
 					</h:form>
 
 					<!-- ADD RECIPE FORM -->
 					<h:form id="recipeAddForm"
 						rendered="#{empty recipeListModelBean.selectedRecipe}">
-						<h2>Recipe add form</h2>
-												<h:panelGrid columns="3">
-						
-							<p:outputLabel for="title">Title:</p:outputLabel>
-							<p:inputText id="title"
+						<h2>Recipe update form</h2>
+						<div id="adminRecipeForm">
+						<p:outputLabel for="title">Title:</p:outputLabel>
+						<p:inputText id="title"
 								value="#{recipeModelBean.title}"
 								required="true" requiredMessage="Title is required."
 								size="30" maxlength="30" />
-							<p:message showDetail="true" for="title" errorClass="error" />
+						<p:message showDetail="true" for="title" errorClass="error" />
+						
+							<div class="searchRecipeFormElement1">
 
-							<p:outputLabel for="duration">Preparation duration:</p:outputLabel>
-							<p:inputText id="duration"
-								value="#{recipeModelBean.duration}"
-								required="true" requiredMessage="Duration is required."
-								size="30" maxlength="30" />
-							<p:message showDetail="true" for="duration" errorClass="error" />
+								<p:outputLabel for="duration">
+									<i class="fa-clock-o fa fa-2x"/>
+									Preparation duration (minutes) 
+								</p:outputLabel>
+								<br/>
+								<p:inputText id="duration"
+									value="#{recipeModelBean.duration}"
+									required="true" requiredMessage="Duration is required."
+									size="20" maxlength="20" />
+								<p:message showDetail="true" for="duration" errorClass="error" />
+							</div>
+							<div class="searchRecipeFormElement2">
+								<p:outputLabel for="expertise">
+									<i class="fa-pencil-square-o fa fa-2x"/>
+									Cook expertise 
+								</p:outputLabel>
+								<br/>
+								<p:growl id="growl" showDetail="true" />
+					    		<h:panelGrid columns="1">
+					       	 		<p:rating cancel="false" id="expertise" value="#{recipeModelBean.expertise}" required="true"/>
+					    		</h:panelGrid>
+								<p:message showDetail="true" for="expertise" errorClass="error" />
+							</div>
+							<br/>
+					
+							<div class="searchRecipeFormElement1">
+								<h:panelGrid columns="1">
+								<p:outputLabel for="people">
+									<i class="fa-users fa fa-2x"/>
+									For how many people ? 
+								</p:outputLabel>
+								 <h:outputText id="outputSlider" value="#{recipeModelBean.nbPeople}" />
+					        	<h:inputHidden id="people" value="#{recipeModelBean.nbPeople}" required="true"/>
+					        	<p:slider for="people" minValue="1" maxValue="10"
+					         		display="outputSlider" displayTemplate="{value}" />
+			         			</h:panelGrid>
+			         			<p:message showDetail="true" for="people" errorClass="error" />
+			         		</div>
+			         		
+							<div class="searchRecipeFormElement2">
+								<p:outputLabel for="cookType">
+									<i class="fa-bookmark-o fa fa-2x"/>
+									Cook type 
+								</p:outputLabel>
+								<br/>
+								<p:selectOneMenu value="#{recipeModelBean.type}" id="cookType" required="true">  
+						            <f:selectItem itemLabel="Meal" itemValue="meal" />  
+						            <f:selectItem itemLabel="Salad" itemValue="salad" />  
+						            <f:selectItem itemLabel="Fish" itemValue="fish" />  
+						            <f:selectItem itemLabel="Dessert" itemValue="dessert" />  
+						        </p:selectOneMenu>
+						        <p:message showDetail="true" for="cookType" errorClass="error" />
+						        <br/>
+							</div>
 
-							<p:outputLabel for="expertise">Cook expertise:</p:outputLabel>
-							<p:inputText id="expertise"
-								value="#{recipeModelBean.expertise}" required="true"
-								requiredMessage="Expertise is required." size="30" maxlength="30" />
-							<p:message showDetail="true" for="expertise" errorClass="error" />
-
-							<p:outputLabel for="nbPeople">For how many people:</p:outputLabel>
-							<p:inputText id="nbPeople"
-								value="#{recipeModelBean.nbPeople}" required="true"
-								requiredMessage="Number of people is required." size="30" maxlength="30" />
-							<p:message showDetail="true" for="nbPeople" errorClass="error" />
-
-							<p:outputLabel for="type">Cook type:</p:outputLabel>
-							<p:inputText id="type"
-								value="#{recipeModelBean.type}" required="true"
-								requiredMessage="Type is required." size="30" maxlength="30" />
-							<p:message showDetail="true" for="type" errorClass="error" />
-
-							<p:outputLabel for="description">Description:</p:outputLabel>
-							<p:inputTextarea id="description"
-								value="#{recipeModelBean.description}" required="true"
-								requiredMessage="Description is required." />
-							<p:message showDetail="true" for="description" errorClass="error" />
-
-						</h:panelGrid>
-						<div class="recipeAdminButtons">
-							<p:commandButton icon="ui-icon-close" value="Reset" ajax="true"
+							<div class="searchRecipeFormElement1">
+								<p:outputLabel for="description">Description:</p:outputLabel>
+								<p:inputTextarea id="description"
+									value="#{recipeModelBean.description}" required="true"
+									requiredMessage="Description is required." rows="10" cols="50"/>
+								<p:message showDetail="true" for="description" errorClass="error" />
+							</div>
+							<div class="recipeAdminButtons">
+								<p:commandButton icon="ui-icon-close" value="Reset" ajax="true"
 								immediate="true">
-								<p:ajax update="recipeDetailsPanel" resetValues="true" />
-							</p:commandButton>
-
-							<p:commandButton value="Add"
+									<p:ajax update="recipeDetailsPanel" resetValues="true" />
+								</p:commandButton>
+								<p:commandButton value="Add"
 								action="#{recipeListModelBean.addRecipe(recipeModelBean)}"
 								ajax="false" icon="ui-icon-check" validateClient="true" />
+							</div>
 						</div>
 					</h:form>
 				</p:panel>
