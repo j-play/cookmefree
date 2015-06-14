@@ -149,6 +149,22 @@ body
 	display: inline-block;
 }
 
+.usernameComment{
+	width: 10%;
+}
+
+.dateComment{
+	width: 10%;
+}
+
+.contentComment{
+	width: 60%;
+}
+
+.markComment{
+	width: 20%;
+}
+
 /*
 * </SHOW-RECIPE>////////////////////////////////////////////////////////////////////////////
 */

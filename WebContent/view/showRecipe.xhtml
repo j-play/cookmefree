@@ -32,26 +32,40 @@
 			<h:outputText value="#{recipeControl.specificRecipe.description}"/>
 		</div>
 		<hr/>
+		
 		<p:dataScroller value="#{recipeControl.getCommentsByIdRecipe(recipeControl.specificRecipe.id)}" var="comment" chunkSize="10">
+			<p:panel>
 			<p:outputPanel>
-			<h:panelGrid columns="2" style="width:100%" columnClasses="user,content">
-	 			 	<h:outputText value="#{userControl.getUserById(comment.idUser).login}" style="font-weight: bold"/>
-	                <h:panelGrid columns="3">
+			<h:panelGrid columns="4" style="width: 100%" columnClasses="usernameComment,dateComment, contentComment, markComment">
+	 			 		<h:outputText value="#{userControl.getUserById(comment.idUser).login}" style="font-weight: bold"/>
+
 	                    <h:outputText value="#{comment.date}" style="font-weight: bold"/>
-	 
+
 	                    <h:outputText value="#{comment.content}" style="font-weight: bold"/>
+
 	 					<p:rating value="#{comment.mark}" readonly="true" />
-	                </h:panelGrid>
+
        	 	</h:panelGrid>
        	 	</p:outputPanel>
+       	 	</p:panel>
 		</p:dataScroller>
 		<h:panelGroup rendered="#{not empty loggedUser}">
 		<h:form>
-			<p:inputTextarea rows="6" cols="60" value="#{inputCommentBean.content}"/>
-			<p:rating value="#{inputCommentBean.mark}" />
+		<h:panelGrid columns="4" style="width: 98%" columnClasses="usernameComment,dateComment,contentComment, markComment">
+			<h:panelGroup> 
+			</h:panelGroup>
+			<h:panelGroup>
+			</h:panelGroup>
+			<p:inputTextarea style="width: 90%" value="#{inputCommentBean.content}"/>
+			<p:rating value="#{inputCommentBean.mark}" cancel="false"  />
+			<h:panelGroup> 
+			</h:panelGroup>
+			<h:panelGroup>
+			</h:panelGroup>
 			<p:commandButton value="Post Your Comment"
 								action="#{recipeControl.addComment(inputCommentBean, loggedUser.id, recipeControl.specificRecipe.id)}"
 								ajax="false" icon="ui-icon-check" validateClient="true" />
+		</h:panelGrid>
 		</h:form>
 		</h:panelGroup>	
 	</ui:define>
