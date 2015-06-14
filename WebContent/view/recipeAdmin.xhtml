@@ -17,7 +17,6 @@
 			<h:panelGrid columns="2" id="recipeAdminPanelGrid" columnClasses="customColumns">
 				<p:panel header="Recipes list" id="recipeListPanel">
 					<h:form id="recipeTableForm">
-						<p:messages id="recipesAdminMessages" autoUpdate="true" closable="true" />
 						<p:dataTable var="recipe" value="#{recipeListModelBean.recipeList}"
 							tableStyle="table-layout: auto; text-align: center;"
 							paginator="true"
