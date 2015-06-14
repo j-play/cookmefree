@@ -30,7 +30,8 @@
 				 		<h:panelGroup id="headerMenu">
 				 			<h:form>
 			 					<h:commandLink action="#{accueilControl.goToAccueil()}" value="Home"/>
-			 					<h:commandLink action="#{accueilControl.goToAdmin()}" value="Administration" rendered="#{not empty loggedUser and loggedUser.isAdmin}"/>
+			 					<h:commandLink action="#{accueilControl.goToAdmin()}" value="User Administration" rendered="#{not empty loggedUser and loggedUser.isAdmin}"/>
+		 						<h:commandLink action="#{accueilControl.goToAdminRecipe()}" value="Recipe Administration " rendered="#{not empty loggedUser and loggedUser.isAdmin}"/>
 		 					</h:form>
 				 		</h:panelGroup>
 				 		
